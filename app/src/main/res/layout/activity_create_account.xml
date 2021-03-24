@@ -67,62 +67,78 @@
         android:id="@+id/name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="John Doe"
         android:backgroundTint="@color/black"
         android:ems="10"
+        android:hint="@string/John_Doe_name"
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
         app:layout_constraintBottom_toBottomOf="@id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/name" />
+        app:layout_constraintTop_toTopOf="@id/name"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/email_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="doe.j@northeastern.edu"
         android:backgroundTint="@color/black"
         android:ems="10"
+        android:hint="@string/John_Doe_email"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
         app:layout_constraintBottom_toBottomOf="@id/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/email" />
+        app:layout_constraintTop_toTopOf="@id/email"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/username_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="john.doe"
         android:backgroundTint="@color/black"
         android:ems="10"
+        android:hint="@string/John_Doe_username"
         android:inputType="textPersonName"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
         app:layout_constraintBottom_toBottomOf="@id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/username" />
+        app:layout_constraintTop_toTopOf="@id/username"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/password_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="******"
         android:backgroundTint="@color/black"
         android:ems="10"
+        android:hint="@string/John_Doe_password"
         android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/password" />
+        app:layout_constraintTop_toTopOf="@id/password"
+        android:importantForAutofill="no" />
 
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/next"
+        android:backgroundTint="#9A66FF"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/password_input" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     // For new users who want to create their account, they are redirected to CreateAccountActivity
     public void onClickCreateAccount(View view) {
-        Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+        Intent intent = new Intent(MainActivity.this, PersonalInfoActivity.class);
         startActivity(intent);
     }
 }
