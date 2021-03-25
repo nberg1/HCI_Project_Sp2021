@@ -25,6 +25,8 @@
     <string name="next">Next</string>
     <string name="academic_info">Academic Information</string>
     <string name="academic_program">Current academic program:</string>
+    <string name="align">Current ALIGN</string>
+    <string name="mscs">MSCS</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

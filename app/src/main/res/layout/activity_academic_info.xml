@@ -26,10 +26,32 @@
         android:text="@string/academic_program"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/academic_info" />
+
+    <RadioGroup
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/academic_info">
+
+        <RadioButton
+            android:id="@+id/align"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/align" />
+
+        <RadioButton
+            android:id="@+id/mscs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mscs" />
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
