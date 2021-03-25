@@ -44,12 +44,14 @@
             android:id="@+id/align"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="@string/align" />
 
         <RadioButton
             android:id="@+id/mscs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="@string/mscs" />
     </RadioGroup>
 
