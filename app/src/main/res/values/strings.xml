@@ -9,6 +9,29 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="privacy">Due to privacy concerns, to view students in your classes you will need to log in.</string>
+    <string name="login">Login</string>
+    <string name="first_time_user">First time user?</string>
+    <string name="create_account">Create Account</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="full_name">Name:</string>
+    <string name="email">Northeastern Email:</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="John_Doe_name">John Doe</string>
+    <string name="John_Doe_email">doe.j@northeastern.edu</string>
+    <string name="John_Doe_username">john.doe</string>
+    <string name="John_Doe_password">********</string>
+    <string name="next">Next</string>
+    <string name="academic_info">Academic Information</string>
+    <string name="academic_program">Current academic program:</string>
+    <string name="align">Current ALIGN</string>
+    <string name="mscs">MSCS</string>
+    <string name="first_semester">Select your first semester:</string>
+    <string name="select_courses">Select courses in-progress:</string>
+    <string name="action_settings">Settings</string>
+    <string name="save_profile">Save Profile</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
