@@ -6,4 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".AcademicInfoActivity">
 
+    <TextView
+        android:id="@+id/academic_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/academic_info"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/academic_program"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/academic_program"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/academic_program"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/academic_info" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

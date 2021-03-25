@@ -12,7 +12,6 @@
         <activity android:name=".AcademicInfoActivity"></activity>
         <activity android:name=".PersonalInfoActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".CreateAccountActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

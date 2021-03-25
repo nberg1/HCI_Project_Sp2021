@@ -7,7 +7,7 @@
     tools:context=".PersonalInfoActivity">
 
     <TextView
-        android:id="@+id/personal_info"
+        android:id="@+id/academic_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
@@ -25,10 +25,11 @@
         android:layout_height="wrap_content"
         android:text="@string/full_name"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/personal_info" />
+        app:layout_constraintTop_toTopOf="@id/academic_info" />
 
     <TextView
         android:id="@+id/email"
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="@string/email"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,7 @@
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +61,7 @@
         android:layout_height="wrap_content"
         android:text="@string/password"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +141,7 @@
         android:onClick="onClickAcademicInfo"
         android:text="@string/next"
         android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/password_input" />
