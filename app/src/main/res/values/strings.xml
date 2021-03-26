@@ -31,6 +31,7 @@
     <string name="select_courses">Select courses in-progress:</string>
     <string name="action_settings">Settings</string>
     <string name="save_profile">Save Profile</string>
+    <string name="forgot_data">Forgot username/password?</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
