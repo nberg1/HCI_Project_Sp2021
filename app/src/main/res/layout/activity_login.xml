@@ -88,6 +88,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Click Here"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="@id/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,9 +102,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
+        android:backgroundTint="#9A66FF"
+        android:fontFamily="sans-serif-medium"
+        android:onClick="onClickNext"
         android:text="@string/next"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/click_here" />
 
