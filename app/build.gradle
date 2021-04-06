@@ -35,6 +35,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.8.0')
     // Declare dependency for realtime db library
     implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-messaging'
 //    Dependency for firebase sdk for google analytics
     implementation 'com.google.firebase:firebase-analytics'
     testImplementation 'junit:junit:4.12'
