@@ -14,11 +14,19 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                android:textAlignment="center"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:subtitleTextColor="#FFFFFF"
+                app:title="KhouryMeet"
+                app:titleMarginStart="110dp"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:titleTextColor="#FFFFFF" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
