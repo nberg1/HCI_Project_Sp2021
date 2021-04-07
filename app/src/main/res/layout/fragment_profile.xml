@@ -27,33 +27,61 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <ScrollView
-        android:layout_width="413dp"
-        android:layout_height="584dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:textAlignment="center"
+            app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:subtitleTextColor="#FFFFFF"
+            app:title="KhouryMeet"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:titleTextColor="#FFFFFF" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:scrollbars="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
-            <ImageView
-                android:id="@+id/imageView"
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="112dp"
+                android:background="@color/white"
+                android:layout_marginTop="80dp"
+                android:layout_gravity="center"
+                tools:src="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="4dp"
-                tools:src="@tools:sample/avatars" />
-
+                android:layout_marginTop="10dp"
+                android:text="Edit Profile"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:padding="10dp"/>
 
             <TextView
                 android:id="@+id/name"
@@ -117,9 +145,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
+                android:layout_marginBottom="80dp"
                 android:text="NONE"
                 android:textSize="25sp" />
-
         </LinearLayout>
     </ScrollView>
 

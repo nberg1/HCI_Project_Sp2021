@@ -2,15 +2,13 @@ package com.example.khourymeet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
@@ -30,29 +28,31 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-        if (savedInstanceState == null) {
+        if (savedInstanceState != null) {
             Fragment fragment = getSupportFragmentManager().getFragment(savedInstanceState, ACTIVE_FRAGMENT);
             if (fragment != null) {
                 openFragment(fragment);
                 return;
             }
         }
-        openFragment(HomeFragment.newInstance("", ""));
+        openFragment(HomeFragment.newInstance());
     }
 
     public void openFragment(Fragment fragment) {
         this.activeFragment = fragment;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setReorderingAllowed(true);
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
         /*
         try {
-            this.setTitle((fragment).getTitle());
+            this.setTitle(((NavigationFragment) fragment).getTitle());
         } catch (Exception e) {
             e.printStackTrace();
         }*/
@@ -64,16 +64,16 @@ public class HomeActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     switch (menuItem.getItemId()) {
                         case R.id.navigation_home:
-                            openFragment(HomeFragment.newInstance("",""));
+                            openFragment(HomeFragment.newInstance());
                             return true;
                         case R.id.navigation_search:
                             openFragment(SearchFragment.newInstance("", ""));
                             return true;
-                        case R.id.navigation_group_msg:
-                            openFragment(GroupsFragment.newInstance("", ""));
-                            return true;
                         case R.id.navigation_direct_msg:
                             openFragment(MessagesFragment.newInstance("", ""));
+                            return true;
+                        case R.id.navigation_group_msg:
+                            openFragment(GroupsFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_profile:
                             openFragment(ProfileFragment.newInstance("", ""));
@@ -83,39 +83,11 @@ public class HomeActivity extends AppCompatActivity {
                 }
             };
 
-    public void onClick(View view) {
-        /*
-        Intent intent = new Intent(this, TrailActivity.class);
-        startActivity(intent);
-        */
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
         // Inflate the menu; this adds items to the action bar if it is present.
-        inflater.inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.navigation_profile:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-        /*
-        if (item.getItemId() == R.id.action_signout) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-         */
     }
 
     @Override

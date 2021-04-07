@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
@@ -65,7 +64,7 @@
             app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.042" />
+            app:layout_constraintVertical_bias="0.056" />
 
         <Button
             android:id="@+id/course2_button"
@@ -74,10 +73,10 @@
             android:text="@string/cs5003"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.934"
+            app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.205" />
+            app:layout_constraintTop_toBottomOf="@+id/course_title"
+            app:layout_constraintVertical_bias="0.121" />
 
         <Button
             android:id="@+id/course1_button"
@@ -88,8 +87,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.065"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.205" />
+            app:layout_constraintTop_toBottomOf="@+id/course_title"
+            app:layout_constraintVertical_bias="0.121" />
 
         <TextView
             android:id="@+id/current_msgs"
@@ -102,7 +101,7 @@
             app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.572" />
+            app:layout_constraintVertical_bias="0.782" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
