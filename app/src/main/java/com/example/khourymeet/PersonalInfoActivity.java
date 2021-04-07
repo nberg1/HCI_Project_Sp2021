@@ -56,6 +56,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         userName = findViewById(R.id.username_input);
         password = findViewById(R.id.password_input);
 
+        checkEmailExists("dummy@data.com");
     }
 
     public void onClick(View view) {
@@ -106,6 +107,42 @@ public class PersonalInfoActivity extends AppCompatActivity {
             }
         });
         return usernameExists[0];
+    }
+
+    // Check that email does not already exist
+    private boolean checkEmailExists(final String emailVal) {
+        final boolean[] emailExists = new boolean[1];
+        databaseReference.child("users").addValueEventListener(new ValueEventListener() {
+            // Use snapshot to go through users and see if email already exists
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Get snapshot of each child and check if the email input matches an email that
+                // already exists
+                int count = 0;
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    if (count == 1) {
+                        break;
+                    }
+                    Log.w("snapshot", String.valueOf(childSnapshot));
+                    // TODO: using User.class, get error saying "cannot convert long to string",
+                    //  but using User2 (HashMaps instead of lists for courses and friends) get
+                    //  error saying "Expected a Map while deserializing, but got a class
+                    //  java.util.ArrayList".
+                    // Data Snapshot: DataSnapshot { key = dummyData, value = {courses={0=5001, 1=5003}, image=imageFileString, password=1234, name=dummy, align=true, firstSemester=Spring 2020, email=dummy@data.com, friends={0=dummy@data2.com}, username=dummydata} }
+                    User2 userToCheck = childSnapshot.getValue(User2.class);
+//                    Log.w("snapshot email", userToCheck.getEmail());
+//                    Log.w("snapshot courses", userToCheck.getCourses().toString());
+                    count ++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "onCancelled");
+            }
+        });
+//        return emailExists[0];
+        return true;
     }
 
 }
