@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "User does not exist. Please register a new user.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
