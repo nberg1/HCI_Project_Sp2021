@@ -15,7 +15,7 @@ import com.example.khourymeet.R;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener, NavigationFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,7 +62,14 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    /*public int getTitle() {
-        return;
-    }*/
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public int getTitle() {
+        return 0;
+    }
+
 }

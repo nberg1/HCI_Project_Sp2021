@@ -9,10 +9,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
+import com.example.khourymeet.fragments.NavigationFragment;
 import com.example.khourymeet.fragments.ProfileFragment;
 import com.example.khourymeet.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,12 +52,11 @@ public class HomeActivity extends AppCompatActivity {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        /*
         try {
             this.setTitle(((NavigationFragment) fragment).getTitle());
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
@@ -67,10 +68,10 @@ public class HomeActivity extends AppCompatActivity {
                             openFragment(HomeFragment.newInstance());
                             return true;
                         case R.id.navigation_search:
-                            openFragment(SearchFragment.newInstance("", ""));
+                            openFragment(SearchFragment.newInstance());
                             return true;
                         case R.id.navigation_direct_msg:
-                            openFragment(MessagesFragment.newInstance("", ""));
+                            openFragment(MessagesFragment.newInstance());
                             return true;
                         case R.id.navigation_group_msg:
                             openFragment(GroupsFragment.newInstance("", ""));
