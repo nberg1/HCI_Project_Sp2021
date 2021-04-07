@@ -25,8 +25,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private static final String namePattern = "([\\p{L}\\-])+(\\s)([\\p{L}\\-\\s])+(?<![\\-\\s])";
     // Will match Northeastern email
     // Format: last name + period + portion of first name + @northeastern.edu
-    // TODO: figure out how to only allow one hyphen per word, add POTENTIAL numbers to end of first name
-    private static final String emailPattern = "([a-z\\-])+(?<![\\-])(\\.)([a-z\\-])+(?<![\\-])(@northeastern.edu)";
+    // TODO: figure out how to only allow one hyphen per word
+    private static final String emailPattern = "([a-z\\-])+(?<![\\-])(\\.)([a-z\\-])+([0-9]+)?(?<![\\-])(@northeastern.edu)";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     // Check that user entered a Northeastern email
     private boolean checkEmailPattern() {
-
+        String emailInput = emailInputView.getText().toString();
+        return Pattern.matches(emailPattern, emailInput);
     }
+
 }
