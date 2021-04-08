@@ -33,6 +33,18 @@
     <string name="save_profile">Save Profile</string>
     <string name="forgot_data">Forgot username/password?</string>
 
+    <string name="home">Home</string>
+    <string name="messages">Messages</string>
+    <string name="groups">Groups</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+
+    <string name="home_page">Home Page</string>
+    <string name="my_profile">My Profile</string>
+    <string name="search_students">Search Students</string>
+    <string name="direct_messages">Direct Messages</string>
+    <string name="group_chats">Group Chats</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
