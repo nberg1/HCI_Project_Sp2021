@@ -47,6 +47,8 @@
     <string name="direct_messages">Direct Messages</string>
     <string name="group_chats">Group Chats</string>
 
+    <string name="users_path">users/%s</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cs5001">CS5001</string>
