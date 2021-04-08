@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
             final AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
             builder.setMessage("Are you sure you want to exit KhouryMeet?");
             builder.setCancelable(true);
-            builder.setPositiveButton("Continue using KhouryMeet", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("Continue using App", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
