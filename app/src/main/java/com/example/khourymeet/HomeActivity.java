@@ -14,14 +14,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.view.View;
 
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.example.khourymeet.fragments.NavigationFragment;
 import com.example.khourymeet.fragments.ProfileFragment;
 import com.example.khourymeet.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -136,5 +138,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 }
