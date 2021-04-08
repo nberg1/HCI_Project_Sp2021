@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 
 /**
@@ -63,13 +64,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Navi
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
     }
 
     @Override
     public int getTitle() {
-        return 0;
+        return R.string.home_page;
     }
 
 }

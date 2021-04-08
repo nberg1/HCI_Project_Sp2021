@@ -1,0 +1,119 @@
+Index: app/src/main/res/menu/menu_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    tools:context=\"com.example.khourymeet\">\n\n    <item\n        android:id=\"@+id/action_settings\"\n        android:orderInCategory=\"100\"\n        android:title=\"@string/sign_out\"\n        app:showAsAction=\"never\" />\n\n</menu>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_main.xml	(revision 63a1b487d1a214b8a9add48cea22a6aafee858a3)
++++ app/src/main/res/menu/menu_main.xml	(date 1617898944000)
+@@ -5,7 +5,7 @@
+     tools:context="com.example.khourymeet">
+ 
+     <item
+-        android:id="@+id/action_settings"
++        android:id="@+id/action_signout"
+         android:orderInCategory="100"
+         android:title="@string/sign_out"
+         app:showAsAction="never" />
+Index: app/src/main/java/com/example/khourymeet/HomeActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.khourymeet;\n\nimport androidx.annotation.NonNull;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.appcompat.widget.Toolbar;\nimport androidx.fragment.app.Fragment;\nimport androidx.fragment.app.FragmentTransaction;\n\nimport android.os.Bundle;\nimport android.view.Menu;\nimport android.view.MenuItem;\n\nimport com.example.khourymeet.fragments.GroupsFragment;\nimport com.example.khourymeet.fragments.HomeFragment;\nimport com.example.khourymeet.fragments.MessagesFragment;\nimport com.example.khourymeet.fragments.ProfileFragment;\nimport com.example.khourymeet.fragments.SearchFragment;\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\n\npublic class HomeActivity extends AppCompatActivity {\n\n    private static final String ACTIVE_FRAGMENT = \"ACTIVE_FRAGMENT\";\n    BottomNavigationView bottomNavigation;\n    private Fragment activeFragment;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_home);\n\n        Toolbar toolbar = findViewById(R.id.toolbar);\n        setSupportActionBar(toolbar);\n\n        bottomNavigation = findViewById(R.id.bottom_navigation);\n\n        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);\n        if (savedInstanceState != null) {\n            Fragment fragment = getSupportFragmentManager().getFragment(savedInstanceState, ACTIVE_FRAGMENT);\n            if (fragment != null) {\n                openFragment(fragment);\n                return;\n            }\n        }\n        openFragment(HomeFragment.newInstance());\n    }\n\n    public void openFragment(Fragment fragment) {\n        this.activeFragment = fragment;\n        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();\n        transaction.replace(R.id.container, fragment);\n        transaction.addToBackStack(null);\n        transaction.commit();\n        try {\n            this.setTitle(((NavigationFragment) fragment).getTitle());\n        } catch (Exception e) {\n            e.printStackTrace();\n        }\n    }\n\n    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =\n            new BottomNavigationView.OnNavigationItemSelectedListener() {\n                @Override\n                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {\n                    switch (menuItem.getItemId()) {\n                        case R.id.navigation_home:\n                            openFragment(HomeFragment.newInstance());\n                            return true;\n                        case R.id.navigation_search:\n                            openFragment(SearchFragment.newInstance());\n                            return true;\n                        case R.id.navigation_messages:\n                            openFragment(MessagesFragment.newInstance());\n                            return true;\n                        case R.id.navigation_groups:\n                            openFragment(GroupsFragment.newInstance());\n                            return true;\n                        case R.id.navigation_profile:\n                            openFragment(ProfileFragment.newInstance());\n                            return true;\n                    }\n                    return false;\n                }\n            };\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        // Inflate the menu; this adds items to the action bar if it is present.\n        getMenuInflater().inflate(R.menu.menu_main, menu);\n        return true;\n    }\n\n    @Override\n    protected void onSaveInstanceState(@NonNull Bundle outState) {\n        super.onSaveInstanceState(outState);\n        getSupportFragmentManager().putFragment(outState, ACTIVE_FRAGMENT, this.activeFragment);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/khourymeet/HomeActivity.java	(revision 63a1b487d1a214b8a9add48cea22a6aafee858a3)
++++ app/src/main/java/com/example/khourymeet/HomeActivity.java	(date 1617898981000)
+@@ -6,6 +6,7 @@
+ import androidx.fragment.app.Fragment;
+ import androidx.fragment.app.FragmentTransaction;
+ 
++import android.content.Intent;
+ import android.os.Bundle;
+ import android.view.Menu;
+ import android.view.MenuItem;
+@@ -16,6 +17,7 @@
+ import com.example.khourymeet.fragments.ProfileFragment;
+ import com.example.khourymeet.fragments.SearchFragment;
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
++import com.google.firebase.auth.FirebaseAuth;
+ 
+ public class HomeActivity extends AppCompatActivity {
+ 
+@@ -94,4 +96,19 @@
+         super.onSaveInstanceState(outState);
+         getSupportFragmentManager().putFragment(outState, ACTIVE_FRAGMENT, this.activeFragment);
+     }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        // Handle action bar item clicks here. The action bar will
++        // automatically handle clicks on the Home/Up button, so long
++        // as you specify a parent activity in AndroidManifest.xml.
++
++        if (item.getItemId() == R.id.action_signout) {
++            FirebaseAuth.getInstance().signOut();
++            Intent intent = new Intent(this, MainActivity.class);
++            startActivity(intent);
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
+ }
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\n\nandroid {\n    compileSdkVersion 30\n    buildToolsVersion \"30.0.2\"\n\n    defaultConfig {\n        applicationId \"com.example.khourymeet\"\n        minSdkVersion 26\n        targetSdkVersion 30\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n}\n\ndependencies {\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\n    implementation 'com.google.android.material:material:1.3.0'\n    implementation 'androidx.annotation:annotation:1.1.0'\n    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n    testImplementation 'junit:junit:4.12'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 63a1b487d1a214b8a9add48cea22a6aafee858a3)
++++ app/build.gradle	(date 1617899327000)
+@@ -34,4 +34,9 @@
+     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+ 
++    implementation platform('com.google.firebase:firebase-bom:25.6.0')
++    implementation 'com.google.firebase:firebase-analytics'
++    implementation 'com.google.firebase:firebase-auth'
++    implementation 'com.google.firebase:firebase-messaging'
++    implementation 'com.google.firebase:firebase-database'
+ }
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <option name=\"testRunner\" value=\"PLATFORM\" />\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"gradleJvm\" value=\"1.8\" />\n        <option name=\"modules\">\n          <set>\n            <option value=\"$PROJECT_DIR$\" />\n            <option value=\"$PROJECT_DIR$/app\" />\n          </set>\n        </option>\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 63a1b487d1a214b8a9add48cea22a6aafee858a3)
++++ .idea/gradle.xml	(date 1617899281000)
+@@ -5,6 +5,7 @@
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="testRunner" value="PLATFORM" />
++        <option name="disableWrapperSourceDistributionNotification" value="true" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="gradleJvm" value="1.8" />
+Index: app/src/main/java/com/example/khourymeet/AcademicInfoActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.khourymeet;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.view.Menu;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.widget.ArrayAdapter;\nimport android.widget.Spinner;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class AcademicInfoActivity extends AppCompatActivity implements MultiSelectSpinner.OnMultipleItemsSelectedListener {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_academic_info);\n\n        addOnSpinnerSemester();\n        addOnSpinnerCourses();\n    }\n\n    public void addOnSpinnerSemester() {\n        Spinner spinner = (Spinner) findViewById(R.id.semesters);\n        ArrayList<String> list = new ArrayList<>();\n\n        list.add(\"Choose Semester\");\n        list.add(\"Spring 2021\");\n        list.add(\"Fall 2020\");\n        list.add(\"Spring 2020\");\n        list.add(\"Fall 2019\");\n\n        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);\n        spinner.setAdapter(adapter);\n    }\n\n    public void addOnSpinnerCourses() {\n        String[] array = {\"5001\", \"5002\", \"5004\", \"5006\"};\n        MultiSelectSpinner multiSelectSpinner = (MultiSelectSpinner) findViewById(R.id.courses);\n        multiSelectSpinner.setItems(array);\n        multiSelectSpinner.setSelection(new int[]{0});\n        multiSelectSpinner.setListener(this);\n    }\n\n    // After inputting legal academic information, Save Profile redirects users to the Home page\n    public void onClickHome(View view) {\n        Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);\n        startActivity(intent);\n    }\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        // Inflate the menu; this adds items to the action bar if it is present.\n        getMenuInflater().inflate(R.menu.menu_main, menu);\n        return true;\n    }\n\n    @Override\n    public boolean onOptionsItemSelected(MenuItem item) {\n        // Handle action bar item clicks here. The action bar will\n        // automatically handle clicks on the Home/Up button, so long\n        // as you specify a parent activity in AndroidManifest.xml.\n        int id = item.getItemId();\n\n        //noinspection SimplifiableIfStatement\n        if (id == R.id.action_settings) {\n            return true;\n        }\n\n        return super.onOptionsItemSelected(item);\n    }\n\n    @Override\n    public void selectedIndices(List<Integer> indices) {\n\n    }\n\n    @Override\n    public void selectedStrings(List<String> strings) {\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/khourymeet/AcademicInfoActivity.java	(revision 63a1b487d1a214b8a9add48cea22a6aafee858a3)
++++ app/src/main/java/com/example/khourymeet/AcademicInfoActivity.java	(date 1617898981000)
+@@ -67,7 +67,7 @@
+         int id = item.getItemId();
+ 
+         //noinspection SimplifiableIfStatement
+-        if (id == R.id.action_settings) {
++        if (id == R.id.action_signout) {
+             return true;
+         }
+ 

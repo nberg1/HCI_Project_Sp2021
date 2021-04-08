@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "597106033134",
+    "project_id": "khourymeet",
+    "storage_bucket": "khourymeet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597106033134:android:f8c39c9530ca9aec56ceff",
+        "android_client_info": {
+          "package_name": "com.example.khourymeet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597106033134-9tf121c20fnb6nshvk6s4pk1qpnj5ae0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Sc7lkcXzIhiFjs5A6OxX6h1sbrHUwXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597106033134-9tf121c20fnb6nshvk6s4pk1qpnj5ae0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

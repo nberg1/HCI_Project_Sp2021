@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 
 /**
@@ -69,6 +70,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
 
     @Override
     public int getTitle() {
-        return R.string.search;
+        return R.string.search_students;
     }
 }
