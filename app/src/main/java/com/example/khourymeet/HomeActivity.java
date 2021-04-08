@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                 return;
             }
         }
-        openFragment(HomeFragment.newInstance("", ""));
+        openFragment(HomeFragment.newInstance());
     }
 
     public void openFragment(Fragment fragment) {
@@ -71,13 +71,13 @@ public class HomeActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     switch (menuItem.getItemId()) {
                         case R.id.navigation_home:
-                            openFragment(HomeFragment.newInstance("", ""));
+                            openFragment(HomeFragment.newInstance());
                             return true;
                         case R.id.navigation_search:
-                            openFragment(SearchFragment.newInstance("", ""));
+                            openFragment(SearchFragment.newInstance());
                             return true;
                         case R.id.navigation_messages:
-                            openFragment(MessagesFragment.newInstance("", ""));
+                            openFragment(MessagesFragment.newInstance());
                             return true;
                         case R.id.navigation_groups:
                             openFragment(GroupsFragment.newInstance("", ""));
