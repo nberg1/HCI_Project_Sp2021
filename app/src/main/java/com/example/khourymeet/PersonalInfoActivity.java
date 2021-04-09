@@ -39,6 +39,10 @@ public class PersonalInfoActivity extends AppCompatActivity {
     // Format: last name + period + portion of first name + @northeastern.edu
     // TODO: figure out how to only allow one hyphen per word
     private static final String emailPattern = "([a-z\\-])+(?<![\\-])(\\.)([a-z\\-])+([0-9]+)?(?<![\\-])(@northeastern.edu)";
+    // Checks username
+    // Allows for uppercase and lowercase letters (without accents) and certain special characters
+    // Does not allow spaces
+    private static final String usernamePattern = "([a-zA-Z0-9\\-\\.\\_\\!\\*\\@]+)";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +71,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please enter a Northeastern email", Toast.LENGTH_LONG).show();
         } else if (passwordString.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_LONG).show();
-        } else if (!usernameString.matches("^[a-zA-Z0-9]*$") || usernameString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter an alphanumeric username", Toast.LENGTH_LONG).show();
+        } else if (!usernameString.matches(usernamePattern) || usernameString.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter a username with only letters, numbers, and/or the following: - . _ ! * @", Toast.LENGTH_LONG).show();
         } else if (checkUsernameExists(usernameString)) {
             Toast.makeText(getApplicationContext(), "This username already exists. Please choose another one.", Toast.LENGTH_LONG).show();
         } else {
