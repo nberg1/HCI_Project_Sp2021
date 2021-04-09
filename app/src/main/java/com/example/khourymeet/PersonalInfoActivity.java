@@ -45,7 +45,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
     // Checks username
     // Allows for uppercase and lowercase letters (without accents) and certain special characters
     // Does not allow spaces
-    private static final String usernamePattern = "([a-zA-Z0-9\\-._!*@]+)";
+    private static final String usernamePattern = "([a-zA-Z0-9\\-_!*@]+)";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,42 +59,16 @@ public class PersonalInfoActivity extends AppCompatActivity {
         email = findViewById(R.id.email_input);
         userName = findViewById(R.id.username_input);
         password = findViewById(R.id.password_input);
-//        Log.w("boolean", "before bool check");
-//        boolean check = checkEmailExists("marielle@dummydata.com");
-//        Log.w("boolean_email", String.valueOf(check));
-//        boolean checkUsername = checkUsernameExists("marielleTest");
-//        Log.w("boolean_username", String.valueOf(checkUsername));
-        test();
     }
 
-//    public void onClick(View view) {
-    public void test() {
+    public void onClick(View view) {
 
-//        final String usernameString = userName.getText().toString();
-//        final String nameString = name.getText().toString();
-//        final String emailString = email.getText().toString();
-//        final String passwordString = password.getText().toString();
-
-        final String usernameString = "test";
-        final String nameString = "Marielle Riveros";
-        final String emailString = "riveros.marielle@northeastern.edu";
-        final String passwordString = "1234";
+        final String usernameString = userName.getText().toString();
+        final String nameString = name.getText().toString();
+        final String emailString = email.getText().toString();
+        final String passwordString = password.getText().toString();
 
         checkUsernameExists(usernameString, nameString, emailString, passwordString);
-
-//        if (!nameString.matches(namePattern) || nameString.equals("")) {
-//            Toast.makeText(getApplicationContext(), "Please enter a valid name", Toast.LENGTH_LONG).show();
-//        } else if (!emailString.matches(emailPattern) || emailString.equals("")) {
-//            Toast.makeText(getApplicationContext(), "Please enter a Northeastern email", Toast.LENGTH_LONG).show();
-//        } else if (passwordString.equals("")) {
-//            Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_LONG).show();
-//        } else if (!usernameString.matches(usernamePattern) || usernameString.equals("")) {
-//            Toast.makeText(getApplicationContext(), "Please enter a username with only letters, numbers, and/or the following: - . _ ! * @", Toast.LENGTH_LONG).show();
-//        } else if (checkUsernameExists(usernameString)) {
-//            Toast.makeText(getApplicationContext(), "This username already exists. Please choose another one.", Toast.LENGTH_LONG).show();
-//        } else {
-//            writePersonalInfo(usernameString, nameString, emailString, passwordString);
-//        }
     }
 
     private void writePersonalInfo(String username, String name, String email, String password) {
@@ -105,26 +79,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(PersonalInfoActivity.this, AcademicInfoActivity.class);
         startActivity(intent);
     }
-
-//    // Check that username does not already exist
-//    private boolean checkUsernameExists(final String usernameVal) {
-//        final boolean[] usernameExists = new boolean[1];
-//        databaseReference.child(getString(R.string.users_path,
-//                usernameVal)).addListenerForSingleValueEvent(new ValueEventListener() {
-//            // Use snapshot to check if username exists
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                usernameExists[0] = snapshot.exists();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        Log.w("boolean_username_before_return", String.valueOf(usernameExists[0]));
-//        return usernameExists[0];
-//    }
 
     // Check that username does not already exist
     private void checkUsernameExists(final String usernameVal, final String nameString, final String emailString, final String passwordString) {
@@ -146,39 +100,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
             }
         });
     }
-
-//    // Check that email does not already exist
-//    private boolean checkEmailExists(final String emailVal) {
-//        final boolean[] emailExists = new boolean[1];
-//        DatabaseReference dbUsers = databaseReference.child("users");
-////        emailExists[0] = false;
-////        databaseReference.child("users").addValueEventListener(new ValueEventListener() {
-//        ValueEventListener valueEventListener = new ValueEventListener() {
-////        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-//            // Use snapshot to go through users and see if email already exists
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                // Get snapshot of each child and check if the email input matches an email that
-//                // already exists
-//                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-//                    if (Objects.equals(childSnapshot.child("email").getValue(), emailVal)) {
-//                        emailExists[0] = true;
-//                        Log.w("in_boolean_check_if", String.valueOf(emailExists[0]));
-//                        break;
-//                    } else {
-//                        emailExists[0] = false;
-//                        Log.w("in_boolean_check_else", String.valueOf(emailExists[0]));
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        };
-//        dbUsers.addListenerForSingleValueEvent(valueEventListener);
-//        Log.w("in_boolean_check_before_return", String.valueOf(emailExists[0]));
-//        return emailExists[0];
-//    }
 
     // Check that email does not already exist
     private void checkEmailExists(final String usernameString, final String nameString, final String emailVal, final String passwordString) {
@@ -218,8 +139,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         } else if (!usernameString.matches(usernamePattern) || usernameString.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter a username with only letters, numbers, and/or the following: - . _ ! * @", Toast.LENGTH_LONG).show();
         } else {
-//            writePersonalInfo(usernameString, nameString, emailString, passwordString);
-            Log.w("checks", "in else");
+            writePersonalInfo(usernameString, nameString, emailString, passwordString);
         }
     }
 

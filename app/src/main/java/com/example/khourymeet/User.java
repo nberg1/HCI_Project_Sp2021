@@ -13,21 +13,23 @@ public class User {
     private String firstSemester;
     private String token;
     private List<String> friends;
-    private List<String> courses;
+    private List<String> currentCourses;
+    private List<String> pastCourses;
     private String image;
 
     public User() {
     }
 
-    public User(String name, String email, String userName, String password, String token) {
+    // TODO: removed token from this, is it needed?
+    public User(String name, String email, String userName, String password) {
         this.name = name;
         this.email = email;
         this.userName = userName;
         this.password = password;
-        this.token = token;
         this.align = true;
         this.firstSemester = "";
-        this.courses = new ArrayList<>();
+        this.currentCourses = new ArrayList<>();
+        this.pastCourses = new ArrayList<>();
         this.friends = new ArrayList<>();
     }
 
@@ -47,11 +49,11 @@ public class User {
         this.email = email;
     }
 
-    public String getUsername() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUsername(String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -95,12 +97,20 @@ public class User {
         this.friends = friends;
     }
 
-    public List<String> getCourses() {
-        return courses;
+    public List<String> getCurrentCourses() {
+        return currentCourses;
     }
 
-    public void setCourses(List<String> courses) {
-        this.courses = courses;
+    public void setCurrentCourses(List<String> currentCourses) {
+        this.currentCourses = currentCourses;
+    }
+
+    public List<String> getPastCourses() {
+        return pastCourses;
+    }
+
+    public void setPastCourses(List<String> pastCourses) {
+        this.pastCourses = pastCourses;
     }
 
     public String getImage() {
