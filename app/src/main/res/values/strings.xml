@@ -20,7 +20,7 @@
     <string name="password">Password:</string>
     <string name="John_Doe_name">John Doe</string>
     <string name="John_Doe_email">doe.j@northeastern.edu</string>
-    <string name="John_Doe_username">john.doe</string>
+    <string name="John_Doe_username">john_doe</string>
     <string name="John_Doe_password">********</string>
     <string name="next">Next</string>
     <string name="academic_info">Academic Information</string>
