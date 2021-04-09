@@ -42,7 +42,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
     // Checks username
     // Allows for uppercase and lowercase letters (without accents) and certain special characters
     // Does not allow spaces
-    private static final String usernamePattern = "([a-zA-Z0-9\\-._!*@]+)";
+    private static final String usernamePattern = "([a-zA-Z0-9\\-_!*@]+)";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
