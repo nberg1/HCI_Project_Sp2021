@@ -7,17 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link EditProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment implements View.OnClickListener, NavigationFragment {
+public class EditProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,11 +26,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
     private String mParam1;
     private String mParam2;
 
-    // TODO: Link user text info with a user object or a getting a snapshot of the user from db
-    private Button editButton;
-    
-    // TODO: onClick of edit profile button directs to EditProfileFragment
-    public ProfileFragment() {
+    public EditProfileFragment() {
         // Required empty public constructor
     }
 
@@ -42,11 +36,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
+     * @return A new instance of fragment EditProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
+    public static EditProfileFragment newInstance(String param1, String param2) {
+        EditProfileFragment fragment = new EditProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,16 +61,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
-    }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
-    public int getTitle() {
-        return R.string.my_profile;
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
 }

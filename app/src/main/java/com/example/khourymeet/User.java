@@ -12,7 +12,7 @@ public class User {
     private Boolean align;
     private String firstSemester;
     private String token;
-    private List<String> friends;
+    private List<String> friends;       // direct chats
     private List<String> courses;
     private String image;
 
