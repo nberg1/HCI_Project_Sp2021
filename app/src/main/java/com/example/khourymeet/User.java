@@ -14,7 +14,7 @@ public class User {
     private String token;
     private List<String> friends;
     private List<String> courses;
-    private String imageFileName;
+    private String image;
 
     public User() {
     }
@@ -71,11 +71,11 @@ public class User {
         this.token = token;
     }
 
-    public Boolean getAlignInfo() {
+    public Boolean getAlign() {
         return align;
     }
 
-    public void setAlignInfo(Boolean align) {
+    public void setAlign(Boolean align) {
         this.align = align;
     }
 
@@ -103,11 +103,11 @@ public class User {
         this.courses = courses;
     }
 
-    public String getImageFileName() {
-        return imageFileName;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageFileName(String imageFileName) {
-        this.imageFileName = imageFileName;
+    public void setImage(String image) {
+        this.image = image;
     }
 }
