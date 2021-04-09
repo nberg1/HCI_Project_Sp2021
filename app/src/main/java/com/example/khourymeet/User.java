@@ -71,11 +71,11 @@ public class User {
         this.token = token;
     }
 
-    public Boolean getAlignInfo() {
+    public Boolean getAlign() {
         return align;
     }
 
-    public void setAlignInfo(Boolean align) {
+    public void setAlign(Boolean align) {
         this.align = align;
     }
 

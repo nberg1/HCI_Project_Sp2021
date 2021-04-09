@@ -56,7 +56,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         userName = findViewById(R.id.username_input);
         password = findViewById(R.id.password_input);
 
-        checkEmailExists("dummy@data.com");
+        checkEmailExistsTest("marielleTest");
     }
 
     public void onClick(View view) {
@@ -109,6 +109,40 @@ public class PersonalInfoActivity extends AppCompatActivity {
         return usernameExists[0];
     }
 
+    private boolean checkEmailExistsTest(final String usernameVal) {
+        databaseReference.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    String key = childSnapshot.getKey();
+                    assert key != null;
+                    if (key.equals(usernameVal)) {
+                        Log.w("snapshot", String.valueOf(childSnapshot));
+                        Log.w("snapshot key", childSnapshot.getKey());
+                        User3 userToCheck = childSnapshot.getValue(User3.class);
+                        Log.w("User3 Align", userToCheck.getAlign().toString());
+                        Log.w("User3 Email", userToCheck.getEmail());
+                        Log.w("User3 Image", userToCheck.getImage());
+                        Log.w("User3 First Semester", userToCheck.getFirstSemester());
+                        Log.w("User3 Name", userToCheck.getName());
+                        Log.w("User3 Username", userToCheck.getUsername());
+                        Log.w("User3 Password", userToCheck.getPassword());
+                        Log.w("User3 Courses", userToCheck.getCourses().toString());
+                    }
+                    // Data Snapshot: DataSnapshot { key = dummyData, value = {courses={0=5001, 1=5003}, image=imageFileString, password=1234, name=dummy, align=true, firstSemester=Spring 2020, email=dummy@data.com, friends={0=dummy@data2.com}, username=dummydata} }
+//                    User2 userToCheck = childSnapshot.getValue(User2.class);
+//                    Log.w("snapshot email", userToCheck.getEmail());
+//                    Log.w("snapshot courses", userToCheck.getCourses().toString());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "onCancelled");
+            }
+        });
+        return true;
+    }
+
     // Check that email does not already exist
     private boolean checkEmailExists(final String emailVal) {
         final boolean[] emailExists = new boolean[1];
@@ -135,7 +169,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
                     count ++;
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(TAG, "onCancelled");
