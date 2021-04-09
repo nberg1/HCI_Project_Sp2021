@@ -7,27 +7,30 @@ public class User {
 
     private String name;
     private String email;
-    private String username;
+    private String userName;
     private String password;
     private Boolean align;
     private String firstSemester;
     private String token;
-    private List<String> friends;       // direct chats
-    private List<String> courses;
+    private List<String> friends; // direct chats
+    private List<String> currentCourses;
+    private List<String> pastCourses;
     private String image;
 
     public User() {
     }
 
-    public User(String name, String email, String username, String password, String token) {
+    // TODO: is token necessary?
+    public User(String name, String email, String userName, String password, String token) {
         this.name = name;
         this.email = email;
-        this.username = username;
+        this.userName = userName;
         this.password = password;
         this.token = token;
         this.align = true;
         this.firstSemester = "";
-        this.courses = new ArrayList<>();
+        this.currentCourses = new ArrayList<>();
+        this.pastCourses = new ArrayList<>();
         this.friends = new ArrayList<>();
     }
 
@@ -47,12 +50,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -95,12 +98,20 @@ public class User {
         this.friends = friends;
     }
 
-    public List<String> getCourses() {
-        return courses;
+    public List<String> getCurrentCourses() {
+        return currentCourses;
     }
 
-    public void setCourses(List<String> courses) {
-        this.courses = courses;
+    public void setCurrentCourses(List<String> currentCourses) {
+        this.currentCourses = currentCourses;
+    }
+
+    public List<String> getPastCourses() {
+        return pastCourses;
+    }
+
+    public void setPastCourses(List<String> pastCourses) {
+        this.pastCourses = pastCourses;
     }
 
     public String getImage() {

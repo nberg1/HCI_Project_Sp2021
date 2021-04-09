@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class PersonalInfoActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
@@ -65,19 +67,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         final String emailString = email.getText().toString();
         final String passwordString = password.getText().toString();
 
-        if (!nameString.matches(namePattern) || nameString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter a valid name", Toast.LENGTH_LONG).show();
-        } else if (!emailString.matches(emailPattern) || emailString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter a Northeastern email", Toast.LENGTH_LONG).show();
-        } else if (passwordString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_LONG).show();
-        } else if (!usernameString.matches(usernamePattern) || usernameString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter a username with only letters, numbers, and/or the following: - . _ ! * @", Toast.LENGTH_LONG).show();
-        } else if (checkUsernameExists(usernameString)) {
-            Toast.makeText(getApplicationContext(), "This username already exists. Please choose another one.", Toast.LENGTH_LONG).show();
-        } else {
-            writePersonalInfo(usernameString, nameString, emailString, passwordString);
-        }
+        checkUsernameExists(usernameString, nameString, emailString, passwordString);
     }
 
     private void writePersonalInfo(String username, String name, String email, String password) {
@@ -90,14 +80,17 @@ public class PersonalInfoActivity extends AppCompatActivity {
     }
 
     // Check that username does not already exist
-    private boolean checkUsernameExists(final String usernameVal) {
-        final boolean[] usernameExists = new boolean[1];
+    private void checkUsernameExists(final String usernameVal, final String nameString, final String emailString, final String passwordString) {
         databaseReference.child(getString(R.string.users_path,
                 usernameVal)).addListenerForSingleValueEvent(new ValueEventListener() {
             // Use snapshot to check if username exists
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                usernameExists[0] = snapshot.exists();
+                if (!snapshot.exists()) {
+                    checkEmailExists(usernameVal, nameString, emailString, passwordString);
+                } else {
+                    Toast.makeText(getApplicationContext(), "This username already exists. Please choose another one.", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -105,6 +98,48 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
             }
         });
-        return usernameExists[0];
     }
+
+    // Check that email does not already exist
+    private void checkEmailExists(final String usernameString, final String nameString, final String emailVal, final String passwordString) {
+        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            // Use snapshot to go through users and see if email already exists
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean emailExists = false;
+                // Get snapshot of each child and check if the email input matches an email that
+                // already exists
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    if (Objects.equals(childSnapshot.child("email").getValue(), emailVal)) {
+                        emailExists = true;
+                        break;
+                    }
+                }
+                if (!emailExists) {
+                    generalChecks(usernameString, nameString, emailVal, passwordString);
+                } else {
+                    Toast.makeText(getApplicationContext(), "There is already an account with that email. Please try again.", Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    // Run other validity checks
+    private void generalChecks(String usernameString, String nameString, String emailString, String passwordString) {
+        if (!nameString.matches(namePattern) || nameString.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter a valid name", Toast.LENGTH_LONG).show();
+        } else if (!emailString.matches(emailPattern) || emailString.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter a Northeastern email", Toast.LENGTH_LONG).show();
+        } else if (passwordString.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_LONG).show();
+        } else if (!usernameString.matches(usernamePattern) || usernameString.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please enter a username with only letters, numbers, and/or the following: - . _ ! * @", Toast.LENGTH_LONG).show();
+        } else {
+            writePersonalInfo(usernameString, nameString, emailString, passwordString);
+        }
+    }
+
 }
