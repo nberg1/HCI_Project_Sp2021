@@ -64,6 +64,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/course1_button"
             app:layout_constraintVertical_bias="0.765" />
+
+        <ImageView
+            android:id="@+id/contact_us"
+            android:layout_width="42dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/info_contact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.786"
+            app:layout_constraintStart_toEndOf="@+id/course_title"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
