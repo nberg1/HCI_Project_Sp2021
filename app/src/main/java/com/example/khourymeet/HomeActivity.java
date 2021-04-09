@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,10 +33,19 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     private Fragment activeFragment;
 
+    private SharedPreferences sharedPreferences;
+    // TODO: use current username as key to pass academic info to db
+    private String currentUsername;
+    private final String defaultString = "default";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Referenced Android documentation to retrieve data from Shared Preferences
+        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        currentUsername = sharedPreferences.getString(getString(R.string.username_preferences_key), defaultString);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

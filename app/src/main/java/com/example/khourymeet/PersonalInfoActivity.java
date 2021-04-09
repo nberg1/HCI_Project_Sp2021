@@ -3,7 +3,9 @@ package com.example.khourymeet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -22,10 +24,14 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+
     private EditText name;
     private EditText email;
     private EditText userName;
     private EditText password;
+
+    private SharedPreferences sharedPreferences;
+
     private final String TAG = "MDPersonalInfoActivity";
 
     // Regex Expressions
@@ -51,6 +57,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
 
+        // Used Android documentation on how to implement shared preferences
+        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -68,15 +77,6 @@ public class PersonalInfoActivity extends AppCompatActivity {
         final String passwordString = password.getText().toString();
 
         checkUsernameExists(usernameString, nameString, emailString, passwordString);
-    }
-
-    private void writePersonalInfo(String username, String name, String email, String password) {
-        databaseReference.child("users").child(username).child("userName").setValue(username);
-        databaseReference.child("users").child(username).child("name").setValue(name);
-        databaseReference.child("users").child(username).child("email").setValue(email);
-        databaseReference.child("users").child(username).child("password").setValue(password);
-        Intent intent = new Intent(PersonalInfoActivity.this, AcademicInfoActivity.class);
-        startActivity(intent);
     }
 
     // Check that username does not already exist
@@ -140,6 +140,22 @@ public class PersonalInfoActivity extends AppCompatActivity {
         } else {
             writePersonalInfo(usernameString, nameString, emailString, passwordString);
         }
+    }
+
+    // Write personal information to database and store username locally
+    private void writePersonalInfo(String username, String name, String email, String password) {
+        databaseReference.child("users").child(username).child("userName").setValue(username);
+        databaseReference.child("users").child(username).child("name").setValue(name);
+        databaseReference.child("users").child(username).child("email").setValue(email);
+        databaseReference.child("users").child(username).child("password").setValue(password);
+
+        // Referenced Android documentation to write username locally
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.username_preferences_key), username);
+        editor.apply();
+
+        Intent intent = new Intent(PersonalInfoActivity.this, AcademicInfoActivity.class);
+        startActivity(intent);
     }
 
 }
