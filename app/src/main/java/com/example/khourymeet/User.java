@@ -7,7 +7,7 @@ public class User {
 
     private String name;
     private String email;
-    private String username;
+    private String userName;
     private String password;
     private Boolean align;
     private String firstSemester;
@@ -19,10 +19,10 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String username, String password, String token) {
+    public User(String name, String email, String userName, String password, String token) {
         this.name = name;
         this.email = email;
-        this.username = username;
+        this.userName = userName;
         this.password = password;
         this.token = token;
         this.align = true;
@@ -48,11 +48,11 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
