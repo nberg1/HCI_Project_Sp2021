@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.EditProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!-- Save button: onClick save button, update database -->
+    <!-- delete button for course-->
+    <!-- withdraw button for course-->
+    <!-- checks if they are sure they wish to withdraw-->
+    <!-- check green button or red button -->
+    <!-- Edit Name -->
+    <!-- Edit Password -->
+    <!-- allow to change program and first semester? -->
+    <!-- allow to change current courses (withdraw/complete) -->
+    <!-- button to add new courses -->
+    <!-- mark complete, one of the on clicks could be updating array -->
+    <!-- past courses: checkbox that is unchecked for invisible -->
+    <!-- past courses: delete button -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>

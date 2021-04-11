@@ -8,15 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GroupsFragment#newInstance} factory method to
+ * Use the {@link CoursePageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GroupsFragment extends Fragment implements View.OnClickListener, NavigationFragment {
+public class CoursePageFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +26,7 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     private String mParam1;
     private String mParam2;
 
-    public GroupsFragment() {
+    public CoursePageFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +36,11 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GroupsFragment.
+     * @return A new instance of fragment CoursePageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GroupsFragment newInstance(String param1, String param2) {
-        GroupsFragment fragment = new GroupsFragment();
+    public static CoursePageFragment newInstance(String param1, String param2) {
+        CoursePageFragment fragment = new CoursePageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,16 +61,6 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groups, container, false);
-    }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
-    public int getTitle() {
-        return R.string.group_chats;
+        return inflater.inflate(R.layout.fragment_course_page, container, false);
     }
 }
