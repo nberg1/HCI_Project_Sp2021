@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +60,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
 
     // TODO: Link user text info with a user object or a getting a snapshot of the user from db
     private Button editButton;
-    
+    private Fragment activeFragment;
+
     // TODO: onClick of edit profile button directs to EditProfileFragment
     public ProfileFragment() {
         // Required empty public constructor
@@ -107,8 +110,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
 
     @Override
     public void onClick(View view) {
-
+        // TODO: figure out how to open new fragment of edit profile when clicking edit profile button
     }
+
+
 
     @Override
     public int getTitle() {

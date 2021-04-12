@@ -1,28 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.EditProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!-- Save button: onClick save button, update database -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        tools:layout_editor_absoluteX="164dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="129dp"
+                android:layout_height="111dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_image_24" />
+
+            <!-- Save button: onClick save button, update database -->
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"
+                android:text="Save" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="20dp">
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="NAME: "
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:hint="Marta Cabrera"
+                    android:textSize="25sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="20dp">
+                <TextView
+                    android:id="@+id/pw_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="PASSWORD: "
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:hint="Password"
+                    android:textSize="25sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+                <TextView
+                    android:id="@+id/username_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USERNAME: "
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DummyData123"
+                    android:textSize="25sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/user_email_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EMAIL: "
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cabrera.m123@northeastern.edu"
+                    android:textSize="25sp" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/user_currCourses_text"
+                    android:layout_width="259dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="25dp"
+                    android:text="MY COURSES (IN PROGRESS): "
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="93dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
+                    android:text="ADD COURSE" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+                <TextView
+                    android:id="@+id/user_currCourse1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS5004"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/withdraw_btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="WITHDRAW" />
+
+                <!-- mark complete, one of the on clicks could be updating array -->
+                <Button
+                    android:id="@+id/complete_btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:background="#8B57F85E"
+                    android:text="MARK AS COMPLETE" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+                <TextView
+                    android:id="@+id/user_currCourse2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS5006"
+                    android:textSize="25sp" />
+                <Button
+                    android:id="@+id/withdraw_btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="WITHDRAW" />
+
+                <!-- mark complete, one of the on clicks could be updating array -->
+                <Button
+                    android:id="@+id/complete_btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:background="#8B57F85E"
+                    android:text="MARK AS COMPLETE" />
+            </TableRow>
+            <TextView
+                android:id="@+id/user_prevCourses_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:text="MY COURSES (COMPLETED): "
+                android:textSize="25sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+                <TextView
+                    android:id="@+id/user_prevCourse1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS5001"
+                    android:textSize="25sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:layout_marginLeft="25dp"
+                    android:text="Invisible" />
+
+                <Button
+                    android:id="@+id/delete_btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="DELETE" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+                <TextView
+                    android:id="@+id/user_prevCourse2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS5003"
+                    android:textSize="25sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:checked="false"
+                    android:text="Invisible" />
+
+                <Button
+                    android:id="@+id/delete_btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="DELETE" />
+            </TableRow>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <!-- delete button for course-->
     <!-- withdraw button for course-->
     <!-- checks if they are sure they wish to withdraw-->
     <!-- check green button or red button -->
-    <!-- Edit Name -->
-    <!-- Edit Password -->
     <!-- allow to change program and first semester? -->
     <!-- allow to change current courses (withdraw/complete) -->
     <!-- button to add new courses -->
-    <!-- mark complete, one of the on clicks could be updating array -->
-    <!-- past courses: checkbox that is unchecked for invisible -->
-    <!-- past courses: delete button -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>

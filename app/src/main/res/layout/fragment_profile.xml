@@ -7,26 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        android:clickable="true"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bottom_navigation_home">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +20,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="112dp"
@@ -50,7 +30,7 @@
                 tools:src="@tools:sample/avatars" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/edit_butn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -98,7 +78,6 @@
                     android:text="DummyData123"
                     android:textSize="25sp" />
             </TableRow>
-
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
