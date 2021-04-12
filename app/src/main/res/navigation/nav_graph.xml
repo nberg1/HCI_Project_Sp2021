@@ -3,23 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/ProfileFragment">
+    app:startDestination="@id/profileFragment">
+
     <fragment
-        android:id="@+id/ProfileFragment"
+        android:id="@+id/profileFragment"
         android:name="com.example.khourymeet.fragments.ProfileFragment"
-        android:label="profile_fragment_label"
-        tools:layout="@layout/fragment_profile">
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_ProfileFragment_to_EditProfileFragment"
-            app:destination="@+id/EditProfileFragment" />
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/EditProfileFragment"
+        android:id="@+id/editProfileFragment"
         android:name="com.example.khourymeet.fragments.EditProfileFragment"
-        android:label="edit_fragment_label"
-        tools:layout="@layout/fragment_edit_profile">
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
         <action
-            android:id="@+id/action_EditProfileFragment_to_ProfileFragment"
-            app:destination="@id/ProfileFragment" />
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -99,6 +101,7 @@ public class ProfileFragment extends Fragment implements NavigationFragment {
         currentUsername = sharedPreferences.getString(getString(R.string.username_preferences_key), defaultString);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+//        NavController navController = Navigation.findNavController(getView());
         createUser();
     }
 
@@ -115,8 +118,13 @@ public class ProfileFragment extends Fragment implements NavigationFragment {
         view.findViewById(R.id.edit_butn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(ProfileFragment.this)
-                        .navigate(R.id.action_ProfileFragment_to_EditProfileFragment);
+                NavHostFragment navHostFragment =
+                        (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+                NavController navController = navHostFragment.getNavController();
+//                NavController navController = Navigation.findNavController(getView());
+                navController.navigate(R.id.action_profileFragment_to_editProfileFragment);
+//                NavHostFragment.findNavController(ProfileFragment.this)
+//                        .navigate(R.id.action_profileFragment_to_editProfileFragment);
             }
         });
     }
