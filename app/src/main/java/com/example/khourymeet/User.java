@@ -15,7 +15,6 @@ public class User {
     private List<String> friends; // direct chats
     private List<String> currentCourses;
     private List<String> pastCourses;
-    private String image;
 
     public User() {
     }
@@ -112,13 +111,5 @@ public class User {
 
     public void setPastCourses(List<String> pastCourses) {
         this.pastCourses = pastCourses;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 }
