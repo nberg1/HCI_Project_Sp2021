@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+    android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
@@ -11,39 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="false"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
+            android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
-
-            <ImageView
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="112dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="45dp"
-                android:background="@color/white"
-                tools:src="@tools:sample/avatars" />
-
-            <Button
-                android:id="@+id/edit_butn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="Edit Profile"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/white"
-                android:padding="10dp"/>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="20dp">
+                android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
@@ -60,10 +46,12 @@
                     android:text="Marta Cabrera"
                     android:textSize="25sp" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/username_text"
                     android:layout_width="wrap_content"
@@ -78,6 +66,7 @@
                     android:text="DummyData123"
                     android:textSize="25sp" />
             </TableRow>
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -102,12 +91,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_program_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PROGRAM: "
                     android:textSize="25sp" />
+
                 <TextView
                     android:id="@+id/user_program"
                     android:layout_width="wrap_content"
@@ -130,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:text="CS5001, CS5003"
                 android:textSize="25sp" />
+
             <TextView
                 android:id="@+id/user_prevCourses_text"
                 android:layout_width="match_parent"
@@ -142,9 +134,20 @@
                 android:id="@+id/user_prevCourses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="80dp"
                 android:text="NONE"
                 android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/edit_butn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="80dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="10dp"
+                android:text="Edit Profile"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>

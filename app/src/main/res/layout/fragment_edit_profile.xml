@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+    android:id="@+id/fragment_edit_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     tools:context=".fragments.EditProfileFragment">
 
     <ScrollView
@@ -22,13 +23,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="129dp"
-                android:layout_height="111dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_image_24" />
-
             <!-- Save button: onClick save button, update database -->
             <Button
                 android:id="@+id/save_button"
@@ -37,6 +31,7 @@
                 android:layout_gravity="center"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"
+                android:layout_marginTop="30dp"
                 android:text="Save" />
             <TableRow
                 android:layout_width="match_parent"
