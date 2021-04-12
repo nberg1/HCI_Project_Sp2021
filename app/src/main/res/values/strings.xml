@@ -40,6 +40,8 @@
     <string name="groups">Groups</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
+    <string name="current_courses">Current Courses:</string>
+    <string name="no_current_courses">Current Courses: None</string>
 
     <string name="home_page">Home Page</string>
     <string name="my_profile">My Profile</string>
@@ -48,9 +50,11 @@
     <string name="group_chats">Group Chats</string>
 
     <string name="users_path">users/%s</string>
+    <string name="preference_file_key">com.example.khourymeet.PREFERENCE_FILE_KEY</string>
+    <string name="username_preferences_key">USERNAME_PREFERENCES</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="cs5001">CS5001</string>
-    <string name="cs5003">CS5003</string>
+    <string name="cs5001">CS5001 PLACE</string>
+    <string name="cs5003">CS5003 PLACE</string>
 </resources>

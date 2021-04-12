@@ -3,7 +3,9 @@ package com.example.khourymeet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +22,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+
+    private SharedPreferences sharedPreferences;
+
     private EditText userName;
     private EditText password;
 
@@ -28,8 +33,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Used Android documentation on how to implement shared preferences
+        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
         userName = findViewById(R.id.username_input);
         password = findViewById(R.id.password_input);
     }
@@ -49,6 +58,12 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.child(userNameString).exists() && snapshot.child(userNameString).child("password").getValue().equals(passwordString)) {
                         Toast.makeText(getApplicationContext(), "Successful Login!", Toast.LENGTH_SHORT).show();
+
+                        // Referenced Android documentation to write username locally
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(getString(R.string.username_preferences_key), userNameString);
+                        editor.apply();
+
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else {
