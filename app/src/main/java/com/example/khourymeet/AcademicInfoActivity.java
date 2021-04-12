@@ -31,12 +31,16 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
-    // TODO: use current username as key to pass academic info to db
     private String currentUsername;
     private final String defaultString = "default";
     private RadioGroup radioGroup;
     private RadioButton alignRadioButton;
     private RadioButton mscsRadioButton;
+    private Spinner spinner;
+    private String firstSemester;
+    private MultiSelectSpinner multiSelectSpinner;
+    private String course1;
+    private String course2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,7 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
     }
 
     public void addOnSpinnerSemester() {
-        Spinner spinner = (Spinner) findViewById(R.id.semesters);
+        spinner = (Spinner) findViewById(R.id.semesters);
         ArrayList<String> list = new ArrayList<>();
 
         list.add("Choose Semester");
@@ -74,33 +78,10 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
 
     public void addOnSpinnerCourses() {
         String[] array = {"5001", "5002", "5004", "5006"};
-        MultiSelectSpinner multiSelectSpinner = (MultiSelectSpinner) findViewById(R.id.courses);
+        multiSelectSpinner = (MultiSelectSpinner) findViewById(R.id.courses);
         multiSelectSpinner.setItems(array);
         multiSelectSpinner.setSelection(new int[]{0});
         multiSelectSpinner.setListener(this);
-    }
-
-    // After inputting legal academic information, Save Profile redirects users to the Home page
-    public void onClickHome(View view) {
-        Boolean radioWorking = radioGroupCheck();
-
-        if (radioWorking) {
-            Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    public boolean radioGroupCheck() {
-        if (alignRadioButton.isChecked()) {
-            databaseReference.child("users").child(currentUsername).child("align").setValue(true);
-            return true;
-        } else if (mscsRadioButton.isChecked()) {
-            databaseReference.child("users").child(currentUsername).child("align").setValue(false);
-            return true;
-        } else {
-            Toast.makeText(getApplicationContext(), "Please select an academic program", Toast.LENGTH_LONG).show();
-            return false;
-        }
     }
 
     @Override
@@ -164,5 +145,68 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
         negativeButton.setTextColor(Color.RED);
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(Color.BLUE);
+    }
+
+    // After inputting legal academic information, Save Profile redirects users to the Home page
+    public void onClickHome(View view) {
+        Boolean academicProgram = academicProgramCheck();
+        if (academicProgram) {
+            if (alignRadioButton.isChecked()) {
+                databaseReference.child("users").child(currentUsername).child("align").setValue(true);
+            } else {
+                databaseReference.child("users").child(currentUsername).child("align").setValue(false);
+            }
+
+            Boolean firstSemesterInput = firstSemesterCheck();
+            if (firstSemesterInput) {
+                databaseReference.child("users").child(currentUsername).child("firstSemester").setValue(firstSemester);
+
+
+                Boolean coursesInput = coursesCheck();
+                if (coursesInput) {
+                    databaseReference.child("users").child(currentUsername).child("currentCourses").child("0").setValue(course1);
+                    databaseReference.child("users").child(currentUsername).child("currentCourses").child("1").setValue(course2);
+
+                    Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }
+    }
+
+    // Checks that a user has clicked on one of the radio buttons to select an academic program
+    public boolean academicProgramCheck() {
+        if (alignRadioButton.isChecked() || mscsRadioButton.isChecked()) {
+            return true;
+        } else {
+            Toast.makeText(getApplicationContext(), "Please select an academic program", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
+    // Checks that a user has selected one of the semesters in the spinner list
+    public boolean firstSemesterCheck() {
+        firstSemester = spinner.getSelectedItem().toString();
+
+        if (firstSemester == "Choose Semester") {
+            Toast.makeText(getApplicationContext(), "Please select your first semester", Toast.LENGTH_LONG).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // Checks that a user has selected two courses
+    public boolean coursesCheck() {
+        String[] items = multiSelectSpinner.getSelectedStrings().toArray(new String[0]);
+
+        if (items.length == 2) {
+            course1 = "CS" + items[0];
+            course2 = "CS" + items[1];
+            return true;
+        } else {
+            Toast.makeText(getApplicationContext(), "Please select two courses", Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 }
