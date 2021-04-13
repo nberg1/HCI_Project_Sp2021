@@ -126,8 +126,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Navi
         Button course1Button = getView().findViewById(R.id.course1_button);
         Button course2Button = getView().findViewById(R.id.course2_button);
 //        List<String> courseList = user.getCurrentCourses();
-        String courseListStr = user.getCurrentCourseList();
-        List<String> courseList = user.convertCourseStrToArray(courseListStr);
+        String courseListStr = user.getCurrentCourses();
+        List<String> courseList = user.convertStrToArray(courseListStr);
         if (courseList == null) {
             TextView courseListTitle = getView().findViewById(R.id.course_title);
             courseListTitle.setText(getString(R.string.no_current_courses));

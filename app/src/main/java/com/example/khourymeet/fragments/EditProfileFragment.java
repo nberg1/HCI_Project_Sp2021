@@ -169,7 +169,8 @@ public class EditProfileFragment extends Fragment {
         emailView.setText(user.getEmail());
 
         // Create list of current courses
-        currentCourses = createCoursesList(user, 1);
+//        currentCourses = createCoursesList(user, 1);
+        currentCourses = user.convertStrToArray(user.getCurrentCourses());
 
         // Populate current course views
         setCurrentCoursesViews();
@@ -183,15 +184,15 @@ public class EditProfileFragment extends Fragment {
     // Get string of courses
     // To get string of past courses, pass -1 for courseType
     // To get string of current courses, pass 1 for courseType
-    private List<String> createCoursesList(User user, int courseType) {
-        List<String> courses;
-        if (courseType == -1) {
-            courses = user.getPastCourses();
-        } else {
-            courses = user.getCurrentCourses();
-        }
-        return courses;
-    }
+//    private List<String> createCoursesList(User user, int courseType) {
+//        List<String> courses;
+//        if (courseType == -1) {
+//            courses = user.getPastCourses();
+//        } else {
+//            courses = user.getCurrentCourses();
+//        }
+//        return courses;
+//    }
 
     private void setCurrentCoursesViews() {
         if (currentCourses.size() < 1) {

@@ -51,6 +51,10 @@ public class TestEditProfile extends AppCompatActivity {
     private String currentCoursesStr;
     private List<String> currentCourses;
 
+    // Create list of past courses
+    private String pastCoursesStr;
+    private List<String> pastCourses;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,8 +161,12 @@ public class TestEditProfile extends AppCompatActivity {
 
         // Create list of current courses
 //        currentCourses = createCoursesList(user, 1);
-        currentCoursesStr = user.getCurrentCourseList();
-        currentCourses = user.convertCourseStrToArray(currentCoursesStr);
+        currentCoursesStr = user.getCurrentCourses();
+        currentCourses = user.convertStrToArray(currentCoursesStr);
+
+        // Create list of past courses
+        pastCoursesStr = user.getPastCourses();
+        pastCourses = user.convertStrToArray(pastCoursesStr);
 
         // Populate current course views
         setCurrentCoursesViews();
@@ -172,11 +180,13 @@ public class TestEditProfile extends AppCompatActivity {
     // Update courses upon course completion and pass to db
     private void completeCourse(String course) {
         currentCourses.remove(course);
-        currentCoursesStr = currentCourses.toString();
-        currentCoursesStr = currentCoursesStr.replaceAll("\\[", "");
-        currentCoursesStr = currentCoursesStr.replaceAll("\\]", "");
-        databaseReference.child("users").child(currentUsername).child("currentCourseList").setValue(currentCoursesStr);
-        setCurrentCoursesViews();
+        pastCourses.add(course);
+        currentCoursesStr = removeBracketsArrStr(currentCourses.toString());
+        pastCoursesStr = removeBracketsArrStr(pastCourses.toString());
+        databaseReference.child("users").child(currentUsername).child("currentCourses").setValue(currentCoursesStr);
+        databaseReference.child("users").child(currentUsername).child("pastCourses").setValue(pastCoursesStr);
+        removeCurrentStudentFromCourse(course);
+//        setCurrentCoursesViews();
 //        DatabaseReference childRemoveVal = databaseReference.child(getString(R.string.users_path,
 //                currentUsername)).child("currentCourses").child(course);
 //        Log.w("create user", childRemoveVal.toString());
@@ -203,35 +213,116 @@ public class TestEditProfile extends AppCompatActivity {
     // Get string of courses
     // To get string of past courses, pass -1 for courseType
     // To get string of current courses, pass 1 for courseType
-    private List<String> createCoursesList(User user, int courseType) {
-        List<String> courses;
-        if (courseType == -1) {
-            courses = user.getPastCourses();
-        } else {
-            courses = user.getCurrentCourses();
-        }
-        return courses;
-    }
+//    private List<String> createCoursesList(User user, int courseType) {
+//        List<String> courses;
+//        if (courseType == -1) {
+//            courses = user.getPastCourses();
+//        } else {
+//            courses = user.getCurrentCourses();
+//        }
+//        return courses;
+//    }
+
+//    private void setCurrentCoursesViews() {
+//        if (currentCourses.size() < 1) {
+//            currentCourse1View.setText("NONE");
+//            currentCourse1View.setVisibility(View.GONE);
+//            withdrawButton1.setVisibility(View.GONE);
+//            completeButton1.setVisibility(View.GONE);
+//            currentCourse2View.setText("NONE");
+//            currentCourse2View.setVisibility(View.GONE);
+//            withdrawButton2.setVisibility(View.GONE);
+//            completeButton2.setVisibility(View.GONE);
+//        } else if (currentCourses.size() == 1) {
+//            currentCourse1View.setText(currentCourses.get(0));
+//            currentCourse2View.setText("NONE");
+//            currentCourse2View.setVisibility(View.GONE);
+//            withdrawButton2.setVisibility(View.GONE);
+//            completeButton2.setVisibility(View.GONE);
+//        } else {
+//            currentCourse1View.setText(currentCourses.get(0));
+//            currentCourse2View.setText(currentCourses.get(1));
+//        }
+//    }
 
     private void setCurrentCoursesViews() {
-        if (currentCourses.size() < 1) {
-            currentCourse1View.setText("NONE");
+        if (currentCourses.size() > 0) {
+            currentCourse1View.setText(currentCourses.get(0));
+            if (currentCourses.size() > 1) {
+                currentCourse2View.setText(currentCourses.get(1));
+            } else {
+                currentCourse2View.setVisibility(View.GONE);
+                withdrawButton2.setVisibility(View.GONE);
+                completeButton2.setVisibility(View.GONE);
+            }
+        } else {
             currentCourse1View.setVisibility(View.GONE);
             withdrawButton1.setVisibility(View.GONE);
             completeButton1.setVisibility(View.GONE);
-            currentCourse2View.setText("NONE");
+
             currentCourse2View.setVisibility(View.GONE);
             withdrawButton2.setVisibility(View.GONE);
             completeButton2.setVisibility(View.GONE);
-        } else if (currentCourses.size() == 1) {
-            currentCourse1View.setText(currentCourses.get(0));
-            currentCourse2View.setText("NONE");
-            currentCourse2View.setVisibility(View.GONE);
-            withdrawButton2.setVisibility(View.GONE);
-            completeButton2.setVisibility(View.GONE);
-        } else {
-            currentCourse1View.setText(currentCourses.get(0));
-            currentCourse2View.setText(currentCourses.get(1));
         }
+    }
+
+    private void removeCurrentStudentFromCourse(final String course) {
+        databaseReference.child("courses").child(course).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Use snapshot to create Course object and update list of current students
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Course dbCourse = snapshot.getValue(Course.class);
+                    String currentStudents = dbCourse.getCurrentStudents();
+                    if (currentStudents != null && !currentStudents.equals("")) {
+                        List<String> currentStudentsList = dbCourse.convertStrToArray(currentStudents);
+                        currentStudentsList.remove(currentUsername);
+                        String modifiedCurrStudents = removeBracketsArrStr(currentStudentsList.toString());
+                        databaseReference.child("courses").child(course).child("currentStudents").setValue(modifiedCurrStudents);
+                    }
+                }
+                addMentorToCourse(course);
+//                addUserToCourse2();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void addMentorToCourse(final String course) {
+        databaseReference.child("courses").child(course).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Use snapshot to create Course object and update list of current students
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Course dbCourse = snapshot.getValue(Course.class);
+                    String courseMentors = dbCourse.getMentors();
+                    if (courseMentors == null || courseMentors.equals("")) {
+                        databaseReference.child("courses").child(course).child("mentors").setValue(currentUsername);
+                    } else {
+                        databaseReference.child("courses").child(course).child("mentors").setValue(courseMentors + ", " + currentUsername);
+                    }
+                } else {
+                    databaseReference.child("courses").child(course).child("mentors").setValue(currentUsername);
+                }
+//                addUserToCourse2();
+                setCurrentCoursesViews();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    // After running toString on an array, remove the brackets from the String
+    private String removeBracketsArrStr(String arrayString) {
+        String tempStr = arrayString.replaceAll("\\[", "");
+        tempStr = tempStr.replaceAll("\\]", "");
+        return tempStr;
     }
 }
