@@ -41,6 +41,12 @@ public class TestEditProfile extends AppCompatActivity {
     private EditText editName;
     private EditText editPassword;
 
+    // Buttons for current courses
+    private Button withdrawButton1;
+    private Button completeButton1;
+    private Button withdrawButton2;
+    private Button completeButton2;
+
     // Create list of current courses
     private String currentCoursesStr;
     private List<String> currentCourses;
@@ -59,18 +65,30 @@ public class TestEditProfile extends AppCompatActivity {
 
         currentCourses = new ArrayList<>();
 
+        getButtonViews();
+
         getTextViews();
 
         createUserSetText();
 
         // Complete Course1
-        Button completeCourse1Button = findViewById(R.id.complete_btn1);
-        completeCourse1Button.setOnClickListener(
+        completeButton1.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
                         TextView currCourse1 = findViewById(R.id.user_currCourse1);
                         String course = currCourse1.getText().toString();
-                        createUserUpdateCourses(course);
+                        completeCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+        // Complete Course2
+        completeButton2.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView currCourse2 = findViewById(R.id.user_currCourse2);
+                        String course = currCourse2.getText().toString();
+                        completeCourse(course);
                         Log.w("tag", "updated course");
                     }
                 }
@@ -89,6 +107,13 @@ public class TestEditProfile extends AppCompatActivity {
         // Get TextViews for current courses
         currentCourse1View = findViewById(R.id.user_currCourse1);
         currentCourse2View = findViewById(R.id.user_currCourse2);
+    }
+
+    private void getButtonViews() {
+        withdrawButton1 = findViewById(R.id.withdraw_btn1);
+        withdrawButton2 = findViewById(R.id.withdraw_btn2);
+        completeButton1 = findViewById(R.id.complete_btn1);
+        completeButton2 = findViewById(R.id.complete_btn2);
     }
 
     // Create User object from Database entry for the current username and set the edit profile text
@@ -144,13 +169,14 @@ public class TestEditProfile extends AppCompatActivity {
 
     }
 
-    // Create User object from Database entry for the current username and update the courses
-    private void createUserUpdateCourses(String course) {
+    // Update courses upon course completion and pass to db
+    private void completeCourse(String course) {
         currentCourses.remove(course);
         currentCoursesStr = currentCourses.toString();
         currentCoursesStr = currentCoursesStr.replaceAll("\\[", "");
         currentCoursesStr = currentCoursesStr.replaceAll("\\]", "");
         databaseReference.child("users").child(currentUsername).child("currentCourseList").setValue(currentCoursesStr);
+        setCurrentCoursesViews();
 //        DatabaseReference childRemoveVal = databaseReference.child(getString(R.string.users_path,
 //                currentUsername)).child("currentCourses").child(course);
 //        Log.w("create user", childRemoveVal.toString());
@@ -190,10 +216,19 @@ public class TestEditProfile extends AppCompatActivity {
     private void setCurrentCoursesViews() {
         if (currentCourses.size() < 1) {
             currentCourse1View.setText("NONE");
+            currentCourse1View.setVisibility(View.GONE);
+            withdrawButton1.setVisibility(View.GONE);
+            completeButton1.setVisibility(View.GONE);
             currentCourse2View.setText("NONE");
+            currentCourse2View.setVisibility(View.GONE);
+            withdrawButton2.setVisibility(View.GONE);
+            completeButton2.setVisibility(View.GONE);
         } else if (currentCourses.size() == 1) {
             currentCourse1View.setText(currentCourses.get(0));
             currentCourse2View.setText("NONE");
+            currentCourse2View.setVisibility(View.GONE);
+            withdrawButton2.setVisibility(View.GONE);
+            completeButton2.setVisibility(View.GONE);
         } else {
             currentCourse1View.setText(currentCourses.get(0));
             currentCourse2View.setText(currentCourses.get(1));
