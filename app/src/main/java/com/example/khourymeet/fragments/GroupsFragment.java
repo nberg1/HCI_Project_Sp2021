@@ -2,13 +2,20 @@ package com.example.khourymeet.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.khourymeet.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,15 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    // RecyclerView
+    private RecyclerView rView;
+    private ArrayList<MessageCard> messageList = new ArrayList<>();
+    private MsgsRecyclerAdapter msgAdapter;
+    private RecyclerView.LayoutManager layout;
+    private FloatingActionButton addButton;
+    private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
+    private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
 
     public GroupsFragment() {
         // Required empty public constructor
@@ -51,6 +67,7 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -61,7 +78,55 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groups, container, false);
+        View view = inflater.inflate(R.layout.fragment_groups, container, false);
+
+        rView = view.findViewById(R.id.grouprecyclerview);
+        rView.setHasFixedSize(true);
+        msgAdapter = new MsgsRecyclerAdapter(messageList);
+        ItemClickListener itemClickListener = new ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                messageList.get(position).onItemClick(position);
+            }
+        };
+        msgAdapter.setOnClickItemClickListener(itemClickListener);
+        layout = new LinearLayoutManager(view.getContext());
+        rView.setLayoutManager(layout);
+        rView.setAdapter(msgAdapter);
+
+        try {
+            initialItemData(savedInstanceState);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return view;
+    }
+
+    private void initialItemData(Bundle savedInstanceState) throws MalformedURLException {
+        if (savedInstanceState != null && savedInstanceState.containsKey(NUMBER_OF_ITEMS)) {
+            if (messageList == null || messageList.size() == 0) {
+
+                int size = savedInstanceState.getInt(NUMBER_OF_ITEMS);
+                size = messageList.size();
+                for (int i = 0; i < size; i++) {
+                    Integer image = savedInstanceState.getInt(KEY_OF_INSTANCE + i + "0");
+                    MessageCard sCard = new MessageCard("");
+                    messageList.add(sCard);
+                }
+            }
+        }
+        // Load the initial cards
+        else {
+            MessageCard item1 = new MessageCard("Nicole, Aaron");
+            MessageCard item2 = new MessageCard("Alice, John");
+            MessageCard item3 = new MessageCard("Brandon, Jessica");
+            MessageCard item4 = new MessageCard("Charles, Jordan");
+            messageList.add(item1);
+            messageList.add(item2);
+            messageList.add(item3);
+            messageList.add(item4);
+        }
     }
 
     @Override
