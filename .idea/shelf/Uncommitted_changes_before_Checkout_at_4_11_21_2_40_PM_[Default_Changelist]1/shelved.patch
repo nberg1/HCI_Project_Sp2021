@@ -1,0 +1,11 @@
+Index: app/src/main/java/com/example/khourymeet/fragments/NavigationFragment.java
+===================================================================
+--- app/src/main/java/com/example/khourymeet/fragments/NavigationFragment.java	(revision f938499eb033fc79063191054f9f1d918c1aa4d4)
++++ app/src/main/java/com/example/khourymeet/fragments/NavigationFragment.java	(revision f938499eb033fc79063191054f9f1d918c1aa4d4)
+@@ -1,5 +0,0 @@
+-package com.example.khourymeet.fragments;
+-
+-public interface NavigationFragment {
+-    int getTitle();
+-}
+\ No newline at end of file

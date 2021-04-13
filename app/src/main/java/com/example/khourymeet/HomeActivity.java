@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 
+import com.example.khourymeet.fragments.CoursePageFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
@@ -76,6 +77,11 @@ public class HomeActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void searchButton(View view) {
+        openFragment(CoursePageFragment.newInstance("", ""));
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =

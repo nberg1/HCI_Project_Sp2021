@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:layout_marginRight="5dp"
+            android:onClick="searchButton"
             android:text="Search"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"

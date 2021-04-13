@@ -2,12 +2,20 @@ package com.example.khourymeet.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentController;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.khourymeet.HomeActivity;
+import com.example.khourymeet.MainActivity;
 import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 
@@ -64,12 +72,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
     }
 
     @Override
-    public void onClick(View view) {
-
+    public int getTitle() {
+        return R.string.search_students;
     }
 
     @Override
-    public int getTitle() {
-        return R.string.search_students;
+    public void onClick(View view) {
+
     }
 }
