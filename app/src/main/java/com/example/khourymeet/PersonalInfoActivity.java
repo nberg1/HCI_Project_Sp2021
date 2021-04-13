@@ -3,7 +3,6 @@ package com.example.khourymeet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,22 +33,26 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     private final String TAG = "MDPersonalInfoActivity";
 
-    // Regex Expressions
-
-    // Will match names with at least one space (requires first and last)
-    // Does not check for case (first letter doesn't have to be capitalized)
-    // Can't end with a space or a hyphen
-    // More than 2 names allowed, and all are able to have hyphens
-    // Should allow letters wih accent marks
-    // TODO: figure out how to only allow one hyphen per word
+    /*
+        Will match names with at least one space (requires first and last)
+        Does not check for case (first letter doesn't have to be capitalized)
+        Can't end with a space or a hyphen
+        More than 2 names allowed, and all are able to have hyphens
+        Should allow letters wih accent marks
+     */
     private static final String namePattern = "([\\p{L}\\-])+(\\s)([\\p{L}\\-\\s])+(?<![\\-\\s])";
-    // Will match Northeastern email
-    // Format: last name + period + portion of first name + @northeastern.edu
-    // TODO: figure out how to only allow one hyphen per word
+
+    /*
+        Will match Northeastern email
+        Format: last name + period + portion of first name + @northeastern.edu
+     */
     private static final String emailPattern = "([a-z\\-])+(?<![\\-])(\\.)([a-z\\-])+([0-9]+)?(?<![\\-])(@northeastern.edu)";
-    // Checks username
-    // Allows for uppercase and lowercase letters (without accents) and certain special characters
-    // Does not allow spaces
+
+    /*
+        Checks username
+        Allows for uppercase and lowercase letters (without accents) and certain special characters
+        Does not allow spaces
+     */
     private static final String usernamePattern = "([a-zA-Z0-9\\-_!*@]+)";
 
     @Override
@@ -130,7 +133,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
     // Run other validity checks
     private void generalChecks(String usernameString, String nameString, String emailString, String passwordString) {
         if (!nameString.matches(namePattern) || nameString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter a valid name", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please enter your full name", Toast.LENGTH_LONG).show();
         } else if (!emailString.matches(emailPattern) || emailString.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter a Northeastern email", Toast.LENGTH_LONG).show();
         } else if (passwordString.equals("")) {
@@ -157,5 +160,4 @@ public class PersonalInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(PersonalInfoActivity.this, AcademicInfoActivity.class);
         startActivity(intent);
     }
-
 }

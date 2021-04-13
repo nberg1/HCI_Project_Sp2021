@@ -14,7 +14,7 @@
     <string name="first_time_user">First time user?</string>
     <string name="create_account">Create Account</string>
     <string name="personal_info">Personal Information</string>
-    <string name="full_name">Name:</string>
+    <string name="full_name">Full Name:</string>
     <string name="email">Northeastern Email:</string>
     <string name="username">Username:</string>
     <string name="password">Password:</string>
