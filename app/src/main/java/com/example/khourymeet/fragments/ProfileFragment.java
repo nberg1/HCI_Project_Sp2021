@@ -115,25 +115,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
         return R.string.my_profile;
     }
 
-    private void setProfileText(User user) {
-        // Get TextViews for profile texts
-        nameView = getView().findViewById(R.id.name);
-        usernameView = getView().findViewById(R.id.username);
-        emailView = getView().findViewById(R.id.user_email);
-        programView = getView().findViewById(R.id.user_program);
-        currentCoursesView = getView().findViewById(R.id.user_currCourses);
-        pastCoursesView = getView().findViewById(R.id.user_prevCourses);
-
-        // Set texts for profile
-        nameView.setText(user.getName());
-        usernameView.setText(user.getUserName());
-        emailView.setText(user.getEmail());
-        programView.setText(createProgramString(user));
-        currentCoursesView.setText(createCoursesString(user, 1));
-        pastCoursesView.setText(createCoursesString(user, -1));
-
-    }
-
     // Create User object from Database entry for the current username
     private void createUser() {
         databaseReference.child(getString(R.string.users_path,
@@ -154,29 +135,40 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
         });
     }
 
+
+    private void setProfileText(User user) {
+        // Get TextViews for profile texts
+        nameView = getView().findViewById(R.id.name);
+        usernameView = getView().findViewById(R.id.username);
+        emailView = getView().findViewById(R.id.user_email);
+        programView = getView().findViewById(R.id.user_program);
+        currentCoursesView = getView().findViewById(R.id.user_currCourses);
+        pastCoursesView = getView().findViewById(R.id.user_prevCourses);
+
+        // Set texts for profile
+        nameView.setText(user.getName());
+        usernameView.setText(user.getUserName());
+        emailView.setText(user.getEmail());
+        programView.setText(createProgramString(user));
+        currentCoursesView.setText(getCoursesString(user, 1));
+        pastCoursesView.setText(getCoursesString(user, -1));
+
+    }
+
     // Get string of courses
     // To get string of past courses, pass -1 for courseType
     // To get string of current courses, pass 1 for courseType
-    private String createCoursesString(User user, int courseType) {
-        List<String> courses;
+    private String getCoursesString(User user, int courseType) {
+        String courses;
         if (courseType == -1) {
             courses = user.getPastCourses();
         } else {
             courses = user.getCurrentCourses();
         }
-        StringBuilder courseList;
-        if (courses == null) {
+        if (courses == null || courses.equals("")) {
             return "NONE";
         } else {
-            courseList = new StringBuilder();
-            int numCourses = courses.size();
-            for (int i = 0; i < numCourses; i++) {
-                courseList.append(courses.get(i));
-                if (i != numCourses - 1) {
-                    courseList.append(", ");
-                }
-            }
-            return courseList.toString();
+            return courses;
         }
     }
 
