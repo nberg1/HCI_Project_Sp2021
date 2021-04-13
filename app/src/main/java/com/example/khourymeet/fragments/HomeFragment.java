@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 import com.example.khourymeet.User;
 import com.google.firebase.database.DataSnapshot;
