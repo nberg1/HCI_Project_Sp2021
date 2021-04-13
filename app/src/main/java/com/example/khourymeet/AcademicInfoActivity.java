@@ -189,7 +189,7 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
                 if (snapshot.exists()) {
                     Course dbCourse1 = snapshot.getValue(Course.class);
                     String courseStudents = dbCourse1.getCurrentStudents();
-                    if (courseStudents == null) {
+                    if (courseStudents == null || courseStudents.equals("")) {
                         databaseReference.child("courses").child(course1).child("currentStudents").setValue(currentUsername);
                     } else {
                         databaseReference.child("courses").child(course1).child("currentStudents").setValue(courseStudents + ", " + currentUsername);
@@ -213,9 +213,9 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Course dbCourse1 = snapshot.getValue(Course.class);
-                    String courseStudents = dbCourse1.getCurrentStudents();
-                    if (courseStudents == null) {
+                    Course dbCourse2 = snapshot.getValue(Course.class);
+                    String courseStudents = dbCourse2.getCurrentStudents();
+                    if (courseStudents == null || courseStudents == "") {
                         databaseReference.child("courses").child(course2).child("currentStudents").setValue(currentUsername);
                     } else {
                         databaseReference.child("courses").child(course2).child("currentStudents").setValue(courseStudents + currentUsername);
