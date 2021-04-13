@@ -15,6 +15,7 @@ public class User {
     private List<String> friends; // direct chats
     private List<String> currentCourses;
     private List<String> pastCourses;
+    private String currentCourseList;
     private String image;
 
     public User() {
@@ -32,6 +33,7 @@ public class User {
         this.currentCourses = new ArrayList<>();
         this.pastCourses = new ArrayList<>();
         this.friends = new ArrayList<>();
+        this.currentCourseList = "";
     }
 
     public String getName() {
@@ -120,5 +122,26 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCurrentCourseList() {
+        return currentCourseList;
+    }
+
+    public void setCurrentCourseList(String currentCourseList) {
+        this.currentCourseList = currentCourseList;
+    }
+
+    public List<String> convertCourseStrToArray(String listCourses) {
+        List<String> arrCourses = new ArrayList<>();
+        if (listCourses == null || listCourses.equals("")) {
+            return arrCourses;
+        } else {
+            String[] tempCourses = listCourses.split(", ");
+            for (String c : tempCourses) {
+                arrCourses.add(c);
+            }
+        }
+        return arrCourses;
     }
 }

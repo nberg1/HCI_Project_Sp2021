@@ -1,20 +1,17 @@
-package com.example.khourymeet.fragments;
+package com.example.khourymeet;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.khourymeet.R;
-import com.example.khourymeet.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,12 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EditProfileFragment extends Fragment {
+public class TestEditProfile extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
@@ -50,50 +42,16 @@ public class EditProfileFragment extends Fragment {
     private EditText editPassword;
 
     // Create list of current courses
+    private String currentCoursesStr;
     private List<String> currentCourses;
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public EditProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditProfileFragment newInstance(String param1, String param2) {
-        EditProfileFragment fragment = new EditProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setContentView(R.layout.activity_test_edit_profile);
 
         // Referenced Android documentation to retrieve data from Shared Preferences
-        sharedPreferences = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        sharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 //        currentUsername = sharedPreferences.getString(getString(R.string.username_preferences_key), defaultString);
         currentUsername = "marielleTest";
 
@@ -103,34 +61,38 @@ public class EditProfileFragment extends Fragment {
 
         getTextViews();
 
-        createUser();
-    }
+        createUserSetText();
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
+        // Complete Course1
+        Button completeCourse1Button = findViewById(R.id.complete_btn1);
+        completeCourse1Button.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView currCourse1 = findViewById(R.id.user_currCourse1);
+                        String course = currCourse1.getText().toString();
+                        createUserUpdateCourses(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
     }
-
 
     private void getTextViews() {
         // Get EditText views for profile texts
-        editName = getView().findViewById(R.id.name);
-        editPassword = getView().findViewById(R.id.password);
+        editName = findViewById(R.id.name);
+        editPassword = findViewById(R.id.password);
 
         // Get TextViews for profile texts
-        usernameView = getView().findViewById(R.id.username);
-        emailView = getView().findViewById(R.id.user_email);
+        usernameView = findViewById(R.id.username);
+        emailView = findViewById(R.id.user_email);
 
         // Get TextViews for current courses
-        currentCourse1View = getView().findViewById(R.id.user_currCourse1);
-        currentCourse2View = getView().findViewById(R.id.user_currCourse2);
+        currentCourse1View = findViewById(R.id.user_currCourse1);
+        currentCourse2View = findViewById(R.id.user_currCourse2);
     }
 
-
-    // Create User object from Database entry for the current username
-    private void createUser() {
+    // Create User object from Database entry for the current username and set the edit profile text
+    private void createUserSetText() {
         databaseReference.child(getString(R.string.users_path,
                 currentUsername)).addListenerForSingleValueEvent(new ValueEventListener() {
             // Use snapshot to create User object
@@ -169,7 +131,9 @@ public class EditProfileFragment extends Fragment {
         emailView.setText(user.getEmail());
 
         // Create list of current courses
-        currentCourses = createCoursesList(user, 1);
+//        currentCourses = createCoursesList(user, 1);
+        currentCoursesStr = user.getCurrentCourseList();
+        currentCourses = user.convertCourseStrToArray(currentCoursesStr);
 
         // Populate current course views
         setCurrentCoursesViews();
@@ -178,6 +142,36 @@ public class EditProfileFragment extends Fragment {
 //        currentCoursesView.setText(createCoursesString(user, 1));
 //        pastCoursesView.setText(createCoursesString(user, -1));
 
+    }
+
+    // Create User object from Database entry for the current username and update the courses
+    private void createUserUpdateCourses(String course) {
+        currentCourses.remove(course);
+        currentCoursesStr = currentCourses.toString();
+        currentCoursesStr = currentCoursesStr.replaceAll("\\[", "");
+        currentCoursesStr = currentCoursesStr.replaceAll("\\]", "");
+        databaseReference.child("users").child(currentUsername).child("currentCourseList").setValue(currentCoursesStr);
+//        DatabaseReference childRemoveVal = databaseReference.child(getString(R.string.users_path,
+//                currentUsername)).child("currentCourses").child(course);
+//        Log.w("create user", childRemoveVal.toString());
+//        childRemoveVal.removeValue();
+//        databaseReference.child(getString(R.string.users_path,
+//                currentUsername)).addListenerForSingleValueEvent(new ValueEventListener() {
+//            // Use snapshot to create User object
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//
+//                    User currentUser = snapshot.getValue(User.class);
+////                    setEditProfileText(currentUser);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 
     // Get string of courses

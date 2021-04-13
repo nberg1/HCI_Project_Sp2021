@@ -35,7 +35,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
 
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
-    // TODO: use current username as key to pass academic info to db
+
     private String currentUsername;
     private final String defaultString = "default";
 
@@ -129,7 +129,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
         usernameView.setText(user.getUserName());
         emailView.setText(user.getEmail());
         programView.setText(createProgramString(user));
-        currentCoursesView.setText(createCoursesString(user, 1));
+//        currentCoursesView.setText(createCoursesString(user, 1));
+        currentCoursesView.setText(user.getCurrentCourseList());
         pastCoursesView.setText(createCoursesString(user, -1));
 
     }
