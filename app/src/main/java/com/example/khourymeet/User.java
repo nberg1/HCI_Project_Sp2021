@@ -18,7 +18,6 @@ public class User {
     public User() {
     }
 
-    // TODO: is token necessary?
     public User(String name, String email, String userName, String password) {
         this.name = name;
         this.email = email;

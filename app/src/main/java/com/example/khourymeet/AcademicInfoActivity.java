@@ -1,5 +1,6 @@
 package com.example.khourymeet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -20,8 +21,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,9 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
     private MultiSelectSpinner multiSelectSpinner;
     private String course1;
     private String course2;
+    private String courses;
+
+    private static final String TAG = "weird";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,14 +171,67 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
 
                 Boolean coursesInput = coursesCheck();
                 if (coursesInput) {
-                    databaseReference.child("users").child(currentUsername).child("currentCourses").child("0").setValue(course1);
-                    databaseReference.child("users").child(currentUsername).child("currentCourses").child("1").setValue(course2);
+                    databaseReference.child("users").child(currentUsername).child("currentCourses").setValue(courses);
+                    addUserToCourse1();
 
-                    Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
+//                    startActivity(intent);
                 }
             }
         }
+    }
+
+    private void addUserToCourse1() {
+        databaseReference.child("courses").child(course1).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Use snapshot to create Course object and update list of current students
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Course dbCourse1 = snapshot.getValue(Course.class);
+                    String courseStudents = dbCourse1.getCurrentStudents();
+                    if (courseStudents == null) {
+                        databaseReference.child("courses").child(course1).child("currentStudents").setValue(currentUsername);
+                    } else {
+                        databaseReference.child("courses").child(course1).child("currentStudents").setValue(courseStudents + ", " + currentUsername);
+                    }
+                } else {
+                    databaseReference.child("courses").child(course1).child("currentStudents").setValue(currentUsername);
+                }
+                addUserToCourse2();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void addUserToCourse2() {
+        databaseReference.child("courses").child(course2).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Use snapshot to create Course object and update list of current students
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Course dbCourse1 = snapshot.getValue(Course.class);
+                    String courseStudents = dbCourse1.getCurrentStudents();
+                    if (courseStudents == null) {
+                        databaseReference.child("courses").child(course2).child("currentStudents").setValue(currentUsername);
+                    } else {
+                        databaseReference.child("courses").child(course2).child("currentStudents").setValue(courseStudents + currentUsername);
+                    }
+                } else {
+                    databaseReference.child("courses").child(course2).child("currentStudents").setValue(currentUsername);
+                }
+                Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     // Checks that a user has clicked on one of the radio buttons to select an academic program
@@ -203,6 +263,7 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
         if (items.length == 2) {
             course1 = "CS" + items[0];
             course2 = "CS" + items[1];
+            courses = course1 + ", " + course2;
             return true;
         } else {
             Toast.makeText(getApplicationContext(), "Please select two courses", Toast.LENGTH_LONG).show();
