@@ -152,113 +152,113 @@ public class EditProfileFragment extends Fragment {
         coursesWithdrawn= new ArrayList<>();
         coursesDeleted = new ArrayList<>();
 
-        getButtonViews();
-
-        getTextViews();
-
-        createUserSetText();
+//        getButtonViews();
+//
+//        getTextViews();
+//
+//        createUserSetText();
 
         // Complete Course1
-        completeButton1.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
-                        String course = currCourse1.getText().toString();
-                        completeCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Complete Course2
-        completeButton2.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
-                        String course = currCourse2.getText().toString();
-                        completeCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Withdraw Course1
-        withdrawButton1.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
-                        String course = currCourse1.getText().toString();
-                        withdrawCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Withdraw Course2
-        withdrawButton2.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
-                        String course = currCourse2.getText().toString();
-                        withdrawCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Delete Past Course1
-        deleteButton1.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse1);
-                        String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Delete Past Course2
-        deleteButton2.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse2);
-                        String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Delete Past Course3
-        deleteButton3.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse3);
-                        String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-        // Delete Past Course4
-        deleteButton4.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse4);
-                        String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
-                    }
-                }
-        );
-
-
-        // Save
-        saveButton.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View complete) {
-                        saveStudentInfoToDb();
-                        updateCourseLists();
-                        Log.w("currentCourses", currentCoursesStr);
-                        Log.w("pastCourses", pastCoursesStr);
-                    }
-                }
-        );
+//        completeButton1.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
+//                        String course = currCourse1.getText().toString();
+//                        completeCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Complete Course2
+//        completeButton2.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
+//                        String course = currCourse2.getText().toString();
+//                        completeCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Withdraw Course1
+//        withdrawButton1.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
+//                        String course = currCourse1.getText().toString();
+//                        withdrawCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Withdraw Course2
+//        withdrawButton2.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
+//                        String course = currCourse2.getText().toString();
+//                        withdrawCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course1
+//        deleteButton1.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse1);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course2
+//        deleteButton2.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse2);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course3
+//        deleteButton3.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse3);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course4
+//        deleteButton4.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse4);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//
+//
+//        // Save
+//        saveButton.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        saveStudentInfoToDb();
+//                        updateCourseLists();
+//                        Log.w("currentCourses", currentCoursesStr);
+//                        Log.w("pastCourses", pastCoursesStr);
+//                    }
+//                }
+//        );
     }
 
     @Override

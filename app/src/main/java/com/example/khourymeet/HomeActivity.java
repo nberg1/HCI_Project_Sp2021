@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 
+import com.example.khourymeet.fragments.CoursePageFragment;
+import com.example.khourymeet.fragments.EditProfileFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
@@ -153,4 +155,11 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+    // Go from Profile fragment to EditProfile fragment
+    public void editProfileButton(View view) {
+        openFragment(EditProfileFragment.newInstance("", ""));
+    }
+
+
 }
