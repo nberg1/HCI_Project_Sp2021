@@ -28,18 +28,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/colorPrimaryDark"
-                android:textColor="@color/white"
-                android:text="Save" />
+                android:text="@string/edit_profile_save"
+                android:textColor="@color/white" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="20dp">
+
                 <TextView
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="NAME: "
+                    android:text="@string/edit_profile_name"
                     android:textSize="25sp" />
 
                 <EditText
@@ -47,19 +48,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:hint="Marta Cabrera"
+                    android:hint="@string/default_name"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="20dp">
+
                 <TextView
                     android:id="@+id/pw_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="PASSWORD: "
+                    android:text="@string/edit_profile_password"
                     android:textSize="25sp" />
 
                 <EditText
@@ -67,25 +69,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:hint="Password"
+                    android:hint="@string/default_password"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/username_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USERNAME: "
+                    android:text="@string/edit_profile_username"
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DummyData123"
+                    android:text="@string/default_username"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -97,14 +100,14 @@
                     android:id="@+id/user_email_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMAIL: "
+                    android:text="@string/edit_profile_email"
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="cabrera.m123@northeastern.edu"
+                    android:text="@string/default_email"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -117,28 +120,29 @@
                     android:layout_width="259dp"
                     android:layout_height="wrap_content"
                     android:paddingTop="25dp"
-                    android:text="MY COURSES (IN PROGRESS): "
+                    android:text="@string/edit_profile_in_progress"
                     android:textSize="25sp" />
 
                 <Button
                     android:id="@+id/button4"
                     android:layout_width="93dp"
-                    android:layout_marginLeft="15dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:background="@color/colorPrimaryDark"
-                    android:textColor="@color/white"
-                    android:text="ADD COURSE" />
+                    android:text="@string/edit_profile_add_course"
+                    android:textColor="@color/white" />
 
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_currCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5004"
+                    android:text="@string/edit_profile_course"
                     android:textSize="25sp" />
 
                 <Button
@@ -149,7 +153,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="25dp"
                     android:background="#60F44336"
-                    android:text="WITHDRAW" />
+                    android:text="@string/edit_profile_withdraw" />
 
                 <!-- mark complete, one of the on clicks could be updating array -->
                 <Button
@@ -159,18 +163,20 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:background="#8B57F85E"
-                    android:text="MARK AS COMPLETE" />
+                    android:text="@string/edit_profile_mark_completed" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_currCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5006"
+                    android:text="@string/edit_profile_course"
                     android:textSize="25sp" />
+
                 <Button
                     android:id="@+id/withdraw_btn2"
                     android:layout_width="wrap_content"
@@ -179,7 +185,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="25dp"
                     android:background="#60F44336"
-                    android:text="WITHDRAW" />
+                    android:text="@string/edit_profile_withdraw" />
 
                 <!-- mark complete, one of the on clicks could be updating array -->
                 <Button
@@ -189,33 +195,35 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:background="#8B57F85E"
-                    android:text="MARK AS COMPLETE" />
+                    android:text="@string/edit_profile_mark_completed" />
             </TableRow>
+
             <TextView
                 android:id="@+id/user_prevCourses_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
-                android:text="MY COURSES (COMPLETED): "
+                android:text="@string/edit_profile_completed_header"
                 android:textSize="25sp" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_prevCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5001"
+                    android:text="@string/edit_profile_course"
                     android:textSize="25sp" />
 
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="false"
                     android:layout_marginLeft="25dp"
-                    android:text="Invisible" />
+                    android:checked="false"
+                    android:text="@string/edit_profile_invisible" />
 
                 <Button
                     android:id="@+id/delete_btn1"
@@ -225,17 +233,18 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="25dp"
                     android:background="#60F44336"
-                    android:text="DELETE" />
+                    android:text="@string/edit_profile_delete" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_prevCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5003"
+                    android:text="@string/edit_profile_course"
                     android:textSize="25sp" />
 
                 <CheckBox
@@ -244,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:checked="false"
-                    android:text="Invisible" />
+                    android:text="@string/edit_profile_invisible" />
 
                 <Button
                     android:id="@+id/delete_btn2"
@@ -254,7 +263,67 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="25dp"
                     android:background="#60F44336"
-                    android:text="DELETE" />
+                    android:text="@string/edit_profile_delete" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/user_prevCourse3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_profile_course"
+                    android:textSize="25sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:checked="false"
+                    android:text="@string/edit_profile_invisible" />
+
+                <Button
+                    android:id="@+id/delete_btn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="@string/edit_profile_delete" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/user_prevCourse4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_profile_course"
+                    android:textSize="25sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:checked="false"
+                    android:text="@string/edit_profile_invisible" />
+
+                <Button
+                    android:id="@+id/delete_btn4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="@string/edit_profile_delete" />
             </TableRow>
 
         </LinearLayout>

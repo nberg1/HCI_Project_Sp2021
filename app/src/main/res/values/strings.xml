@@ -34,6 +34,24 @@
     <string name="forgot_data">Forgot username/password?</string>
     <string name="sign_out">Sign Out</string>
 
+    <string name="edit_profile_name">NAME: </string>
+    <string name="edit_profile_password">PASSWORD: </string>
+    <string name="edit_profile_username">USERNAME: </string>
+    <string name="edit_profile_email">EMAIL: </string>
+    <string name="edit_profile_save">SAVE</string>
+    <string name="edit_profile_in_progress">MY COURSES (IN PROGRESS): </string>
+    <string name="edit_profile_add_course">ADD COURSE</string>
+    <string name="edit_profile_course">Course</string>
+    <string name="edit_profile_withdraw">WITHDRAW</string>
+    <string name="edit_profile_mark_completed">MARK AS COMPLETED</string>
+    <string name="edit_profile_invisible">Invisible</string>
+    <string name="edit_profile_completed_header">MY COURSES (COMPLETED): </string>
+    <string name="edit_profile_delete">DELETE</string>
+
+    <string name="default_name">First Last</string>
+    <string name="default_password">Password</string>
+    <string name="default_username">Username</string>
+    <string name="default_email">lastname.f@northeastern.edu</string>
 
     <string name="home">Home</string>
     <string name="messages">Messages</string>
@@ -57,4 +75,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cs5001">CS5001 PLACE</string>
     <string name="cs5003">CS5003 PLACE</string>
+
 </resources>
