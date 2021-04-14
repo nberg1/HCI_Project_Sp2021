@@ -65,6 +65,31 @@
     <string name="delete_yes">Yes, delete %s</string>
     <string name="delete_no">No, do not delete %s</string>
 
+    <string name="invisible_explanation">Marking a course "invisible" removes you from the list of mentors and hides the course from public profile. This functionality is not yet implemented.</string>
+    <string name="invisible_understand">I Understand</string>
+
+    <string name="too_many_courses">You are already registered for 2 courses. To add a course, either withdraw from a current course or mark one as completed.</string>
+    <string name="go_back">Go Back</string>
+
+    <string name="add_course">Add a Course</string>
+    <string name="course_5001">CS5001</string>
+    <string name="course_5003">CS5003</string>
+    <string name="course_5004">CS5004</string>
+    <string name="course_5006">CS5006</string>
+    <string name="already_taking">"You are already taking %s! Please choose a different class."</string>
+    <string name="took_before">"You already took %s! To take it again, please first delete it from your past classes."</string>
+    <string name="not_added_current">%s not added because you are already taking it.</string>
+    <string name="not_added_past">%s not added because you have taken it before.</string>
+    <string name="add_course_yes">Add selected course</string>
+    <string name="add_course_no">Do not add any course</string>
+
+    <string-array name="course_list">
+        <item>@string/course_5001</item>
+        <item>@string/course_5003</item>
+        <item>@string/course_5004</item>
+        <item>@string/course_5006</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cs5001">CS5001 PLACE</string>

@@ -1,6 +1,7 @@
 package com.example.khourymeet.fragments;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -202,7 +203,7 @@ public class EditProfileFragment extends Fragment {
                     public void onClick(View complete) {
                         TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
                         String course = currCourse1.getText().toString();
-                        withdrawCourse(course);
+                        markCourseWithdrawn(course);
                     }
                 }
         );
@@ -212,7 +213,7 @@ public class EditProfileFragment extends Fragment {
                     public void onClick(View complete) {
                         TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
                         String course = currCourse2.getText().toString();
-                        withdrawCourse(course);
+                        markCourseWithdrawn(course);
                     }
                 }
         );
@@ -222,8 +223,7 @@ public class EditProfileFragment extends Fragment {
                     public void onClick(View complete) {
                         TextView pastCourse = getView().findViewById(R.id.user_prevCourse1);
                         String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
+                        markCourseDeleted(course);
                     }
                 }
         );
@@ -233,8 +233,7 @@ public class EditProfileFragment extends Fragment {
                     public void onClick(View complete) {
                         TextView pastCourse = getView().findViewById(R.id.user_prevCourse2);
                         String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
+                        markCourseDeleted(course);
                     }
                 }
         );
@@ -244,8 +243,7 @@ public class EditProfileFragment extends Fragment {
                     public void onClick(View complete) {
                         TextView pastCourse = getView().findViewById(R.id.user_prevCourse3);
                         String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
+                        markCourseDeleted(course);
                     }
                 }
         );
@@ -255,8 +253,54 @@ public class EditProfileFragment extends Fragment {
                     public void onClick(View complete) {
                         TextView pastCourse = getView().findViewById(R.id.user_prevCourse4);
                         String course = pastCourse.getText().toString();
-                        deleteCourse(course);
-                        Log.w("tag", "updated course");
+                        markCourseDeleted(course);
+                    }
+                }
+        );
+
+        // Mark course invisible
+        checkBox1.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        markCourseInvisible();
+                    }
+                }
+        );
+        // Mark course invisible
+        checkBox2.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        markCourseInvisible();
+                    }
+                }
+        );
+        // Mark course invisible
+        checkBox3.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        markCourseInvisible();
+                    }
+                }
+        );
+        // Mark course invisible
+        checkBox4.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        markCourseInvisible();
+                    }
+                }
+        );
+
+        // Add course
+        addCourseButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        if (currentCourses.size() >= 2) {
+                            maxCoursesListed();
+                        } else {
+                            // TODO: dialog box to add course
+                            addCoursesDialog();
+                        }
                     }
                 }
         );
@@ -266,6 +310,7 @@ public class EditProfileFragment extends Fragment {
         saveButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
+                        // TODO: confirmation dialog
                         saveStudentInfoToDb();
                         updateCourseLists();
                         Log.w("currentCourses", currentCoursesStr);
@@ -275,49 +320,6 @@ public class EditProfileFragment extends Fragment {
         );
 
     }
-
-//    // Get all Button views
-//    private void getButtonViews(ViewGroup root) {
-//        addCourseButton = root.findViewById(R.id.button4);
-//        saveButton = root.findViewById(R.id.save_button);
-//
-//        withdrawButton1 = root.findViewById(R.id.withdraw_btn1);
-//        withdrawButton2 = root.findViewById(R.id.withdraw_btn2);
-//
-//        completeButton1 = root.findViewById(R.id.complete_btn1);
-//        completeButton2 = root.findViewById(R.id.complete_btn2);
-//
-//        deleteButton1 = root.findViewById(R.id.delete_btn1);
-//        deleteButton2 = root.findViewById(R.id.delete_btn2);
-//        deleteButton3 = root.findViewById(R.id.delete_btn3);
-//        deleteButton4 = root.findViewById(R.id.delete_btn4);
-//
-//        checkBox1 = root.findViewById(R.id.checkBox);
-//        checkBox2 = root.findViewById(R.id.checkBox2);
-//        checkBox3 = root.findViewById(R.id.checkBox3);
-//        checkBox4 = root.findViewById(R.id.checkBox4);
-//    }
-//
-//    // Get all Text and EditText views
-//    private void getTextViews(ViewGroup root) {
-//        // Get EditText views for profile texts
-//        editName = root.findViewById(R.id.name);
-//        editPassword = root.findViewById(R.id.password);
-//
-//        // Get TextViews for profile texts
-//        usernameView = root.findViewById(R.id.username);
-//        emailView = root.findViewById(R.id.user_email);
-//
-//        // Get TextViews for current courses
-//        currentCourse1View = root.findViewById(R.id.user_currCourse1);
-//        currentCourse2View = root.findViewById(R.id.user_currCourse2);
-//
-//        // Get TextViews for past courses
-//        pastCourse1View = root.findViewById(R.id.user_prevCourse1);
-//        pastCourse2View = root.findViewById(R.id.user_prevCourse2);
-//        pastCourse3View = root.findViewById(R.id.user_prevCourse3);
-//        pastCourse4View = root.findViewById(R.id.user_prevCourse4);
-//    }
 
     // Get all Button views
     private void getButtonViews() {
@@ -409,6 +411,13 @@ public class EditProfileFragment extends Fragment {
         setPastCoursesViews();
     }
 
+    // Add course
+    private void addCourse(String course) {
+        currentCourses.add(course);
+        setCurrentCoursesViews();
+        currentCoursesStr = removeBracketsArrStr(currentCourses.toString());
+    }
+
     // Update courses upon course completion
     private void completeCourse(String course) {
         currentCourses.remove(course); // List
@@ -418,7 +427,6 @@ public class EditProfileFragment extends Fragment {
         setPastCoursesViews();
         currentCoursesStr = removeBracketsArrStr(currentCourses.toString());
         pastCoursesStr = removeBracketsArrStr(pastCourses.toString());
-        // TODO: remove student from current student list in db, add to mentor list
     }
 
     // Update courses upon course withdrawal
@@ -427,7 +435,6 @@ public class EditProfileFragment extends Fragment {
         coursesWithdrawn.add(course);
         setCurrentCoursesViews();
         currentCoursesStr = removeBracketsArrStr(currentCourses.toString());
-        // TODO: remove student from current student course list in DB
     }
 
     // Update courses upon course deletion
@@ -436,7 +443,6 @@ public class EditProfileFragment extends Fragment {
         coursesDeleted.add(course);
         setPastCoursesViews();
         pastCoursesStr = removeBracketsArrStr(pastCourses.toString());
-        // TODO: remove student from mentor student course list in DB
     }
 
     // Update student info in database
@@ -507,7 +513,7 @@ public class EditProfileFragment extends Fragment {
                 completeCourse(course);
             }
         });
-        builder.setNegativeButton(getString(R.string.mark_complete_yes, course), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.mark_complete_no, course), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Do nothing
@@ -569,6 +575,94 @@ public class EditProfileFragment extends Fragment {
         });
 
         AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.RED);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.BLUE);
+    }
+
+    // Set up dialog box for "invisible"
+    // When functionality is implemented, method signature will be "private void markCourseInvisible(String course)"
+    private void markCourseInvisible() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.invisible_explanation));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.invisible_understand), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // When functionality is implemented -- remove student from list of mentors, remove course from list of publicly viewable course
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.BLUE);
+    }
+
+    // Set up dialog box to display if you already have two courses
+    private void maxCoursesListed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.too_many_courses));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.go_back), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.RED);
+    }
+
+    // Note: this uses the TutorialsPoint example for creating a single-choice dialog
+    private void addCoursesDialog() {
+        final String[] items = {"CS5001", "CS5003", "CS5004", "CS5006"};
+        int checkedItem = 0;
+        final String[] courseChosen = {"CS5001"};
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getString(R.string.add_course));
+        builder.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (currentCourses.contains(items[which])) {
+                    courseChosen[0] = items[which];
+                    Toast.makeText(getContext(), getString(R.string.already_taking, items[which]), Toast.LENGTH_LONG).show();
+                } else if (pastCourses.contains(items[which])){
+                    courseChosen[0] = items[which];
+                    Toast.makeText(getContext(), getString(R.string.took_before, items[which]), Toast.LENGTH_LONG).show();
+                } else {
+                    courseChosen[0] = items[which];
+                }
+            }
+        });
+        builder.setPositiveButton(getString(R.string.add_course_yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (currentCourses.contains(courseChosen[0])) {
+                    Toast.makeText(getContext(), getString(R.string.not_added_current, courseChosen[0]), Toast.LENGTH_LONG).show();
+                } else if (pastCourses.contains(courseChosen[0])) {
+                    Toast.makeText(getContext(), getString(R.string.not_added_past, courseChosen[0]), Toast.LENGTH_LONG).show();
+                } else {
+                    addCourse(courseChosen[0]);
+                }
+            }
+        });
+        builder.setNegativeButton(getString(R.string.add_course_no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
@@ -671,6 +765,7 @@ public class EditProfileFragment extends Fragment {
             deleteButton4.setVisibility(View.GONE);
         }
     }
+
 
     // After running toString on an array, remove the brackets from the String
     private String removeBracketsArrStr(String arrayString) {
