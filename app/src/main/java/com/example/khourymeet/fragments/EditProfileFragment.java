@@ -1,7 +1,11 @@
 package com.example.khourymeet.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +21,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.khourymeet.AcademicInfoActivity;
 import com.example.khourymeet.Course;
+import com.example.khourymeet.MainActivity;
 import com.example.khourymeet.R;
 import com.example.khourymeet.User;
 import com.google.firebase.database.DataSnapshot;
@@ -156,7 +162,7 @@ public class EditProfileFragment extends Fragment {
 //
 //        getTextViews();
 //
-//        createUserSetText();
+        createUserSetText();
 
         // Complete Course1
 //        completeButton1.setOnClickListener(
@@ -264,9 +270,288 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+//        // Referenced Android documentation to retrieve data from Shared Preferences
+//        sharedPreferences = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//        currentUsername = sharedPreferences.getString(getString(R.string.username_preferences_key), defaultString);
+//
+//        databaseReference = FirebaseDatabase.getInstance().getReference();
+//
+//        currentCourses = new ArrayList<>();
+//        pastCourses = new ArrayList<>();
+//        coursesAdded = new ArrayList<>();
+//        coursesCompleted = new ArrayList<>();
+//        coursesWithdrawn= new ArrayList<>();
+//        coursesDeleted = new ArrayList<>();
+
+//        getButtonViews(root);
+//
+//        getTextViews(root);
+//
+////        createUserSetText();
+//
+////         Complete Course1
+//        completeButton1.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
+//                        String course = currCourse1.getText().toString();
+//                        completeCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Complete Course2
+//        completeButton2.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
+//                        String course = currCourse2.getText().toString();
+//                        completeCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Withdraw Course1
+//        withdrawButton1.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
+//                        String course = currCourse1.getText().toString();
+//                        withdrawCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Withdraw Course2
+//        withdrawButton2.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
+//                        String course = currCourse2.getText().toString();
+//                        withdrawCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course1
+//        deleteButton1.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse1);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course2
+//        deleteButton2.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse2);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course3
+//        deleteButton3.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse3);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//        // Delete Past Course4
+//        deleteButton4.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse4);
+//                        String course = pastCourse.getText().toString();
+//                        deleteCourse(course);
+//                        Log.w("tag", "updated course");
+//                    }
+//                }
+//        );
+//
+//
+//        // Save
+//        saveButton.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View complete) {
+//                        saveStudentInfoToDb();
+//                        updateCourseLists();
+//                        Log.w("currentCourses", currentCoursesStr);
+//                        Log.w("pastCourses", pastCoursesStr);
+//                    }
+//                }
+//        );
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getButtonViews();
+
+        getTextViews();
+
+        createUserSetText();
+
+//         Complete Course1
+        completeButton1.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
+                        String course = currCourse1.getText().toString();
+                        markCourseCompleted(course);
+                    }
+                }
+        );
+        // Complete Course2
+        completeButton2.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
+                        String course = currCourse2.getText().toString();
+                        markCourseCompleted(course);
+                    }
+                }
+        );
+        // Withdraw Course1
+        withdrawButton1.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView currCourse1 = getView().findViewById(R.id.user_currCourse1);
+                        String course = currCourse1.getText().toString();
+                        withdrawCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+        // Withdraw Course2
+        withdrawButton2.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView currCourse2 = getView().findViewById(R.id.user_currCourse2);
+                        String course = currCourse2.getText().toString();
+                        withdrawCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+        // Delete Past Course1
+        deleteButton1.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse1);
+                        String course = pastCourse.getText().toString();
+                        deleteCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+        // Delete Past Course2
+        deleteButton2.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse2);
+                        String course = pastCourse.getText().toString();
+                        deleteCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+        // Delete Past Course3
+        deleteButton3.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse3);
+                        String course = pastCourse.getText().toString();
+                        deleteCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+        // Delete Past Course4
+        deleteButton4.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        TextView pastCourse = getView().findViewById(R.id.user_prevCourse4);
+                        String course = pastCourse.getText().toString();
+                        deleteCourse(course);
+                        Log.w("tag", "updated course");
+                    }
+                }
+        );
+
+
+        // Save
+        saveButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        saveStudentInfoToDb();
+                        updateCourseLists();
+                        Log.w("currentCourses", currentCoursesStr);
+                        Log.w("pastCourses", pastCoursesStr);
+                    }
+                }
+        );
+
+    }
+
+//    // Get all Button views
+//    private void getButtonViews(ViewGroup root) {
+//        addCourseButton = root.findViewById(R.id.button4);
+//        saveButton = root.findViewById(R.id.save_button);
+//
+//        withdrawButton1 = root.findViewById(R.id.withdraw_btn1);
+//        withdrawButton2 = root.findViewById(R.id.withdraw_btn2);
+//
+//        completeButton1 = root.findViewById(R.id.complete_btn1);
+//        completeButton2 = root.findViewById(R.id.complete_btn2);
+//
+//        deleteButton1 = root.findViewById(R.id.delete_btn1);
+//        deleteButton2 = root.findViewById(R.id.delete_btn2);
+//        deleteButton3 = root.findViewById(R.id.delete_btn3);
+//        deleteButton4 = root.findViewById(R.id.delete_btn4);
+//
+//        checkBox1 = root.findViewById(R.id.checkBox);
+//        checkBox2 = root.findViewById(R.id.checkBox2);
+//        checkBox3 = root.findViewById(R.id.checkBox3);
+//        checkBox4 = root.findViewById(R.id.checkBox4);
+//    }
+//
+//    // Get all Text and EditText views
+//    private void getTextViews(ViewGroup root) {
+//        // Get EditText views for profile texts
+//        editName = root.findViewById(R.id.name);
+//        editPassword = root.findViewById(R.id.password);
+//
+//        // Get TextViews for profile texts
+//        usernameView = root.findViewById(R.id.username);
+//        emailView = root.findViewById(R.id.user_email);
+//
+//        // Get TextViews for current courses
+//        currentCourse1View = root.findViewById(R.id.user_currCourse1);
+//        currentCourse2View = root.findViewById(R.id.user_currCourse2);
+//
+//        // Get TextViews for past courses
+//        pastCourse1View = root.findViewById(R.id.user_prevCourse1);
+//        pastCourse2View = root.findViewById(R.id.user_prevCourse2);
+//        pastCourse3View = root.findViewById(R.id.user_prevCourse3);
+//        pastCourse4View = root.findViewById(R.id.user_prevCourse4);
+//    }
 
     // Get all Button views
     private void getButtonViews() {
@@ -284,10 +569,10 @@ public class EditProfileFragment extends Fragment {
         deleteButton3 = getView().findViewById(R.id.delete_btn3);
         deleteButton4 = getView().findViewById(R.id.delete_btn4);
 
-//        checkBox1 = getView().findViewById(R.id.checkBox);
-//        checkBox2 = getView().findViewById(R.id.checkBox2);
-//        checkBox3 = getView().findViewById(R.id.checkBox3);
-//        checkBox4 = getView().findViewById(R.id.checkBox4);
+        checkBox1 = getView().findViewById(R.id.checkBox);
+        checkBox2 = getView().findViewById(R.id.checkBox2);
+        checkBox3 = getView().findViewById(R.id.checkBox3);
+        checkBox4 = getView().findViewById(R.id.checkBox4);
     }
 
     // Get all Text and EditText views
@@ -313,11 +598,13 @@ public class EditProfileFragment extends Fragment {
 
     // Create User object from Database entry for the current username and set the edit profile text
     private void createUserSetText() {
+        Log.w("IN SET TEXT", currentUsername);
         databaseReference.child(getString(R.string.users_path,
                 currentUsername)).addListenerForSingleValueEvent(new ValueEventListener() {
             // Use snapshot to create User object
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.w("IN DB REFERENCE", "on data change");
                 if (snapshot.exists()) {
                     User currentUser = snapshot.getValue(User.class);
                     if (currentUser != null) {
@@ -328,7 +615,7 @@ public class EditProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.w("IN DB REFERENCE", "on cancelled");
             }
         });
     }
@@ -401,7 +688,7 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                    Course dbCourse = snapshot.getValue(Course.class);
+                    Course dbCourse = childSnapshot.getValue(Course.class);
                     String dbCourseName = dbCourse.getCourseName();
                     // TODO: Null checks ?
                     List<String> currStudentList = dbCourse.convertStrToArray(dbCourse.getCurrentStudents());
@@ -441,6 +728,60 @@ public class EditProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    // Set up dialog box for "mark as complete"
+    private void markCourseCompleted(final String course) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.mark_complete_warning, course));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.mark_complete_yes, course), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                completeCourse(course);
+            }
+        });
+        builder.setNegativeButton(getString(R.string.mark_complete_yes, course), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.RED);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.BLUE);
+    }
+
+    // Set up dialog box for "withdraw"
+    private void markCourseWithdrawn(final String course) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.withdraw_warning, course, course));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.withdraw_yes, course), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                withdrawCourse(course);
+            }
+        });
+        builder.setNegativeButton(getString(R.string.withdraw_no, course), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.RED);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.BLUE);
     }
 
     private void setCurrentCoursesViews() {
