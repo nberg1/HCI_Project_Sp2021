@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:hint="Marta Cabrera"
+                    android:hint="First Last"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:hint="Password"
+                    android:hint="PasswordExample"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -86,7 +86,7 @@
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DummyData123"
+                    android:text="username"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -105,7 +105,7 @@
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="cabrera.m123@northeastern.edu"
+                    android:text="lastname.first@northeastern.edu"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -139,7 +139,7 @@
                     android:id="@+id/user_currCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5004"
+                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <Button
@@ -170,7 +170,7 @@
                     android:id="@+id/user_currCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5006"
+                    android:text="COURSE"
                     android:textSize="25sp" />
                 <Button
                     android:id="@+id/withdraw_btn2"
@@ -207,7 +207,7 @@
                     android:id="@+id/user_prevCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5001"
+                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <CheckBox
@@ -236,7 +236,7 @@
                     android:id="@+id/user_prevCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CS5003"
+                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <CheckBox
@@ -257,6 +257,67 @@
                     android:background="#60F44336"
                     android:text="DELETE" />
             </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/user_prevCourse3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COURSE"
+                    android:textSize="25sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:checked="false"
+                    android:text="Invisible" />
+
+                <Button
+                    android:id="@+id/delete_btn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="DELETE" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="25dp">
+
+                <TextView
+                    android:id="@+id/user_prevCourse4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COURSE"
+                    android:textSize="25sp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:checked="false"
+                    android:text="Invisible" />
+
+                <Button
+                    android:id="@+id/delete_btn4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#60F44336"
+                    android:text="DELETE" />
+            </TableRow>
+
 
         </LinearLayout>
     </ScrollView>
