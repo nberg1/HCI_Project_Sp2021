@@ -126,8 +126,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
         usernameView.setText(user.getUserName());
         emailView.setText(user.getEmail());
         programView.setText(createProgramString(user));
-        currentCoursesView.setText(createCoursesString(user, 1));
-        pastCoursesView.setText(createCoursesString(user, -1));
+        currentCoursesView.setText(getCoursesString(user, 1));
+        pastCoursesView.setText(getCoursesString(user, -1));
 
     }
 
@@ -154,26 +154,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
     // Get string of courses
     // To get string of past courses, pass -1 for courseType
     // To get string of current courses, pass 1 for courseType
-    private String createCoursesString(User user, int courseType) {
-        List<String> courses;
+    private String getCoursesString(User user, int courseType) {
+        String courses;
         if (courseType == -1) {
             courses = user.getPastCourses();
         } else {
             courses = user.getCurrentCourses();
         }
-        StringBuilder courseList;
-        if (courses == null) {
+        if (courses == null || courses.equals("")) {
             return "NONE";
         } else {
-            courseList = new StringBuilder();
-            int numCourses = courses.size();
-            for (int i = 0; i < numCourses; i++) {
-                courseList.append(courses.get(i));
-                if (i != numCourses - 1) {
-                    courseList.append(", ");
-                }
-            }
-            return courseList.toString();
+            return courses;
         }
     }
 
