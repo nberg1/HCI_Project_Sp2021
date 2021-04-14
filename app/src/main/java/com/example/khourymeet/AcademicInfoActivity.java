@@ -164,8 +164,8 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
 
                 Boolean coursesInput = coursesCheck();
                 if (coursesInput) {
-                    databaseReference.child("users").child(currentUsername).child("currentCourses").child("0").setValue(course1);
-                    databaseReference.child("users").child(currentUsername).child("currentCourses").child("1").setValue(course2);
+                    String combinedCourses = course1 + ", " + course2;
+                    databaseReference.child("users").child(currentUsername).child("currentCourseList").setValue(combinedCourses);
 
                     Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
                     startActivity(intent);
