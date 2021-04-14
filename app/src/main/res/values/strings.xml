@@ -53,13 +53,17 @@
     <string name="preference_file_key">com.example.khourymeet.PREFERENCE_FILE_KEY</string>
     <string name="username_preferences_key">USERNAME_PREFERENCES</string>
 
-    <string name="mark_complete_warning">Marking %s complete will remove it from your current courses and added to your past courses. Are you sure you want to continue?</string>
+    <string name="mark_complete_warning">Marking %s complete will remove it from your current courses and add it to your past courses. Are you sure you want to continue?</string>
     <string name="mark_complete_yes">Yes, mark %s complete</string>
     <string name="mark_complete_no">No, I am still taking %s</string>
 
     <string name="withdraw_warning">Withdrawing from %s will remove it from your current courses. %s will NOT be added to your past courses. Are you sure you want to continue?</string>
     <string name="withdraw_yes">Yes, withdraw from %s</string>
     <string name="withdraw_no">No, do not withdraw from %s</string>
+
+    <string name="delete_warning">Deleting %s will remove it from your past courses. Are you sure you want to continue?</string>
+    <string name="delete_yes">Yes, delete %s</string>
+    <string name="delete_no">No, do not delete %s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
