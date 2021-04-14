@@ -298,7 +298,6 @@ public class EditProfileFragment extends Fragment {
                         if (currentCourses.size() >= 2) {
                             maxCoursesListed();
                         } else {
-                            // TODO: dialog box to add course
                             addCoursesDialog();
                         }
                     }
@@ -311,10 +310,9 @@ public class EditProfileFragment extends Fragment {
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
                         // TODO: confirmation dialog
-                        saveStudentInfoToDb();
-                        updateCourseLists();
-                        Log.w("currentCourses", currentCoursesStr);
-                        Log.w("pastCourses", pastCoursesStr);
+//                        saveStudentInfoToDb();
+//                        updateCourseLists();
+                        confirmSave();
                     }
                 }
         );
@@ -663,6 +661,35 @@ public class EditProfileFragment extends Fragment {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.RED);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.BLUE);
+    }
+
+    // Set up dialog box for save confirmation
+    private void confirmSave() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.save_warning));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.save_yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                saveStudentInfoToDb();
+                updateCourseLists();
+                // TODO: go back to profile fragment
+            }
+        });
+        builder.setNegativeButton(getString(R.string.save_no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO: go back to profile fragment
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
         Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);

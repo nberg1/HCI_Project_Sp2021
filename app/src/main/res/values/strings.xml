@@ -82,6 +82,9 @@
     <string name="not_added_past">%s not added because you have taken it before.</string>
     <string name="add_course_yes">Add selected course</string>
     <string name="add_course_no">Do not add any course</string>
+    <string name="save_warning">Do you wish to save your changes?</string>
+    <string name="save_yes">Yes, save changes</string>
+    <string name="save_no">No, discard changes</string>
 
     <string-array name="course_list">
         <item>@string/course_5001</item>
