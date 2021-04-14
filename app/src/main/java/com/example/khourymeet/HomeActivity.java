@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -161,5 +162,9 @@ public class HomeActivity extends AppCompatActivity {
         openFragment(EditProfileFragment.newInstance("", ""));
     }
 
+    // Go from EditProfile fragment to Profile fragment
+    public void editToProfile(View view) {
+        openFragment(ProfileFragment.newInstance("", ""));
+    }
 
 }

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.khourymeet.AcademicInfoActivity;
 import com.example.khourymeet.Course;
+import com.example.khourymeet.HomeActivity;
 import com.example.khourymeet.MainActivity;
 import com.example.khourymeet.R;
 import com.example.khourymeet.User;
@@ -310,9 +311,9 @@ public class EditProfileFragment extends Fragment {
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
                         // TODO: confirmation dialog
-//                        saveStudentInfoToDb();
-//                        updateCourseLists();
-                        confirmSave();
+                        saveStudentInfoToDb();
+                        updateCourseLists();
+//                        confirmSave();
                     }
                 }
         );
