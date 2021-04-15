@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 
+import com.example.khourymeet.fragments.CoursePageFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
@@ -108,6 +109,10 @@ public class HomeActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void courseButton(View view) {
+        openFragment(CoursePageFragment.newInstance("", ""));
     }
 
     @Override
