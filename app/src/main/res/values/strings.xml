@@ -86,6 +86,8 @@
     <string name="save_yes">Yes, save changes</string>
     <string name="save_no">No, discard changes</string>
 
+    <string name="go_to_profile">Go to Profile</string>
+
     <string-array name="course_list">
         <item>@string/course_5001</item>
         <item>@string/course_5003</item>
