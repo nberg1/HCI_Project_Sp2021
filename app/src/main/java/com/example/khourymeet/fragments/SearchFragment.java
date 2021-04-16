@@ -157,10 +157,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                    User studentUser = childSnapshot.getValue(User.class);
-                    if (!studentUser.getUserName().equals(currentUsername)) {
-                        studentNameList.put(studentUser.getUserName(), studentUser.getName());
-                    }
+                    // TODO: can't use this without ALL db entries matching proper structure
+//                    User studentUser = childSnapshot.getValue(User.class);
+//                    if (!studentUser.getUserName().equals(currentUsername)) {
+//                        studentNameList.put(studentUser.getUserName(), studentUser.getName());
+//                    }
                 }
             }
 
