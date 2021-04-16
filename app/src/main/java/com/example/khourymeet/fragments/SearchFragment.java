@@ -53,7 +53,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
     private Map<String, String> studentNameList;
 
     private Button searchButton;
-    private EditText typeSearch;
+//    private EditText typeSearch;
     private TextView studentName;
     private Button profileButton;
 
@@ -115,17 +115,16 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
         searchButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
-                        String nameSearched = typeSearch.getText().toString();
-                        String usernameSearched = getKeyUsername(nameSearched);
+//                        String nameSearched = typeSearch.getText().toString();
+//                        String usernameSearched = getKeyUsername(nameSearched);
                         // NOTE: this gets the first entry that matches the name and displays it
                         // For the next iteration of this project, add more views and change this
                         // to get a set of keys with the value
-                        if (nameSearched != null) {
-                            studentName.setText(studentNameList.get(usernameSearched));
-                            studentName.setVisibility(View.VISIBLE);
-                            profileButton.setVisibility(View.VISIBLE);
-                        }
-
+//                        if (nameSearched != null) {
+//                            studentName.setText(studentNameList.get(usernameSearched));
+//                            studentName.setVisibility(View.VISIBLE);
+//                            profileButton.setVisibility(View.VISIBLE);
+//                        }
                     }
                 }
         );
@@ -145,7 +144,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
 
     private void getViews() {
         searchButton = getView().findViewById(R.id.search_button);
-        typeSearch = getView().findViewById(R.id.searchView);
+//        typeSearch = getView().findViewById(R.id.searchView);
         studentName = getView().findViewById(R.id.search_friend_name);
         studentName.setVisibility(View.GONE);
         profileButton = getView().findViewById(R.id.friend_go_profile);
