@@ -45,7 +45,7 @@
 
     <string name="home_page">Home Page</string>
     <string name="my_profile">My Profile</string>
-    <string name="search_students">Search Students</string>
+    <string name="search_students">Search For Students</string>
     <string name="direct_messages">Direct Messages</string>
     <string name="group_chats">Group Chats</string>
 
@@ -84,9 +84,21 @@
     <string name="add_course_no">Do not add any course</string>
     <string name="save_warning">Do you wish to save your changes?</string>
     <string name="save_yes">Yes, save changes</string>
-    <string name="save_no">No, discard changes</string>
+    <string name="save_no">No, keep editing profile</string>
+    <string name="discard_warning">Do you wish to discard your changes? This includes any changes you made to your courses or personal information.</string>
+    <string name="discard_yes">Yes, discard all changes</string>
+    <string name="discard_no">No, keep editing profile</string>
+    <string name="back_warning">Going back will discard any unsaved changes. To save your changes, click "Stay on this page" and then click "Save Changes."</string>
+    <string name="back_yes">Go back to my profile</string>
+    <string name="back_no">Stay on this page</string>
+    <string name="name_warning">The Name field must include your full name. The only special characters allowed are hyphens.</string>
+
 
     <string name="go_to_profile">Go to Profile</string>
+
+    <string name="back_to_profile">Back to Profile</string>
+    <string name="save_changes">Save My Changes</string>
+    <string name="discard_changes">Discard Changes</string>
 
     <string-array name="course_list">
         <item>@string/course_5001</item>

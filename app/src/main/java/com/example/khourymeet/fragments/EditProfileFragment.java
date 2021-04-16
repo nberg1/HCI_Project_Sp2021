@@ -54,6 +54,9 @@ public class EditProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+    private static final String namePattern = "([\\p{L}\\-])+(\\s)([\\p{L}\\-\\s])+(?<![\\-\\s])";
+
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
 
@@ -65,6 +68,7 @@ public class EditProfileFragment extends Fragment {
 
     // Button to save
     private Button saveButton;
+    private Button cancelButton;
 
     // Buttons for current courses
     private Button withdrawButton1;
@@ -311,9 +315,19 @@ public class EditProfileFragment extends Fragment {
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
                         // TODO: confirmation dialog
-                        saveStudentInfoToDb();
-                        updateCourseLists();
-//                        confirmSave();
+//                        saveStudentInfoToDb();
+//                        updateCourseLists();
+                        confirmSave();
+                    }
+                }
+        );
+
+        // Discard
+        cancelButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View complete) {
+                        // TODO: confirmation dialog
+                        discardChanges();
                     }
                 }
         );
@@ -324,6 +338,7 @@ public class EditProfileFragment extends Fragment {
     private void getButtonViews() {
         addCourseButton = getView().findViewById(R.id.button4);
         saveButton = getView().findViewById(R.id.save_button);
+        cancelButton = getView().findViewById(R.id.cancel_button);
 
         withdrawButton1 = getView().findViewById(R.id.withdraw_btn1);
         withdrawButton2 = getView().findViewById(R.id.withdraw_btn2);
@@ -446,10 +461,14 @@ public class EditProfileFragment extends Fragment {
 
     // Update student info in database
     private void saveStudentInfoToDb() {
-        databaseReference.child("users").child(currentUsername).child("name").setValue(editName.getText().toString());
-        databaseReference.child("users").child(currentUsername).child("password").setValue(editPassword.getText().toString());
-        databaseReference.child("users").child(currentUsername).child("currentCourses").setValue(currentCoursesStr);
-        databaseReference.child("users").child(currentUsername).child("pastCourses").setValue(pastCoursesStr);
+        if (!editName.getText().toString().matches(namePattern) || editName.getText().toString().equals("")) {
+            Toast.makeText(getContext(), getString(R.string.name_warning), Toast.LENGTH_LONG).show();
+        } else {
+            databaseReference.child("users").child(currentUsername).child("name").setValue(editName.getText().toString());
+            databaseReference.child("users").child(currentUsername).child("password").setValue(editPassword.getText().toString());
+            databaseReference.child("users").child(currentUsername).child("currentCourses").setValue(currentCoursesStr);
+            databaseReference.child("users").child(currentUsername).child("pastCourses").setValue(pastCoursesStr);
+        }
     }
 
     // Update list of current students/mentors in database
@@ -697,6 +716,34 @@ public class EditProfileFragment extends Fragment {
         negativeButton.setTextColor(Color.RED);
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(Color.BLUE);
+    }
+
+    // Set up dialog box for discard changes
+    private void discardChanges() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getString(R.string.discard_warning));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.discard_yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                createUserSetText();
+                // TODO: go back to profile fragment
+            }
+        });
+        builder.setNegativeButton(getString(R.string.discard_no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO: go back to profile fragment
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.BLUE);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.RED);
     }
 
     private void setCurrentCoursesViews() {

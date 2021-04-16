@@ -164,7 +164,29 @@ public class HomeActivity extends AppCompatActivity {
 
     // Go from EditProfile fragment to Profile fragment
     public void editToProfile(View view) {
-        openFragment(ProfileFragment.newInstance("", ""));
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.back_warning));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.back_yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                openFragment(ProfileFragment.newInstance("", ""));
+            }
+        });
+        builder.setNegativeButton(getString(R.string.back_no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.BLUE);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.RED);
     }
 
 }
