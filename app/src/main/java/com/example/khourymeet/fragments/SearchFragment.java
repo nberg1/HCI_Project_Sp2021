@@ -138,6 +138,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
                             studentName.setText(studentNameList.get(usernameSearched));
                             studentName.setVisibility(View.VISIBLE);
                             profileButton.setVisibility(View.VISIBLE);
+                            // Referenced Android documentation to write username locally
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(getString(R.string.other_username_preferences_key), usernameSearched);
+                            editor.apply();
                         }
 
                     }

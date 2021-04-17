@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProfileFragment">
+    tools:context=".fragments.OtherUserProfileFragment">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -49,18 +49,6 @@
                 android:background="@color/white"
                 tools:src="@tools:sample/avatars" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
-                android:onClick="editProfileButton"
-                android:padding="10dp"
-                android:text="Edit Profile"
-                android:textColor="@color/white" />
-
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -79,24 +67,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:text="FirstName LastName"
-                    android:textSize="25sp" />
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="25dp">
-                <TextView
-                    android:id="@+id/username_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="USERNAME: "
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="username"
                     android:textSize="25sp" />
             </TableRow>
 
@@ -130,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:text="PROGRAM: "
                     android:textSize="25sp" />
-
                 <TextView
                     android:id="@+id/user_program"
                     android:layout_width="wrap_content"
@@ -144,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
-                android:text="MY COURSES (IN PROGRESS): "
+                android:text="COURSES IN PROGRESS: "
                 android:textSize="25sp" />
 
             <TextView
@@ -158,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
-                android:text="MY COURSES (COMPLETED): "
+                android:text="COMPLETED COURSES: "
                 android:textSize="25sp" />
 
             <TextView
@@ -171,6 +140,5 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
