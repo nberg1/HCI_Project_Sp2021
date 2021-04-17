@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,12 +128,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
                         String nameSearched = typeSearch.getText().toString();
-                        Log.w("name", nameSearched);
                         String usernameSearched = getKeyUsername(nameSearched);
                         // NOTE: this gets the first entry that matches the name and displays it
                         // For the next iteration of this project, add more views and change this
                         // to get a set of keys with the value
-                        if (nameSearched != null) {
+                        if (usernameSearched != null) {
                             studentName.setText(studentNameList.get(usernameSearched));
                             studentName.setVisibility(View.VISIBLE);
                             profileButton.setVisibility(View.VISIBLE);
@@ -142,6 +140,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString(getString(R.string.other_username_preferences_key), usernameSearched);
                             editor.apply();
+                        } else {
+                            studentName.setText("No results found.");
+                            studentName.setVisibility(View.VISIBLE);
                         }
 
                     }
@@ -176,7 +177,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                    Log.w("snapshot", childSnapshot.getValue().toString());
                     User studentUser = childSnapshot.getValue(User.class);
                     if (!studentUser.getUserName().equals(currentUsername)) {
                         studentNameList.put(studentUser.getUserName(), studentUser.getName());
@@ -194,7 +194,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("IN DB REFERENCE", "on cancelled");
             }
         });
     }
