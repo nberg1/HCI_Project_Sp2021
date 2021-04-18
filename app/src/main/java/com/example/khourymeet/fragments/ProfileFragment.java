@@ -128,7 +128,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
         programView.setText(createProgramString(user));
         currentCoursesView.setText(getCoursesString(user, 1));
         pastCoursesView.setText(getCoursesString(user, -1));
-
     }
 
     // Create User object from Database entry for the current username

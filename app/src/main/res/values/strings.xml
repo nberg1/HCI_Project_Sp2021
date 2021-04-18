@@ -101,6 +101,16 @@
     <string name="save_changes">Save My Changes</string>
     <string name="discard_changes">Discard Changes</string>
 
+    <string name="forgot_login_info">Forgot Username or Password?</string>
+    <string name="enter_email_header">Email: </string>
+    <string name="type_nu_email">Type Northeastern email here.</string>
+    <string name="forgot_login_instructions">If you forgot your username and/or password, please enter your Northeastern email address below. You will receive an email with instructions on what to do next to regain access to your account.</string>
+    <string name="send_email">Send Me An Email</string>
+    <string name="back_login">Go Back To Login</string>
+
+    <string name="notify_email_sent">This functionality has not been implemented in this iteration of the interface. Once implemented, this dialog would read: "An email has been sent to your Northeastern email address. Please follow those instructions to access your account."</string>
+
+
     <string-array name="course_list">
         <item>@string/course_5001</item>
         <item>@string/course_5003</item>
