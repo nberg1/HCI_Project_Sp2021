@@ -14,7 +14,7 @@
     <string name="first_time_user">First time user?</string>
     <string name="create_account">Create Account</string>
     <string name="personal_info">Personal Information</string>
-    <string name="full_name">Name:</string>
+    <string name="full_name">Full Name:</string>
     <string name="email">Northeastern Email:</string>
     <string name="username">Username:</string>
     <string name="password">Password:</string>
@@ -45,13 +45,67 @@
 
     <string name="home_page">Home Page</string>
     <string name="my_profile">My Profile</string>
-    <string name="search_students">Search Students</string>
+    <string name="search_students">Search For Students</string>
     <string name="direct_messages">Direct Messages</string>
     <string name="group_chats">Group Chats</string>
 
     <string name="users_path">users/%s</string>
     <string name="preference_file_key">com.example.khourymeet.PREFERENCE_FILE_KEY</string>
     <string name="username_preferences_key">USERNAME_PREFERENCES</string>
+
+    <string name="mark_complete_warning">Marking %s complete will remove it from your current courses and add it to your past courses. Are you sure you want to continue?</string>
+    <string name="mark_complete_yes">Yes, mark %s complete</string>
+    <string name="mark_complete_no">No, I am still taking %s</string>
+
+    <string name="withdraw_warning">Withdrawing from %s will remove it from your current courses. %s will NOT be added to your past courses. Are you sure you want to continue?</string>
+    <string name="withdraw_yes">Yes, withdraw from %s</string>
+    <string name="withdraw_no">No, do not withdraw from %s</string>
+
+    <string name="delete_warning">Deleting %s will remove it from your past courses. Are you sure you want to continue?</string>
+    <string name="delete_yes">Yes, delete %s</string>
+    <string name="delete_no">No, do not delete %s</string>
+
+    <string name="invisible_explanation">Marking a course "invisible" removes you from the list of mentors and hides the course from public profile. This functionality is not yet implemented.</string>
+    <string name="invisible_understand">I Understand</string>
+
+    <string name="too_many_courses">You are already registered for 2 courses. To add a course, either withdraw from a current course or mark one as completed.</string>
+    <string name="go_back">Go Back</string>
+
+    <string name="add_course">Add a Course</string>
+    <string name="course_5001">CS5001</string>
+    <string name="course_5003">CS5003</string>
+    <string name="course_5004">CS5004</string>
+    <string name="course_5006">CS5006</string>
+    <string name="already_taking">"You are already taking %s! Please choose a different class."</string>
+    <string name="took_before">"You already took %s! To take it again, please first delete it from your past classes."</string>
+    <string name="not_added_current">%s not added because you are already taking it.</string>
+    <string name="not_added_past">%s not added because you have taken it before.</string>
+    <string name="add_course_yes">Add selected course</string>
+    <string name="add_course_no">Do not add any course</string>
+    <string name="save_warning">Do you wish to save your changes?</string>
+    <string name="save_yes">Yes, save changes</string>
+    <string name="save_no">No, keep editing profile</string>
+    <string name="discard_warning">Do you wish to discard your changes? This includes any changes you made to your courses or personal information.</string>
+    <string name="discard_yes">Yes, discard all changes</string>
+    <string name="discard_no">No, keep editing profile</string>
+    <string name="back_warning">Going back will discard any unsaved changes. To save your changes, click "Stay on this page" and then click "Save Changes."</string>
+    <string name="back_yes">Go back to my profile</string>
+    <string name="back_no">Stay on this page</string>
+    <string name="name_warning">The Name field must include your full name. The only special characters allowed are hyphens.</string>
+
+
+    <string name="go_to_profile">Go to Profile</string>
+
+    <string name="back_to_profile">Back to Profile</string>
+    <string name="save_changes">Save My Changes</string>
+    <string name="discard_changes">Discard Changes</string>
+
+    <string-array name="course_list">
+        <item>@string/course_5001</item>
+        <item>@string/course_5003</item>
+        <item>@string/course_5004</item>
+        <item>@string/course_5006</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

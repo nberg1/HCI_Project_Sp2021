@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 import com.example.khourymeet.User;
 import com.google.firebase.database.DataSnapshot;
@@ -125,7 +124,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Navi
         // Get button views for course buttons
         Button course1Button = getView().findViewById(R.id.course1_button);
         Button course2Button = getView().findViewById(R.id.course2_button);
-        List<String> courseList = user.getCurrentCourses();
+        String courseListStr = user.getCurrentCourses();
+        List<String> courseList = user.convertStrToArray(courseListStr);
         if (courseList == null) {
             TextView courseListTitle = getView().findViewById(R.id.course_title);
             courseListTitle.setText(getString(R.string.no_current_courses));

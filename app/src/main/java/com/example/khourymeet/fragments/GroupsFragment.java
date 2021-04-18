@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.khourymeet.NavigationFragment;
 import com.example.khourymeet.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

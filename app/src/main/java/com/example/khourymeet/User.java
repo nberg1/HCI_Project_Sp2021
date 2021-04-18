@@ -11,27 +11,23 @@ public class User {
     private String password;
     private Boolean align;
     private String firstSemester;
-    private String token;
-    private List<String> friends; // direct chats
-    private List<String> currentCourses;
-    private List<String> pastCourses;
-    private String image;
+    private String friends; // direct chats
+    private String currentCourses;
+    private String pastCourses;
 
     public User() {
     }
 
-    // TODO: is token necessary?
-    public User(String name, String email, String userName, String password, String token) {
+    public User(String name, String email, String userName, String password) {
         this.name = name;
         this.email = email;
         this.userName = userName;
         this.password = password;
-        this.token = token;
         this.align = true;
         this.firstSemester = "";
-        this.currentCourses = new ArrayList<>();
-        this.pastCourses = new ArrayList<>();
-        this.friends = new ArrayList<>();
+        this.currentCourses = "";
+        this.pastCourses = "";
+        this.friends = "";
     }
 
     public String getName() {
@@ -66,14 +62,6 @@ public class User {
         this.password = password;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public Boolean getAlign() {
         return align;
     }
@@ -90,35 +78,48 @@ public class User {
         this.firstSemester = firstSemester;
     }
 
-    public List<String> getFriends() {
+    public String getFriends() {
         return friends;
     }
 
-    public void setFriends(List<String> friends) {
+    public void setFriends(String friends) {
         this.friends = friends;
     }
 
-    public List<String> getCurrentCourses() {
+    public String getCurrentCourses() {
         return currentCourses;
     }
 
-    public void setCurrentCourses(List<String> currentCourses) {
+    public void setCurrentCourses(String currentCourses) {
         this.currentCourses = currentCourses;
     }
 
-    public List<String> getPastCourses() {
+    public String getPastCourses() {
         return pastCourses;
     }
 
-    public void setPastCourses(List<String> pastCourses) {
+    public void setPastCourses(String pastCourses) {
         this.pastCourses = pastCourses;
     }
 
-    public String getImage() {
-        return image;
+    // Convert string list to an array
+    public List<String> convertStrToArray(String str) {
+        List<String> arr = new ArrayList<>();
+        if (str == null || str.equals("")) {
+            return arr;
+        } else {
+            String[] tempStr = str.split(", ");
+            for (String s : tempStr) {
+                arr.add(s);
+            }
+        }
+        return arr;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    // After running toString on an array, remove the brackets from the String
+    public String removeBracketsArrStr(String arrayString) {
+        String tempStr = arrayString.replaceAll("\\[", "");
+        tempStr = tempStr.replaceAll("\\]", "");
+        return tempStr;
     }
 }
