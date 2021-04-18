@@ -114,6 +114,10 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    public void courseButton(View view) {
+        openFragment(CoursePageFragment.newInstance("", ""));
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
