@@ -30,12 +30,13 @@
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-        <SearchView
-            android:id="@+id/searchView"
+        <AutoCompleteTextView
+            android:id="@+id/autocompleteSearchView"
             android:layout_width="287dp"
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="70dp"
+            android:hint="Type student name"
             android:clickable="true"
             android:tooltipText="Search"
             android:background="@color/white"
@@ -56,7 +57,7 @@
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/searchView"
+            app:layout_constraintStart_toEndOf="@+id/autocompleteSearchView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -64,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
-            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/autocompleteSearchView"
             tools:layout_editor_absoluteX="15dp" >
 
             <TextView
@@ -80,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:onClick="searchToOtherProfile"
                 android:text="@string/go_to_profile" />
         </androidx.cardview.widget.CardView>
 

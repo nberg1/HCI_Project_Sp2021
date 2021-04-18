@@ -7,10 +7,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,9 +52,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
     private final String defaultString = "default";
 
     private Map<String, String> studentNameList;
+    private List<String> studentNameIntermediate;
+//    private String[] studentNameArr;
 
     private Button searchButton;
-//    private EditText typeSearch;
+    private AutoCompleteTextView typeSearch;
     private TextView studentName;
     private Button profileButton;
 
@@ -107,9 +110,18 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
 
         // Create empty map for student usernames : student names
         studentNameList = new HashMap<String, String>();
+        // Create empty list for student names
+        studentNameIntermediate = new ArrayList<>();
 
-        // Add student names to list
+        // Add student names to list and map
         getListStudents();
+
+//        // Create array from list
+//        studentNameArr = studentNameIntermediate.toArray(studentNameArr);
+//
+//        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, studentNameArr);
+//        typeSearch.setAdapter(adapter);
+//        typeSearch.setThreshold(1);
 
         // TODO: add onclick for go to profile
         searchButton.setOnClickListener(
@@ -120,11 +132,18 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
                         // NOTE: this gets the first entry that matches the name and displays it
                         // For the next iteration of this project, add more views and change this
                         // to get a set of keys with the value
-//                        if (nameSearched != null) {
-//                            studentName.setText(studentNameList.get(usernameSearched));
-//                            studentName.setVisibility(View.VISIBLE);
-//                            profileButton.setVisibility(View.VISIBLE);
-//                        }
+                        if (usernameSearched != null) {
+                            studentName.setText(studentNameList.get(usernameSearched));
+                            studentName.setVisibility(View.VISIBLE);
+                            profileButton.setVisibility(View.VISIBLE);
+                            // Referenced Android documentation to write username locally
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(getString(R.string.other_username_preferences_key), usernameSearched);
+                            editor.apply();
+                        } else {
+                            studentName.setText("No results found.");
+                            studentName.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
         );
@@ -144,7 +163,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
 
     private void getViews() {
         searchButton = getView().findViewById(R.id.search_button);
-//        typeSearch = getView().findViewById(R.id.searchView);
+        typeSearch = getView().findViewById(R.id.autocompleteSearchView);
         studentName = getView().findViewById(R.id.search_friend_name);
         studentName.setVisibility(View.GONE);
         profileButton = getView().findViewById(R.id.friend_go_profile);
@@ -157,17 +176,23 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                    // TODO: can't use this without ALL db entries matching proper structure
-//                    User studentUser = childSnapshot.getValue(User.class);
-//                    if (!studentUser.getUserName().equals(currentUsername)) {
-//                        studentNameList.put(studentUser.getUserName(), studentUser.getName());
-//                    }
+                    User studentUser = childSnapshot.getValue(User.class);
+                    if (!studentUser.getUserName().equals(currentUsername)) {
+                        studentNameList.put(studentUser.getUserName(), studentUser.getName());
+                        studentNameIntermediate.add(studentUser.getName());
+                    }
                 }
+                // Create array from list
+                String[] studentNameArr = new String[studentNameIntermediate.size()];
+                studentNameArr = studentNameIntermediate.toArray(studentNameArr);
+
+                ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, studentNameArr);
+                typeSearch.setAdapter(adapter);
+                typeSearch.setThreshold(1);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("IN DB REFERENCE", "on cancelled");
             }
         });
     }

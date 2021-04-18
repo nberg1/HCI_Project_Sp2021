@@ -380,13 +380,11 @@ public class EditProfileFragment extends Fragment {
 
     // Create User object from Database entry for the current username and set the edit profile text
     private void createUserSetText() {
-        Log.w("IN SET TEXT", currentUsername);
         databaseReference.child(getString(R.string.users_path,
                 currentUsername)).addListenerForSingleValueEvent(new ValueEventListener() {
             // Use snapshot to create User object
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.w("IN DB REFERENCE", "on data change");
                 if (snapshot.exists()) {
                     User currentUser = snapshot.getValue(User.class);
                     if (currentUser != null) {
@@ -397,7 +395,6 @@ public class EditProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w("IN DB REFERENCE", "on cancelled");
             }
         });
     }

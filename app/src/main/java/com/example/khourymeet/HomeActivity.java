@@ -24,6 +24,7 @@ import com.example.khourymeet.fragments.EditProfileFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
+import com.example.khourymeet.fragments.OtherUserProfileFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.khourymeet.fragments.NavigationFragment;
 import com.example.khourymeet.fragments.ProfileFragment;
@@ -191,6 +192,11 @@ public class HomeActivity extends AppCompatActivity {
         negativeButton.setTextColor(Color.BLUE);
         Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         positiveButton.setTextColor(Color.RED);
+    }
+
+    // Go from search to random user profile
+    public void searchToOtherProfile(View view) {
+        openFragment(OtherUserProfileFragment.newInstance("", ""));
     }
 
 }
