@@ -1,6 +1,7 @@
 package com.example.khourymeet.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -91,7 +92,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Navi
 
     @Override
     public void onClick(View view) {
-
     }
 
     @Override
