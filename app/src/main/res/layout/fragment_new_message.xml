@@ -39,6 +39,172 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!-- TODO: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      - add cancel button
+      - once click add student, the add student button should disappear
+      - once you click send, the cancel button disappears and
+      'back to direct messages' button appears
+      - when hit send, check to see if they are in your list of friends in the db
+      - if not, add them to list of friends
+      - when hit send, display the below scrollview of a conversation
+      -->
+
+    <!--
+     <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="65dp"
+        android:fillViewport="false"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/out_corner"
+                        android:layout_width="44dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginRight="5dp"
+                        android:rotation="226"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/outgoing_chat_corner" />
+
+                    <TextView
+                        android:id="@+id/out_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/rounded_rectangle"
+                        android:paddingStart="8dp"
+                        android:paddingTop="14dp"
+                        android:paddingEnd="25dp"
+                        android:paddingBottom="8dp"
+                        android:text="Hello is Vidoje a good professor?"
+                        android:textColor="@color/white"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintEnd_toEndOf="@+id/out_corner"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/in_corner"
+                        android:layout_width="44dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="32dp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:rotation="134"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/outgoing_chat_corner" />
+
+                    <TextView
+                        android:id="@+id/in_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/rounded_rectangle"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="Yes! He's great!"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="@+id/in_corner"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/out_corner2"
+                        android:layout_width="44dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginRight="5dp"
+                        android:rotation="226"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/outgoing_chat_corner" />
+
+                    <TextView
+                        android:id="@+id/out_text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/rounded_rectangle"
+                        android:paddingStart="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="25dp"
+                        android:paddingBottom="8dp"
+                        android:text="You seem really cool, thanks!"
+                        android:textColor="@color/white"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintEnd_toEndOf="@+id/out_corner2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+    -->
+
     <EditText
         android:id="@+id/enter_text_convo"
         android:layout_width="304dp"
