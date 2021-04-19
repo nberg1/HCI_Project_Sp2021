@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.khourymeet.R;
 
+import org.w3c.dom.Text;
+
 public class StudentsRecyclerHolder extends RecyclerView.ViewHolder {
 
     public TextView name;
     public TextView username;
+    public TextView type;
     private static final String ACTIVE_FRAGMENT = "ACTIVE_FRAGMENT";
     private Fragment activeFragment;
 
@@ -23,6 +26,8 @@ public class StudentsRecyclerHolder extends RecyclerView.ViewHolder {
         super(itemView);
         name = itemView.findViewById(R.id.student_name);
         username = itemView.findViewById(R.id.student_username_hidden);
+        type = itemView.findViewById(R.id.student_type);
+
         itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override

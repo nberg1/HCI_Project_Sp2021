@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.khourymeet.Course;
 import com.example.khourymeet.R;
@@ -94,7 +95,7 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
         return view;
     }
 
-    public void createRecyclerView(View view, User student) {
+    public void createRecyclerView(View view, User student, boolean mentor) {
         rView = view.findViewById(R.id.studentrecyclerview);
         rView.setHasFixedSize(true);
         studentAdapter = new StudentsRecyclerAdapter(studentList);
@@ -109,9 +110,9 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
         layout = new GridLayoutManager(view.getContext(), 2);
         rView.setLayoutManager(layout);
         rView.setAdapter(studentAdapter);
-        StudentCard card = new StudentCard(student.getName(), student.getUserName());
+        StudentCard card = new StudentCard(student.getName(), student.getUserName(), mentor);
+        // if a student is a mentor, setText on student card to show mentor text as visible
         studentList.add(card);
-
     }
 
     @Override
@@ -142,7 +143,7 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                                             User student = dataSnapshot.getValue(User.class);
                                             // set the text view/ create each individual student card
                                             Log.w("Creating user", student.getName());
-                                            createRecyclerView(getView(), student);
+                                            createRecyclerView(getView(), student, false);
                                         }
 
                                         @Override
@@ -155,6 +156,23 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                     }
                     if (mentorStudents != null && !mentorStudents.equals("")) {
                         List<String> mentorStudentList = course.convertStrToArray(mentorStudents);
+                        // get the names
+                        for (String user : mentorStudentList) {
+                            databaseReference.child(getString(R.string.users_path, user)).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    User student = dataSnapshot.getValue(User.class);
+                                    // set the text view/ create each individual student card
+                                    Log.w("Creating user", student.getName());
+                                    createRecyclerView(getView(), student, true);
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    System.out.println("The read failed: " + databaseError.getCode());
+                                }
+                            });
+                        }
                     }
                 }
             }

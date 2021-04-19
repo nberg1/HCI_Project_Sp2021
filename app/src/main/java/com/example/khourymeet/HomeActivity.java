@@ -122,9 +122,11 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.course1_button:
                 TextView t = view.findViewById(R.id.course1_button);
                 courseName = t.getText().toString();
-//            case R.id.course2_button:
-//                TextView t2 = view.findViewById(R.id.course2_button);
-//                courseName = t2.getText().toString();
+                break;
+            case R.id.course2_button:
+                TextView t2 = view.findViewById(R.id.course2_button);
+                courseName = t2.getText().toString();
+                break;
         }
         openFragment(CoursePageFragment.newInstance(courseName, ""));
     }
@@ -132,7 +134,6 @@ public class HomeActivity extends AppCompatActivity {
     public void courseToUserProfile(View view) {
         TextView text = view.findViewById(R.id.student_username_hidden);
         Log.w("Username Hidden: ", "BLAH");
-        //switch (view.findViewById(R.id.))
     }
 
     @Override
