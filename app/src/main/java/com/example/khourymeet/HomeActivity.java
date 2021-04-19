@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.khourymeet.fragments.CoursePageFragment;
+import com.example.khourymeet.fragments.DirectMessageFragment;
 import com.example.khourymeet.fragments.EditProfileFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
@@ -215,6 +216,11 @@ public class HomeActivity extends AppCompatActivity {
     // Go from search to random user profile
     public void searchToOtherProfile(View view) {
         openFragment(OtherUserProfileFragment.newInstance("", ""));
+    }
+
+    // Go from user profile to new direct message conversation
+    public void otherProfileToDM(View view) {
+        openFragment(DirectMessageFragment.newInstance("", ""));
     }
 
 }

@@ -108,35 +108,64 @@
                     android:textSize="25sp" />
             </TableRow>
 
-            <TextView
-                android:id="@+id/user_currCourses_text"
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/user_currCourses_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="25dp"
+                    android:text="COURSES IN PROGRESS: "
+                    android:textSize="25sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/user_currCourses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NONE"
+                    android:textSize="25sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/user_prevCourses_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="25dp"
+                    android:text="COMPLETED COURSES: "
+                    android:textSize="25sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/user_prevCourses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="NONE"
+                    android:textSize="25sp" />
+            </TableRow>
+
+            <Button
+                android:id="@+id/send_message_other_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="25dp"
-                android:text="COURSES IN PROGRESS: "
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/user_currCourses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NONE"
-                android:textSize="25sp" />
-            <TextView
-                android:id="@+id/user_prevCourses_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="25dp"
-                android:text="COMPLETED COURSES: "
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/user_prevCourses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="80dp"
-                android:text="NONE"
-                android:textSize="25sp" />
+                android:layout_gravity="center_horizontal"
+                android:onClick="otherProfileToDM"
+                android:text="Send a Message" />
 
         </LinearLayout>
     </ScrollView>

@@ -99,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:hint="PasswordExample"
+                    android:inputType="textPassword"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -116,7 +117,6 @@
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="username"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -135,7 +135,6 @@
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="lastname.first@northeastern.edu"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
@@ -165,11 +164,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_currCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <Button
@@ -196,11 +195,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_currCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COURSE"
                     android:textSize="25sp" />
                 <Button
                     android:id="@+id/withdraw_btn2"
@@ -233,11 +232,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_prevCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <CheckBox
@@ -262,11 +261,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_prevCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <CheckBox
@@ -296,7 +295,6 @@
                     android:id="@+id/user_prevCourse3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <CheckBox
@@ -326,7 +324,6 @@
                     android:id="@+id/user_prevCourse4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COURSE"
                     android:textSize="25sp" />
 
                 <CheckBox
