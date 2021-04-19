@@ -14,10 +14,12 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.khourymeet.fragments.CoursePageFragment;
 import com.example.khourymeet.fragments.EditProfileFragment;
@@ -115,7 +117,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void courseButton(View view) {
-        openFragment(CoursePageFragment.newInstance("", ""));
+        String courseName = "";
+        switch (view.getId()) {
+            case R.id.course1_button:
+                TextView t = view.findViewById(R.id.course1_button);
+                courseName = t.getText().toString();
+//            case R.id.course2_button:
+//                TextView t2 = view.findViewById(R.id.course2_button);
+//                courseName = t2.getText().toString();
+        }
+        openFragment(CoursePageFragment.newInstance(courseName, ""));
+    }
+
+    public void courseToUserProfile(View view) {
+        TextView text = view.findViewById(R.id.student_username_hidden);
+        Log.w("Username Hidden: ", "BLAH");
+        //switch (view.findViewById(R.id.))
     }
 
     @Override

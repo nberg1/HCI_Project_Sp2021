@@ -12,12 +12,25 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    android:id="@+id/other_student_card">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/student_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MENTOR"
+            android:visibility="invisible"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -35,6 +48,26 @@
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/student_username_hidden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UserName"
+            android:visibility="invisible"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:onClick="courseToUserProfile"
+            android:text="Go to student profile" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

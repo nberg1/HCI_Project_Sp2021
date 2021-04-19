@@ -127,8 +127,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
         searchButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View complete) {
-//                        String nameSearched = typeSearch.getText().toString();
-//                        String usernameSearched = getKeyUsername(nameSearched);
+                        String nameSearched = typeSearch.getText().toString();
+                        String usernameSearched = getKeyUsername(nameSearched);
                         // NOTE: this gets the first entry that matches the name and displays it
                         // For the next iteration of this project, add more views and change this
                         // to get a set of keys with the value
