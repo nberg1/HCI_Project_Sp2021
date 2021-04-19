@@ -13,14 +13,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.khourymeet.fragments.CoursePageFragment;
+import com.example.khourymeet.fragments.EditProfileFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
+import com.example.khourymeet.fragments.OtherUserProfileFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.khourymeet.fragments.NavigationFragment;
 import com.example.khourymeet.fragments.ProfileFragment;
@@ -110,6 +116,26 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    public void courseButton(View view) {
+        String courseName = "";
+        switch (view.getId()) {
+            case R.id.course1_button:
+                TextView t = view.findViewById(R.id.course1_button);
+                courseName = t.getText().toString();
+                break;
+            case R.id.course2_button:
+                TextView t2 = view.findViewById(R.id.course2_button);
+                courseName = t2.getText().toString();
+                break;
+        }
+        openFragment(CoursePageFragment.newInstance(courseName, ""));
+    }
+
+    public void courseToUserProfile(View view) {
+        TextView text = view.findViewById(R.id.student_username_hidden);
+        Log.w("Username Hidden: ", "BLAH");
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -153,4 +179,42 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+    // Go from Profile fragment to EditProfile fragment
+    public void editProfileButton(View view) {
+        openFragment(EditProfileFragment.newInstance("", ""));
+    }
+
+    // Go from EditProfile fragment to Profile fragment
+    public void editToProfile(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.back_warning));
+        builder.setCancelable(true);
+        builder.setPositiveButton(getString(R.string.back_yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                openFragment(ProfileFragment.newInstance("", ""));
+            }
+        });
+        builder.setNegativeButton(getString(R.string.back_no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        negativeButton.setTextColor(Color.BLUE);
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.RED);
+    }
+
+    // Go from search to random user profile
+    public void searchToOtherProfile(View view) {
+        openFragment(OtherUserProfileFragment.newInstance("", ""));
+    }
+
 }
