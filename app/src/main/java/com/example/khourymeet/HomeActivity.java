@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +31,8 @@ import com.example.khourymeet.fragments.NavigationFragment;
 import com.example.khourymeet.fragments.ProfileFragment;
 import com.example.khourymeet.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -216,5 +217,4 @@ public class HomeActivity extends AppCompatActivity {
     public void searchToOtherProfile(View view) {
         openFragment(OtherUserProfileFragment.newInstance("", ""));
     }
-
 }

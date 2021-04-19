@@ -147,8 +147,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
                     }
                 }
         );
-
-
     }
 
     @Override
@@ -206,5 +204,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Na
             }
         }
         return null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(getTitle());
     }
 }
