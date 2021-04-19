@@ -119,6 +119,7 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         createCourse();
+        getActivity().setTitle(getTitle());
     }
 
 
@@ -191,6 +192,26 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
     }
 
     @Override
-    public int getTitle() { return R.string.current_courses;
+    public int getTitle() {
+        final String cs5001 = getString(R.string.course_5001);
+        final String cs5003 = getString(R.string.course_5003);
+        final String cs5004 = getString(R.string.course_5004);
+
+        if (courseName.equals(cs5001)) {
+            return R.string.course_5001;
+        } else if (courseName.equals(cs5003)) {
+            return R.string.course_5003;
+        } else if (courseName.equals(cs5004)) {
+            return R.string.course_5004;
+        } else {
+            return R.string.course_5006;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        createCourse();
+        getActivity().setTitle(getTitle());
     }
 }
