@@ -99,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:hint="PasswordExample"
+                    android:inputType="textPassword"
                     android:textSize="25sp" />
             </TableRow>
             <TableRow
