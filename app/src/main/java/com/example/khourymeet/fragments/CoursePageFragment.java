@@ -133,19 +133,20 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                     // gets you a list of student usernames
                     String currentStudents = course.getCurrentStudents();
                     String mentorStudents = course.getMentors();
+                    // Note: will only display max of 6 students
+                    final ArrayList studentCountList = new ArrayList();
                     if (currentStudents != null && !currentStudents.equals("")) {
                         List<String> currStudentList = course.convertStrToArray(currentStudents);
-                        // Note: will only display max of 6 students
-                        int studentCount;
                         // get the names
                         for (String user : currStudentList) {
                             databaseReference.child(getString(R.string.users_path, user)).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     User student = dataSnapshot.getValue(User.class);
+                                    String studentUsername = student.getUserName();
+                                    studentCountList.add(studentUsername);
                                     // set the text view/ create each individual student card
-                                    Log.w("Creating user", student.getName());
-                                    createRecyclerView(getView(), student, false);
+                                    displayStudent(getView(), student, studentCountList.indexOf(studentUsername), false);
                                 }
 
                                 @Override
@@ -164,9 +165,10 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     User student = dataSnapshot.getValue(User.class);
+                                    String studentUsername = student.getUserName();
+                                    studentCountList.add(studentUsername);
                                     // set the text view/ create each individual student card
-                                    Log.w("Creating user", student.getName());
-                                    createRecyclerView(getView(), student, true);
+                                    displayStudent(getView(), student, studentCountList.indexOf(studentUsername), true);
                                 }
 
                                 @Override
@@ -187,24 +189,69 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
     }
 
     private void displayStudent(View view, User student, int studentNum, boolean mentor) {
+        Log.w("IN DISPLAY", student.getUserName() + " " + String.valueOf(studentNum));
         switch (studentNum) {
-            case 1:
+            case 0:
+                view.findViewById(R.id.student_card1).setVisibility(View.VISIBLE);
+                TextView nameText1 = view.findViewById(R.id.name1);
+                nameText1.setText(student.getName());
+                TextView usernameText1 = view.findViewById(R.id.username_hidden1);
+                usernameText1.setText(student.getUserName());
                 if (mentor) {
-                    view.findViewById()
+                    view.findViewById(R.id.mentor1).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 1:
+                view.findViewById(R.id.student_card2).setVisibility(View.VISIBLE);
+                TextView nameText2 = view.findViewById(R.id.name2);
+                nameText2.setText(student.getName());
+                TextView usernameText2 = view.findViewById(R.id.username_hidden2);
+                usernameText2.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor2).setVisibility(View.VISIBLE);
                 }
                 break;
             case 2:
+                view.findViewById(R.id.student_card3).setVisibility(View.VISIBLE);
+                TextView nameText3 = view.findViewById(R.id.name3);
+                nameText3.setText(student.getName());
+                TextView usernameText3 = view.findViewById(R.id.username_hidden3);
+                usernameText3.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor3).setVisibility(View.VISIBLE);
+                }
                 break;
             case 3:
+                view.findViewById(R.id.student_card4).setVisibility(View.VISIBLE);
+                TextView nameText4 = view.findViewById(R.id.name4);
+                nameText4.setText(student.getName());
+                TextView usernameText4 = view.findViewById(R.id.username_hidden4);
+                usernameText4.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor4).setVisibility(View.VISIBLE);
+                }
                 break;
             case 4:
+                view.findViewById(R.id.student_card5).setVisibility(View.VISIBLE);
+                TextView nameText5 = view.findViewById(R.id.name5);
+                nameText5.setText(student.getName());
+                TextView usernameText5 = view.findViewById(R.id.username_hidden5);
+                usernameText5.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor5).setVisibility(View.VISIBLE);
+                }
                 break;
             case 5:
-                break;
-            case 6:
+                view.findViewById(R.id.student_card6).setVisibility(View.VISIBLE);
+                TextView nameText6 = view.findViewById(R.id.name6);
+                nameText6.setText(student.getName());
+                TextView usernameText6 = view.findViewById(R.id.username_hidden6);
+                usernameText6.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor6).setVisibility(View.VISIBLE);
+                }
                 break;
         }
-
     }
 
 

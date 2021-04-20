@@ -133,31 +133,30 @@ public class HomeActivity extends AppCompatActivity {
 
     public void courseToUserProfile(View view) {
         String otherUsername = "";
-        TextView t;
         switch(view.getId()) {
             case R.id.profile_btn1:
-                t = view.findViewById(R.id.username_hidden1);
-                otherUsername = t.getText().toString();
+                TextView t1 = this.findViewById(R.id.username_hidden1);
+                otherUsername = t1.getText().toString();
                 break;
             case R.id.profile_btn2:
-                t = view.findViewById(R.id.username_hidden2);
-                otherUsername = t.getText().toString();
+                TextView t2 = this.findViewById(R.id.username_hidden2);
+                otherUsername = t2.getText().toString();
                 break;
             case R.id.profile_btn3:
-                t = view.findViewById(R.id.username_hidden3);
-                otherUsername = t.getText().toString();
+                TextView t3 = this.findViewById(R.id.username_hidden3);
+                otherUsername = t3.getText().toString();
                 break;
             case R.id.profile_btn4:
-                t = view.findViewById(R.id.username_hidden4);
-                otherUsername = t.getText().toString();
+                TextView t4 = this.findViewById(R.id.username_hidden4);
+                otherUsername = t4.getText().toString();
                 break;
             case R.id.profile_btn5:
-                t = view.findViewById(R.id.username_hidden5);
-                otherUsername = t.getText().toString();
+                TextView t5 = this.findViewById(R.id.username_hidden5);
+                otherUsername = t5.getText().toString();
                 break;
             case R.id.profile_btn6:
-                t = view.findViewById(R.id.username_hidden6);
-                otherUsername = t.getText().toString();
+                TextView t6 = this.findViewById(R.id.username_hidden6);
+                otherUsername = t6.getText().toString();
                 break;
         }
 //        TextView text = this.findViewById(R.id.student_username_hidden);
