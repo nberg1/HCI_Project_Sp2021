@@ -124,6 +124,8 @@ public class DirectMessageFragment extends Fragment {
                 if (messageNum == 0) {
                     addFriend();
                     setMessage1();
+                } else if (messageNum == 1) {
+                    setMessage2();
                 }
             }
         });
@@ -212,6 +214,14 @@ public class DirectMessageFragment extends Fragment {
         String message = writeMessage.getText().toString();
         message1.setText(message);
         cardViewMessage1.setVisibility(View.VISIBLE);
+        writeMessage.getText().clear();
+    }
+
+    public void setMessage2() {
+        String message = writeMessage.getText().toString();
+        message3.setText(message);
+        cardViewMessage3.setVisibility(View.VISIBLE);
+        writeMessage.getText().clear();
     }
 
 }
