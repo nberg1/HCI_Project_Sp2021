@@ -84,6 +84,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Navi
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        createUser();
+        getActivity().setTitle(getTitle());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

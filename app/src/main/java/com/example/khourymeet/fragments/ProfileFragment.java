@@ -179,4 +179,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, N
         programString.append(user.getFirstSemester());
         return programString.toString();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        createUser();
+        getActivity().setTitle(getTitle());
+    }
 }

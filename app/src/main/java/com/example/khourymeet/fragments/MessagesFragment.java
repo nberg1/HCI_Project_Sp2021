@@ -45,6 +45,7 @@ public class MessagesFragment extends Fragment implements View.OnClickListener, 
     private FloatingActionButton addButton;
     private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
     private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
+    private Bundle savedInstanceState;
 
 
     public MessagesFragment() {
@@ -95,6 +96,7 @@ public class MessagesFragment extends Fragment implements View.OnClickListener, 
         layout = new LinearLayoutManager(view.getContext());
         rView.setLayoutManager(layout);
         rView.setAdapter(msgAdapter);
+        this.savedInstanceState = savedInstanceState;
 
         try {
             initialItemData(savedInstanceState);
@@ -139,5 +141,16 @@ public class MessagesFragment extends Fragment implements View.OnClickListener, 
     @Override
     public int getTitle() {
         return R.string.direct_messages;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            initialItemData(this.savedInstanceState);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        getActivity().setTitle(getTitle());
     }
 }
