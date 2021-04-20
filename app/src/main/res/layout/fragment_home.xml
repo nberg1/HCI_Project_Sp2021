@@ -58,21 +58,6 @@
             app:layout_constraintTop_toBottomOf="@+id/course_title"
             app:layout_constraintVertical_bias="0.121" />
 
-        <TextView
-            android:id="@+id/current_msgs"
-            android:layout_width="231dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="232dp"
-            android:text="Direct Messages:"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/course1_button"
-            app:layout_constraintVertical_bias="0.765" />
-
         <ImageView
             android:id="@+id/contact_us"
             android:layout_width="42dp"
