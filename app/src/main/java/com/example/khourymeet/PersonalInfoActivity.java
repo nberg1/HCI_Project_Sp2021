@@ -1,13 +1,21 @@
 package com.example.khourymeet;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +40,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     private final String TAG = "MDPersonalInfoActivity";
+
+    private AlertDialog alertDialog;
 
     /*
         Will match names with at least one space (requires first and last)
@@ -159,5 +169,15 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
         Intent intent = new Intent(PersonalInfoActivity.this, AcademicInfoActivity.class);
         startActivity(intent);
+    }
+
+    public void passwordInfo(View view) {
+        openDialog();
+    }
+
+    public void openDialog() {
+        PasswordInfoDialog passwordInfoDialog = new PasswordInfoDialog();
+        passwordInfoDialog.show(getSupportFragmentManager(), "password info dialog");
+
     }
 }
