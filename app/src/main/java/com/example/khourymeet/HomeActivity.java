@@ -286,7 +286,7 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(getString(R.string.other_username_preferences_key), otherUsername);
             editor.apply();
-            openFragment(MessagesFragment.newInstance());
+            openFragment(DirectMessageFragment.newInstance("", ""));
         }
     }
 
