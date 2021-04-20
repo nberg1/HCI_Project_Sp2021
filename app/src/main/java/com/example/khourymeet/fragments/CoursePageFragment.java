@@ -190,7 +190,6 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
     }
 
     private void displayStudent(View view, User student, int studentNum, boolean mentor) {
-        Log.w("IN DISPLAY", student.getUserName() + " " + String.valueOf(studentNum));
         switch (studentNum) {
             case 0:
                 view.findViewById(R.id.student_card1).setVisibility(View.VISIBLE);

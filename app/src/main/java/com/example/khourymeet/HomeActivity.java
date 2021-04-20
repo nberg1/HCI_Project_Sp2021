@@ -252,4 +252,35 @@ public class HomeActivity extends AppCompatActivity {
             openFragment(OtherUserProfileFragment.newInstance("", ""));
         }
     }
+
+    // Go from list of messages to the message of a single student
+    public void dmsToSingleConvo(View view) {
+        String otherUsername = "";
+        switch(view.getId()) {
+            case R.id.open_convo1:
+                TextView t1 = this.findViewById(R.id.dm_username_hidden1);
+                otherUsername = t1.getText().toString();
+                break;
+            case R.id.open_convo2:
+                TextView t2 = this.findViewById(R.id.dm_username_hidden2);
+                otherUsername = t2.getText().toString();
+                break;
+            case R.id.open_convo3:
+                TextView t3 = this.findViewById(R.id.dm_username_hidden3);
+                otherUsername = t3.getText().toString();
+                break;
+            case R.id.open_convo4:
+                TextView t4 = this.findViewById(R.id.dm_username_hidden4);
+                otherUsername = t4.getText().toString();
+                break;
+        }
+//        TextView text = this.findViewById(R.id.student_username_hidden);
+//        String usernameHidden = text.getText().toString();
+        if (!otherUsername.equals("")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.other_username_preferences_key), otherUsername);
+            editor.apply();
+            openFragment(MessagesFragment.newInstance());
+        }
+    }
 }

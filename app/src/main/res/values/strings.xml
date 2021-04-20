@@ -125,4 +125,5 @@
     <string name="notify_email_sent">This functionality has not been implemented in this iteration of the interface. Once implemented, this dialog would read: "An email has been sent to your Northeastern email address. Please follow those instructions to access your account."</string>
 
     <string name="name_placeholder">Name</string>
+    <string name="open">Open</string>
 </resources>
