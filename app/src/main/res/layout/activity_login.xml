@@ -87,15 +87,16 @@
         android:id="@+id/click_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:onClick="forgotLoginInfo"
         android:text="Click Here"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="@id/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/forgot_data"/>
+        app:layout_constraintTop_toTopOf="@id/forgot_data" />
 
     <Button
         android:id="@+id/next"

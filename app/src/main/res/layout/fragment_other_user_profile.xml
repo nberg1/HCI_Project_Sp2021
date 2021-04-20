@@ -40,8 +40,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
-            <ImageButton
-                android:id="@+id/imageButton"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="112dp"
                 android:layout_gravity="center"
@@ -53,21 +53,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="20dp">
+
                 <TextView
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="NAME: "
-                    android:textSize="25sp" />
+                    android:text="Name: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="FirstName LastName"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -79,84 +83,78 @@
                     android:id="@+id/user_email_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMAIL: "
-                    android:textSize="25sp" />
+                    android:text="Email: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="last.first@northeastern.edu"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_program_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PROGRAM: "
-                    android:textSize="25sp" />
+                    android:text="Program: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
+
                 <TextView
                     android:id="@+id/user_program"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Program, Semester"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
 
-            <TableRow
+            <TextView
+                android:id="@+id/user_currCourses_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:text="Courses in progress: "
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/user_currCourses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/user_prevCourses_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:text="Completed courses:"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="italic" />
 
-                <TextView
-                    android:id="@+id/user_currCourses_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="25dp"
-                    android:text="COURSES IN PROGRESS: "
-                    android:textSize="25sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/user_currCourses"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NONE"
-                    android:textSize="25sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/user_prevCourses_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="25dp"
-                    android:text="COMPLETED COURSES: "
-                    android:textSize="25sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:id="@+id/user_prevCourses"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="NONE"
-                    android:textSize="25sp" />
+             <TextView
+                 android:id="@+id/user_prevCourses"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="10dp"
+                 android:text="NONE"
+                 android:textSize="25sp" />
             </TableRow>
 
             <Button

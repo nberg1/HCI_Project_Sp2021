@@ -95,30 +95,31 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
         return view;
     }
 
-    public void createRecyclerView(View view, User student, boolean mentor) {
-        rView = view.findViewById(R.id.studentrecyclerview);
-        rView.setHasFixedSize(true);
-        studentAdapter = new StudentsRecyclerAdapter(studentList);
-        ItemClickListener itemClickListener = new ItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                studentList.get(position).onItemClick(position);
-
-            }
-        };
-        studentAdapter.setOnClickItemClickListener(itemClickListener);
-        layout = new GridLayoutManager(view.getContext(), 2);
-        rView.setLayoutManager(layout);
-        rView.setAdapter(studentAdapter);
-        StudentCard card = new StudentCard(student.getName(), student.getUserName(), mentor);
-        // if a student is a mentor, setText on student card to show mentor text as visible
-        studentList.add(card);
-    }
+//    public void createRecyclerView(View view, User student, boolean mentor) {
+//        rView = view.findViewById(R.id.studentrecyclerview);
+//        rView.setHasFixedSize(true);
+//        studentAdapter = new StudentsRecyclerAdapter(studentList);
+//        ItemClickListener itemClickListener = new ItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                studentList.get(position).onItemClick(position);
+//
+//            }
+//        };
+//        studentAdapter.setOnClickItemClickListener(itemClickListener);
+//        layout = new GridLayoutManager(view.getContext(), 2);
+//        rView.setLayoutManager(layout);
+//        rView.setAdapter(studentAdapter);
+//        StudentCard card = new StudentCard(student.getName(), student.getUserName(), mentor);
+//        // if a student is a mentor, setText on student card to show mentor text as visible
+//        studentList.add(card);
+//    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         createCourse();
+        getActivity().setTitle(getTitle());
     }
 
 
@@ -133,24 +134,27 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                     // gets you a list of student usernames
                     String currentStudents = course.getCurrentStudents();
                     String mentorStudents = course.getMentors();
+                    // Note: will only display max of 6 students
+                    final ArrayList studentCountList = new ArrayList();
                     if (currentStudents != null && !currentStudents.equals("")) {
                         List<String> currStudentList = course.convertStrToArray(currentStudents);
                         // get the names
                         for (String user : currStudentList) {
-                                    databaseReference.child(getString(R.string.users_path, user)).addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            User student = dataSnapshot.getValue(User.class);
-                                            // set the text view/ create each individual student card
-                                            Log.w("Creating user", student.getName());
-                                            createRecyclerView(getView(), student, false);
-                                        }
+                            databaseReference.child(getString(R.string.users_path, user)).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    User student = dataSnapshot.getValue(User.class);
+                                    String studentUsername = student.getUserName();
+                                    studentCountList.add(studentUsername);
+                                    // set the text view/ create each individual student card
+                                    displayStudent(getView(), student, studentCountList.indexOf(studentUsername), false);
+                                }
 
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-                                            System.out.println("The read failed: " + databaseError.getCode());
-                                        }
-                                    });
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    System.out.println("The read failed: " + databaseError.getCode());
+                                }
+                            });
                         }
 
                     }
@@ -162,9 +166,10 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     User student = dataSnapshot.getValue(User.class);
+                                    String studentUsername = student.getUserName();
+                                    studentCountList.add(studentUsername);
                                     // set the text view/ create each individual student card
-                                    Log.w("Creating user", student.getName());
-                                    createRecyclerView(getView(), student, true);
+                                    displayStudent(getView(), student, studentCountList.indexOf(studentUsername), true);
                                 }
 
                                 @Override
@@ -184,6 +189,71 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
         });
     }
 
+    private void displayStudent(View view, User student, int studentNum, boolean mentor) {
+        switch (studentNum) {
+            case 0:
+                view.findViewById(R.id.student_card1).setVisibility(View.VISIBLE);
+                TextView nameText1 = view.findViewById(R.id.name1);
+                nameText1.setText(student.getName());
+                TextView usernameText1 = view.findViewById(R.id.username_hidden1);
+                usernameText1.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor1).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 1:
+                view.findViewById(R.id.student_card2).setVisibility(View.VISIBLE);
+                TextView nameText2 = view.findViewById(R.id.name2);
+                nameText2.setText(student.getName());
+                TextView usernameText2 = view.findViewById(R.id.username_hidden2);
+                usernameText2.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor2).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 2:
+                view.findViewById(R.id.student_card3).setVisibility(View.VISIBLE);
+                TextView nameText3 = view.findViewById(R.id.name3);
+                nameText3.setText(student.getName());
+                TextView usernameText3 = view.findViewById(R.id.username_hidden3);
+                usernameText3.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor3).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 3:
+                view.findViewById(R.id.student_card4).setVisibility(View.VISIBLE);
+                TextView nameText4 = view.findViewById(R.id.name4);
+                nameText4.setText(student.getName());
+                TextView usernameText4 = view.findViewById(R.id.username_hidden4);
+                usernameText4.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor4).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 4:
+                view.findViewById(R.id.student_card5).setVisibility(View.VISIBLE);
+                TextView nameText5 = view.findViewById(R.id.name5);
+                nameText5.setText(student.getName());
+                TextView usernameText5 = view.findViewById(R.id.username_hidden5);
+                usernameText5.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor5).setVisibility(View.VISIBLE);
+                }
+                break;
+            case 5:
+                view.findViewById(R.id.student_card6).setVisibility(View.VISIBLE);
+                TextView nameText6 = view.findViewById(R.id.name6);
+                nameText6.setText(student.getName());
+                TextView usernameText6 = view.findViewById(R.id.username_hidden6);
+                usernameText6.setText(student.getUserName());
+                if (mentor) {
+                    view.findViewById(R.id.mentor6).setVisibility(View.VISIBLE);
+                }
+                break;
+        }
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -191,6 +261,26 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
     }
 
     @Override
-    public int getTitle() { return R.string.current_courses;
+    public int getTitle() {
+        final String cs5001 = getString(R.string.course_5001);
+        final String cs5003 = getString(R.string.course_5003);
+        final String cs5004 = getString(R.string.course_5004);
+
+        if (courseName.equals(cs5001)) {
+            return R.string.course_5001;
+        } else if (courseName.equals(cs5003)) {
+            return R.string.course_5003;
+        } else if (courseName.equals(cs5004)) {
+            return R.string.course_5004;
+        } else {
+            return R.string.course_5006;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        createCourse();
+        getActivity().setTitle(getTitle());
     }
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +43,7 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     private FloatingActionButton addButton;
     private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
     private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
+    private Bundle savedInstanceState;
 
     public GroupsFragment() {
         // Required empty public constructor
@@ -93,6 +96,7 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
         layout = new LinearLayoutManager(view.getContext());
         rView.setLayoutManager(layout);
         rView.setAdapter(msgAdapter);
+        this.savedInstanceState = savedInstanceState;
 
         try {
             initialItemData(savedInstanceState);
@@ -137,5 +141,16 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     @Override
     public int getTitle() {
         return R.string.group_chats;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            initialItemData(this.savedInstanceState);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        getActivity().setTitle(getTitle());
     }
 }
