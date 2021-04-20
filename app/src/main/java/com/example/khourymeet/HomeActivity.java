@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.khourymeet.fragments.CoursePageFragment;
+import com.example.khourymeet.fragments.DirectMessageFragment;
 import com.example.khourymeet.fragments.EditProfileFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
@@ -214,6 +215,11 @@ public class HomeActivity extends AppCompatActivity {
         openFragment(OtherUserProfileFragment.newInstance("", ""));
     }
 
+    // Go from user profile to new direct message conversation
+    public void otherProfileToDM(View view) {
+        openFragment(DirectMessageFragment.newInstance("", ""));
+    }
+
     // Go from course to selected student user profile
     public void courseToUserProfile(View view) {
         String otherUsername = "";
@@ -283,4 +289,5 @@ public class HomeActivity extends AppCompatActivity {
             openFragment(MessagesFragment.newInstance());
         }
     }
+
 }
