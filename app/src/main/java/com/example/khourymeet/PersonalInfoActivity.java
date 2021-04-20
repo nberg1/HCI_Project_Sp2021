@@ -8,11 +8,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -172,12 +174,20 @@ public class PersonalInfoActivity extends AppCompatActivity {
     }
 
     public void passwordInfo(View view) {
-        openDialog();
-    }
+        final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.password_security))
+                .setMessage(getString(R.string.password_security_message))
+                .setPositiveButton(getString(R.string.invisible_understand), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Do nothing
+                    }
+                });
 
-    public void openDialog() {
-        PasswordInfoDialog passwordInfoDialog = new PasswordInfoDialog();
-        passwordInfoDialog.show(getSupportFragmentManager(), "password info dialog");
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
+        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        positiveButton.setTextColor(Color.BLUE);
     }
 }

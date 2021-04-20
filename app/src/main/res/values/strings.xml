@@ -112,4 +112,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cs5001">CS5001 PLACE</string>
     <string name="cs5003">CS5003 PLACE</string>
+
+    <string name="password_security">Password Security</string>
+    <string name="password_security_message">In order to have a secure password, please enter a password that contains at least one uppercase letter, one lowercase letter, one number and one symbol</string>
+
+    <string name="forgot_login_info">Forgot Username or Password?</string>
+    <string name="enter_email_header">Email: </string>
+    <string name="type_nu_email">Type Northeastern email here.</string>
+    <string name="forgot_login_instructions">If you forgot your username and/or password, please enter your Northeastern email address below. You will receive an email with instructions on what to do next to regain access to your account.</string>
+    <string name="send_email">Send Me An Email</string>
+    <string name="back_login">Go Back To Login</string>
+    <string name="notify_email_sent">This functionality has not been implemented in this iteration of the interface. Once implemented, this dialog would read: "An email has been sent to your Northeastern email address. Please follow those instructions to access your account."</string>
 </resources>
