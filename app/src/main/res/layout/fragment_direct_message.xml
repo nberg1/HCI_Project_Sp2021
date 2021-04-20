@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -52,7 +53,7 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="175dp"
         android:layout_marginBottom="65dp"
         android:fillViewport="false"
         android:scrollbars="vertical"
@@ -212,7 +213,7 @@
         android:layout_marginRight="100dp"
         android:hint="ENTER TEXT"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -221,7 +222,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="65dp"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/white"
         android:text="SEND"
