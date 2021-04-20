@@ -132,8 +132,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void courseToUserProfile(View view) {
-        TextView text = view.findViewById(R.id.student_username_hidden);
-        Log.w("Username Hidden: ", "BLAH");
+        TextView text = this.findViewById(R.id.student_username_hidden);
+        String usernameHidden = text.getText().toString();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.other_username_preferences_key), usernameHidden);
+        editor.apply();
+        openFragment(OtherUserProfileFragment.newInstance("", ""));
+        Log.w("Username Hidden: ", usernameHidden);
     }
 
     @Override

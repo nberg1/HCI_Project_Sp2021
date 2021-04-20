@@ -36,6 +36,7 @@ public class StudentsRecyclerAdapter extends RecyclerView.Adapter<StudentsRecycl
     public void onBindViewHolder(@NonNull StudentsRecyclerHolder holder, int position) {
         StudentCard currentCard = studentList.get(position);
         holder.name.setText(currentCard.getName());
+        holder.username.setText(currentCard.getUsername());
         if (currentCard.getType() == true) {
             holder.type.setVisibility(View.VISIBLE);
         }
