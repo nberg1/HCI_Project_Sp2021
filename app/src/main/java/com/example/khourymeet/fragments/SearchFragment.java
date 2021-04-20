@@ -2,6 +2,7 @@ package com.example.khourymeet.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.khourymeet.R;

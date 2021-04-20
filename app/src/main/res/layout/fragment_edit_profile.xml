@@ -65,59 +65,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="20dp">
+
                 <TextView
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="NAME: "
-                    android:textSize="25sp" />
+                    android:text="Name: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
 
                 <EditText
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:hint="First Last"
-                    android:textSize="25sp" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="20dp">
+
                 <TextView
                     android:id="@+id/pw_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="PASSWORD: "
-                    android:textSize="25sp" />
+                    android:text="Password: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
 
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:hint="PasswordExample"
-                    android:textSize="25sp" />
+                    android:textColor="@color/colorAccent"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/username_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USERNAME: "
-                    android:textSize="25sp" />
+                    android:text="Username: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="username"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -128,15 +140,18 @@
                     android:id="@+id/user_email_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMAIL: "
-                    android:textSize="25sp" />
+                    android:text="Email: "
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="lastname.first@northeastern.edu"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -148,8 +163,10 @@
                     android:layout_width="259dp"
                     android:layout_height="wrap_content"
                     android:paddingTop="25dp"
-                    android:text="MY COURSES (IN PROGRESS): "
-                    android:textSize="25sp" />
+                    android:text="My courses in progress:"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="italic" />
 
                 <Button
                     android:id="@+id/button4"
@@ -165,12 +182,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_currCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/withdraw_btn1"
@@ -196,12 +216,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_currCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
                 <Button
                     android:id="@+id/withdraw_btn2"
                     android:layout_width="wrap_content"
@@ -222,23 +245,29 @@
                     android:background="#8B57F85E"
                     android:text="MARK AS COMPLETE" />
             </TableRow>
+
             <TextView
                 android:id="@+id/user_prevCourses_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
-                android:text="MY COURSES (COMPLETED): "
-                android:textSize="25sp" />
+                android:text="My courses completed:"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="italic" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_prevCourse1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <CheckBox
                     android:id="@+id/checkBox"
@@ -262,12 +291,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="25dp">
+
                 <TextView
                     android:id="@+id/user_prevCourse2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <CheckBox
                     android:id="@+id/checkBox2"
@@ -297,7 +329,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <CheckBox
                     android:id="@+id/checkBox3"
@@ -327,7 +361,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="COURSE"
-                    android:textSize="25sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <CheckBox
                     android:id="@+id/checkBox4"

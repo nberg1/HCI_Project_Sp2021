@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.khourymeet.fragments.CoursePageFragment;
 import com.example.khourymeet.fragments.EditProfileFragment;
@@ -132,11 +133,6 @@ public class HomeActivity extends AppCompatActivity {
         openFragment(CoursePageFragment.newInstance(courseName, ""));
     }
 
-    public void courseToUserProfile(View view) {
-        TextView text = view.findViewById(R.id.student_username_hidden);
-        Log.w("Username Hidden: ", "BLAH");
-    }
-
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -216,5 +212,15 @@ public class HomeActivity extends AppCompatActivity {
     // Go from search to random user profile
     public void searchToOtherProfile(View view) {
         openFragment(OtherUserProfileFragment.newInstance("", ""));
+    }
+
+    // Go from course to selected student user profile
+    public void courseToUserProfile(View view) {
+        TextView text = findViewById(R.id.student_username_hidden);
+        String userName = text.getText().toString();
+        Log.v("Text is ", userName);
+//        TextView userName = findViewById(R.id.student_name);
+//        String userNameString = userName.toString();
+//        openFragment(OtherUserProfileFragment.newInstance(userNameString, ""));
     }
 }
