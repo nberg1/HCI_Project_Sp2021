@@ -127,25 +127,5 @@ public class ForgotLoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("ForgotLoginActivity", e.toString());
         }
-
-
-
-
-
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage(getString(R.string.notify_email_sent));
-//        builder.setCancelable(true);
-//        builder.setPositiveButton(getString(R.string.invisible_understand), new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                // Do nothing
-//            }
-//        });
-//
-//        AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
-//
-//        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-//        positiveButton.setTextColor(Color.BLUE);
     }
 }
