@@ -216,11 +216,40 @@ public class HomeActivity extends AppCompatActivity {
 
     // Go from course to selected student user profile
     public void courseToUserProfile(View view) {
-        TextView text = findViewById(R.id.student_username_hidden);
-        String userName = text.getText().toString();
-        Log.v("Text is ", userName);
-//        TextView userName = findViewById(R.id.student_name);
-//        String userNameString = userName.toString();
-//        openFragment(OtherUserProfileFragment.newInstance(userNameString, ""));
+        String otherUsername = "";
+        switch(view.getId()) {
+            case R.id.profile_btn1:
+                TextView t1 = this.findViewById(R.id.username_hidden1);
+                otherUsername = t1.getText().toString();
+                break;
+            case R.id.profile_btn2:
+                TextView t2 = this.findViewById(R.id.username_hidden2);
+                otherUsername = t2.getText().toString();
+                break;
+            case R.id.profile_btn3:
+                TextView t3 = this.findViewById(R.id.username_hidden3);
+                otherUsername = t3.getText().toString();
+                break;
+            case R.id.profile_btn4:
+                TextView t4 = this.findViewById(R.id.username_hidden4);
+                otherUsername = t4.getText().toString();
+                break;
+            case R.id.profile_btn5:
+                TextView t5 = this.findViewById(R.id.username_hidden5);
+                otherUsername = t5.getText().toString();
+                break;
+            case R.id.profile_btn6:
+                TextView t6 = this.findViewById(R.id.username_hidden6);
+                otherUsername = t6.getText().toString();
+                break;
+        }
+//        TextView text = this.findViewById(R.id.student_username_hidden);
+//        String usernameHidden = text.getText().toString();
+        if (!otherUsername.equals("")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.other_username_preferences_key), otherUsername);
+            editor.apply();
+            openFragment(OtherUserProfileFragment.newInstance("", ""));
+        }
     }
 }
