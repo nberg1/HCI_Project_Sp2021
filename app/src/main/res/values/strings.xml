@@ -112,4 +112,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cs5001">CS5001 PLACE</string>
     <string name="cs5003">CS5003 PLACE</string>
+
+    <string name="name_placeholder">Name</string>
 </resources>

@@ -132,13 +132,42 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void courseToUserProfile(View view) {
-        TextView text = this.findViewById(R.id.student_username_hidden);
-        String usernameHidden = text.getText().toString();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(getString(R.string.other_username_preferences_key), usernameHidden);
-        editor.apply();
-        openFragment(OtherUserProfileFragment.newInstance("", ""));
-        Log.w("Username Hidden: ", usernameHidden);
+        String otherUsername = "";
+        TextView t;
+        switch(view.getId()) {
+            case R.id.profile_btn1:
+                t = view.findViewById(R.id.username_hidden1);
+                otherUsername = t.getText().toString();
+                break;
+            case R.id.profile_btn2:
+                t = view.findViewById(R.id.username_hidden2);
+                otherUsername = t.getText().toString();
+                break;
+            case R.id.profile_btn3:
+                t = view.findViewById(R.id.username_hidden3);
+                otherUsername = t.getText().toString();
+                break;
+            case R.id.profile_btn4:
+                t = view.findViewById(R.id.username_hidden4);
+                otherUsername = t.getText().toString();
+                break;
+            case R.id.profile_btn5:
+                t = view.findViewById(R.id.username_hidden5);
+                otherUsername = t.getText().toString();
+                break;
+            case R.id.profile_btn6:
+                t = view.findViewById(R.id.username_hidden6);
+                otherUsername = t.getText().toString();
+                break;
+        }
+//        TextView text = this.findViewById(R.id.student_username_hidden);
+//        String usernameHidden = text.getText().toString();
+        if (!otherUsername.equals("")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.other_username_preferences_key), otherUsername);
+            editor.apply();
+            openFragment(OtherUserProfileFragment.newInstance("", ""));
+        }
     }
 
     @Override

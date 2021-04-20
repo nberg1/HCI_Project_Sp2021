@@ -95,25 +95,25 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
         return view;
     }
 
-    public void createRecyclerView(View view, User student, boolean mentor) {
-        rView = view.findViewById(R.id.studentrecyclerview);
-        rView.setHasFixedSize(true);
-        studentAdapter = new StudentsRecyclerAdapter(studentList);
-        ItemClickListener itemClickListener = new ItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                studentList.get(position).onItemClick(position);
-
-            }
-        };
-        studentAdapter.setOnClickItemClickListener(itemClickListener);
-        layout = new GridLayoutManager(view.getContext(), 2);
-        rView.setLayoutManager(layout);
-        rView.setAdapter(studentAdapter);
-        StudentCard card = new StudentCard(student.getName(), student.getUserName(), mentor);
-        // if a student is a mentor, setText on student card to show mentor text as visible
-        studentList.add(card);
-    }
+//    public void createRecyclerView(View view, User student, boolean mentor) {
+//        rView = view.findViewById(R.id.studentrecyclerview);
+//        rView.setHasFixedSize(true);
+//        studentAdapter = new StudentsRecyclerAdapter(studentList);
+//        ItemClickListener itemClickListener = new ItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                studentList.get(position).onItemClick(position);
+//
+//            }
+//        };
+//        studentAdapter.setOnClickItemClickListener(itemClickListener);
+//        layout = new GridLayoutManager(view.getContext(), 2);
+//        rView.setLayoutManager(layout);
+//        rView.setAdapter(studentAdapter);
+//        StudentCard card = new StudentCard(student.getName(), student.getUserName(), mentor);
+//        // if a student is a mentor, setText on student card to show mentor text as visible
+//        studentList.add(card);
+//    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -135,22 +135,24 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
                     String mentorStudents = course.getMentors();
                     if (currentStudents != null && !currentStudents.equals("")) {
                         List<String> currStudentList = course.convertStrToArray(currentStudents);
+                        // Note: will only display max of 6 students
+                        int studentCount;
                         // get the names
                         for (String user : currStudentList) {
-                                    databaseReference.child(getString(R.string.users_path, user)).addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            User student = dataSnapshot.getValue(User.class);
-                                            // set the text view/ create each individual student card
-                                            Log.w("Creating user", student.getName());
-                                            createRecyclerView(getView(), student, false);
-                                        }
+                            databaseReference.child(getString(R.string.users_path, user)).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    User student = dataSnapshot.getValue(User.class);
+                                    // set the text view/ create each individual student card
+                                    Log.w("Creating user", student.getName());
+                                    createRecyclerView(getView(), student, false);
+                                }
 
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-                                            System.out.println("The read failed: " + databaseError.getCode());
-                                        }
-                                    });
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    System.out.println("The read failed: " + databaseError.getCode());
+                                }
+                            });
                         }
 
                     }
@@ -182,6 +184,27 @@ public class CoursePageFragment extends Fragment implements  View.OnClickListene
 
             }
         });
+    }
+
+    private void displayStudent(View view, User student, int studentNum, boolean mentor) {
+        switch (studentNum) {
+            case 1:
+                if (mentor) {
+                    view.findViewById()
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+        }
+
     }
 
 
