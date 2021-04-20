@@ -58,16 +58,37 @@
             app:layout_constraintTop_toBottomOf="@+id/course_title"
             app:layout_constraintVertical_bias="0.121" />
 
-        <ImageView
-            android:id="@+id/contact_us"
-            android:layout_width="42dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/info_contact"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.786"
-            app:layout_constraintStart_toEndOf="@+id/course_title"
-            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to view students"
+            android:textSize="14dp"
+            android:translationZ="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/course1_button"
+            app:layout_constraintEnd_toEndOf="@+id/course1_button"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="@+id/course1_button"
+            app:layout_constraintTop_toTopOf="@+id/course1_button"
+            app:layout_constraintVertical_bias="0.864" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to view students"
+            android:textSize="14dp"
+            android:translationZ="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/course2_button"
+            app:layout_constraintEnd_toEndOf="@+id/course2_button"
+            app:layout_constraintHorizontal_bias="0.439"
+            app:layout_constraintStart_toStartOf="@+id/course2_button"
+            app:layout_constraintTop_toTopOf="@+id/course2_button"
+            app:layout_constraintVertical_bias="0.861" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
