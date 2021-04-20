@@ -163,4 +163,10 @@ public class OtherUserProfileFragment extends Fragment {
             return courses;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        createUser();
+    }
 }
