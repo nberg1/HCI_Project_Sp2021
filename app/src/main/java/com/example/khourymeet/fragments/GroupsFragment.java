@@ -1,30 +1,30 @@
 package com.example.khourymeet.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.khourymeet.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.net.MalformedURLException;
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link GroupsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GroupsFragment extends Fragment implements View.OnClickListener, NavigationFragment {
+public class GroupsFragment extends Fragment implements NavigationFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,15 +35,28 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     private String mParam1;
     private String mParam2;
 
-    // RecyclerView
-    private RecyclerView rView;
-    private ArrayList<MessageCard> messageList = new ArrayList<>();
-    private MsgsRecyclerAdapter msgAdapter;
-    private RecyclerView.LayoutManager layout;
-    private FloatingActionButton addButton;
-    private static final String KEY_OF_INSTANCE = "KEY_OF_INSTANCE";
-    private static final String NUMBER_OF_ITEMS = "NUMBER_OF_ITEMS";
-    private Bundle savedInstanceState;
+    private DatabaseReference databaseReference;
+    private SharedPreferences sharedPreferences;
+    // Username of person searched for
+    private String otherUsername;
+    private final String defaultString = "default";
+    // Name of person searched for
+    private String name;
+
+    // Name of current user
+    private String currentUsername;
+
+    int messageNum;
+
+    // Views for messages
+    CardView cardViewMessage1;
+    TextView message1;
+    CardView cardViewMessage2;
+    TextView message2;
+    CardView cardViewMessage3;
+    TextView message3;
+    EditText writeMessage;
+    Button sendButton;
 
     public GroupsFragment() {
         // Required empty public constructor
@@ -55,7 +68,7 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GroupsFragment.
+     * @return A new instance of fragment DirectMessageFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static GroupsFragment newInstance(String param1, String param2) {
@@ -70,72 +83,32 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        // Referenced Android documentation to retrieve data from Shared Preferences
+        sharedPreferences = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        otherUsername = sharedPreferences.getString(getString(R.string.other_username_preferences_key), defaultString);
+        currentUsername = sharedPreferences.getString(getString(R.string.username_preferences_key), defaultString);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        messageNum = 0;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_groups, container, false);
-
-        rView = view.findViewById(R.id.grouprecyclerview);
-        rView.setHasFixedSize(true);
-        msgAdapter = new MsgsRecyclerAdapter(messageList);
-        ItemClickListener itemClickListener = new ItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                messageList.get(position).onItemClick(position);
-            }
-        };
-        msgAdapter.setOnClickItemClickListener(itemClickListener);
-        layout = new LinearLayoutManager(view.getContext());
-        rView.setLayoutManager(layout);
-        rView.setAdapter(msgAdapter);
-        this.savedInstanceState = savedInstanceState;
-
-        try {
-            initialItemData(savedInstanceState);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return view;
-    }
-
-    private void initialItemData(Bundle savedInstanceState) throws MalformedURLException {
-        if (savedInstanceState != null && savedInstanceState.containsKey(NUMBER_OF_ITEMS)) {
-            if (messageList == null || messageList.size() == 0) {
-
-                int size = savedInstanceState.getInt(NUMBER_OF_ITEMS);
-                size = messageList.size();
-                for (int i = 0; i < size; i++) {
-                    Integer image = savedInstanceState.getInt(KEY_OF_INSTANCE + i + "0");
-                    MessageCard sCard = new MessageCard("");
-                    messageList.add(sCard);
-                }
-            }
-        }
-        // Load the initial cards
-        else {
-            MessageCard item1 = new MessageCard("Nicole, Aaron");
-            MessageCard item2 = new MessageCard("Alice, John");
-            MessageCard item3 = new MessageCard("Brandon, Jessica");
-            MessageCard item4 = new MessageCard("Charles, Jordan");
-            messageList.add(item1);
-            messageList.add(item2);
-            messageList.add(item3);
-            messageList.add(item4);
-        }
+        return inflater.inflate(R.layout.fragment_groups, container, false);
     }
 
     @Override
-    public void onClick(View view) {
-
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -146,11 +119,6 @@ public class GroupsFragment extends Fragment implements View.OnClickListener, Na
     @Override
     public void onResume() {
         super.onResume();
-        try {
-            initialItemData(this.savedInstanceState);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         getActivity().setTitle(getTitle());
     }
 }
