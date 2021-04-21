@@ -133,7 +133,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Navi
         Button course2Button = getView().findViewById(R.id.course2_button);
         String courseListStr = user.getCurrentCourses();
         List<String> courseList = user.convertStrToArray(courseListStr);
-        if (courseList == null) {
+        if (courseList == null || courseList.size() == 0) {
             TextView courseListTitle = getView().findViewById(R.id.course_title);
             courseListTitle.setText(getString(R.string.no_current_courses));
             course1Button.setVisibility(View.INVISIBLE);

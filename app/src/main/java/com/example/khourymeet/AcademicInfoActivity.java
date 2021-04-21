@@ -77,7 +77,7 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
     }
 
     public void addOnSpinnerCourses() {
-        String[] array = {"5001", "5002", "5004", "5006"};
+        String[] array = {"5001", "5003", "5004", "5006"};
         multiSelectSpinner = (MultiSelectSpinner) findViewById(R.id.courses);
         multiSelectSpinner.setItems(array);
         multiSelectSpinner.setSelection(new int[]{0});
@@ -165,7 +165,7 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
                 Boolean coursesInput = coursesCheck();
                 if (coursesInput) {
                     String combinedCourses = course1 + ", " + course2;
-                    databaseReference.child("users").child(currentUsername).child("currentCourseList").setValue(combinedCourses);
+                    databaseReference.child("users").child(currentUsername).child("currentCourses").setValue(combinedCourses);
 
                     Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
                     startActivity(intent);
