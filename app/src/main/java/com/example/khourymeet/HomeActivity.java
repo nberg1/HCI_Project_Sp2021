@@ -27,6 +27,7 @@ import com.example.khourymeet.fragments.EditProfileFragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
+import com.example.khourymeet.fragments.NewMessageFragment;
 import com.example.khourymeet.fragments.OtherUserProfileFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.khourymeet.fragments.NavigationFragment;
@@ -288,6 +289,11 @@ public class HomeActivity extends AppCompatActivity {
             editor.apply();
             openFragment(DirectMessageFragment.newInstance("", ""));
         }
+    }
+
+    // Go from list of direct messages to new direct message conversation
+    public void dmListToAnonConvo(View view) {
+        openFragment(NewMessageFragment.newInstance("", ""));
     }
 
 }
