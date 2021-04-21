@@ -236,7 +236,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="100dp"
-        android:hint="Enter Message"
+        android:hint="Type Message"
         android:onClick="futureIterationMessage"
         android:focusableInTouchMode="false"
         android:layout_marginLeft="10dp"
