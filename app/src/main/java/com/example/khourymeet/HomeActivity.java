@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.example.khourymeet.fragments.CoursePageFragment;
 import com.example.khourymeet.fragments.DirectMessageFragment;
 import com.example.khourymeet.fragments.EditProfileFragment;
+import com.example.khourymeet.fragments.GroupMessage1Fragment;
+import com.example.khourymeet.fragments.GroupMessage2Fragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
@@ -218,6 +220,18 @@ public class HomeActivity extends AppCompatActivity {
     // Go from user profile to new direct message conversation
     public void otherProfileToDM(View view) {
         openFragment(DirectMessageFragment.newInstance("", ""));
+    }
+
+    public void futureIterationMessage(View view) {
+        Toast.makeText(getApplicationContext(), "Due to backend complexity, this functionality will be implemented in the future", Toast.LENGTH_LONG).show();
+    }
+
+    public void openGroupMessage1(View view) {
+        openFragment(GroupMessage1Fragment.newInstance("", ""));
+    }
+
+    public void openGroupMessage2(View view) {
+        openFragment(GroupMessage2Fragment.newInstance("", ""));
     }
 
     // Go from course to selected student user profile
