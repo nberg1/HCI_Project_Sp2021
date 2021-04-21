@@ -245,6 +245,7 @@ public class NewMessageFragment extends Fragment {
                             } else {
                                 databaseReference.child("users").child(currentUsername).child("friends").setValue(usernameSearched);
                             }
+                            typeSearch.setInputType(0);
                         }
                     }
                     messageNum += 1;
