@@ -223,7 +223,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void futureIterationMessage(View view) {
-        Toast.makeText(getApplicationContext(), "Due to backend complexity, this functionality will be implemented in the future", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Due to backend complexity and time constraint, this functionality will be implemented in the future", Toast.LENGTH_LONG).show();
     }
 
     public void openGroupMessage1(View view) {
