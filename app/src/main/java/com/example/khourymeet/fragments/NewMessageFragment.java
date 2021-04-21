@@ -256,7 +256,7 @@ public class NewMessageFragment extends Fragment {
                 }
             });
         } else {
-            Toast toast = Toast.makeText(getContext(), "Please select a user to send this message to.", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getContext(), "Please select a user from the suggestions in the search.", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
         }
