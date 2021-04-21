@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PersonalInfoActivity extends AppCompatActivity {
 
@@ -52,20 +55,26 @@ public class PersonalInfoActivity extends AppCompatActivity {
         More than 2 names allowed, and all are able to have hyphens
         Should allow letters wih accent marks
      */
-    private static final String namePattern = "([\\p{L}\\-])+(\\s)([\\p{L}\\-\\s])+(?<![\\-\\s])";
+    private static final String NAME_PATTERN = "([\\p{L}\\-])+(\\s)([\\p{L}\\-\\s])+(?<![\\-\\s])";
 
     /*
         Will match Northeastern email
         Format: last name + period + portion of first name + @northeastern.edu
      */
-    private static final String emailPattern = "([a-z\\-])+(?<![\\-])(\\.)([a-z\\-])+([0-9]+)?(?<![\\-])(@northeastern.edu)";
+    private static final String EMAIL_PATTERN = "([a-z\\-])+(?<![\\-])(\\.)([a-z\\-])+([0-9]+)?(?<![\\-])(@northeastern.edu)";
+
+
+    /*
+        Will make sure passwords entered by the user are secure and have at least one uppercase letter, a number and a symbol
+     */
+    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
 
     /*
         Checks username
         Allows for uppercase and lowercase letters (without accents) and certain special characters
         Does not allow spaces
      */
-    private static final String usernamePattern = "([a-zA-Z0-9\\-_!*@]+)";
+    private static final String USERNAME_PATTERN = "([a-zA-Z0-9\\-_!*@]+)";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,17 +153,25 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     // Run other validity checks
     private void generalChecks(String usernameString, String nameString, String emailString, String passwordString) {
-        if (!nameString.matches(namePattern) || nameString.equals("")) {
+        if (!nameString.matches(NAME_PATTERN) || nameString.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter your full name", Toast.LENGTH_LONG).show();
-        } else if (!emailString.matches(emailPattern) || emailString.equals("")) {
+        } else if (!emailString.matches(EMAIL_PATTERN) || emailString.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter a Northeastern email", Toast.LENGTH_LONG).show();
-        } else if (passwordString.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please enter a valid password", Toast.LENGTH_LONG).show();
-        } else if (!usernameString.matches(usernamePattern) || usernameString.equals("")) {
+        } else if (!isValidPassword(passwordString)) {
+            Toast.makeText(getApplicationContext(), "Please enter a valid password. Click info icon for more details", Toast.LENGTH_LONG).show();
+        } else if (!usernameString.matches(USERNAME_PATTERN) || usernameString.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter a username with only letters, numbers, and/or the following: - . _ ! * @", Toast.LENGTH_LONG).show();
         } else {
             writePersonalInfo(usernameString, nameString, emailString, passwordString);
         }
+    }
+
+
+    private boolean isValidPassword(String password) {
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        Log.i("Password is good:", String.valueOf(matcher.matches()));
+        return matcher.matches();
     }
 
     // Write personal information to database and store username locally

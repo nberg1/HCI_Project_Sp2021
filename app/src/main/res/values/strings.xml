@@ -114,7 +114,7 @@
     <string name="cs5003">CS5003 PLACE</string>
 
     <string name="password_security">Password Security</string>
-    <string name="password_security_message">In order to have a secure password, please enter a password that contains at least one uppercase letter, one lowercase letter, one number and one symbol</string>
+    <string name="password_security_message">In order to have a secure password, please enter a password that is 8 characters long and contains one uppercase and lowercase letter as well as a number and a symbol</string>
 
     <string name="forgot_login_info">Forgot Username or Password?</string>
     <string name="enter_email_header">Email: </string>
