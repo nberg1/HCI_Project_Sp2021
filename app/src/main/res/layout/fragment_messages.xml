@@ -248,6 +248,7 @@
         android:background="@color/colorPrimaryDark"
         android:padding="10dp"
         android:text="Add New Conversation"
+        android:onClick="dmListToAnonConvo"
         android:textColor="@color/white"
         app:icon="@android:drawable/ic_menu_add"
         app:layout_constraintBottom_toBottomOf="parent"
