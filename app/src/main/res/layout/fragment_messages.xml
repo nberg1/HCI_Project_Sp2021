@@ -7,38 +7,24 @@
     tools:context=".fragments.MessagesFragment">
 
 
-    <TextView
-        android:id="@+id/direct_message_title"
-        android:layout_width="231dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:text="@string/direct_messages"
-        app:layout_constraintBottom_toTopOf="@+id/dm_scroll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056"/>
-
     <ScrollView
         android:id="@+id/dm_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@id/direct_message_title">
+        android:layout_marginTop="70dp"
+        tools:layout_editor_absoluteY="133dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conversation1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/conversation1"
                 android:visibility="gone">
 
                 <TextView
@@ -65,13 +51,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/open_convo1"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/friend_name_convo1"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    android:visibility="gone"/>
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/open_convo1"
@@ -89,10 +75,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conversation2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/conversation2"
                 android:visibility="gone">
 
                 <TextView
@@ -119,13 +105,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/open_convo2"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/friend_name_convo2"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    android:visibility="gone"/>
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/open_convo2"
@@ -135,18 +121,18 @@
                     android:layout_marginEnd="10dp"
                     android:background="@color/colorPrimaryDark"
                     android:clickable="true"
-                    android:text="@string/open"
                     android:onClick="dmsToSingleConvo"
+                    android:text="@string/open"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conversation3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/conversation3"
                 android:visibility="gone">
 
                 <TextView
@@ -173,13 +159,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/open_convo3"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/friend_name_convo3"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    android:visibility="gone"/>
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/open_convo3"
@@ -197,10 +183,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conversation4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/conversation4"
                 android:visibility="gone">
 
                 <TextView
@@ -227,13 +213,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/open_convo4"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/friend_name_convo4"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    android:visibility="gone"/>
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/open_convo4"
@@ -243,118 +229,14 @@
                     android:layout_marginEnd="10dp"
                     android:background="@color/colorPrimaryDark"
                     android:clickable="true"
-                    android:text="@string/open"
                     android:onClick="dmsToSingleConvo"
+                    android:text="@string/open"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:id="@+id/conversation1">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/friend_name_convo1"-->
-<!--                android:layout_width="199dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:text="Friend Name"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="25dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/open_convo"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.0" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/dm_username_hidden1"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/open_convo"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toEndOf="@id/friend_name_convo1"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.0"-->
-<!--                android:visibility="gone"/>-->
-
-<!--            <Button-->
-<!--                android:id="@+id/open_convo1"-->
-<!--                android:layout_width="86dp"-->
-<!--                android:layout_height="29dp"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                android:background="@color/colorPrimaryDark"-->
-<!--                android:clickable="true"-->
-<!--                android:text="Open"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:id="@+id/conversation2">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/friend_name_convo2"-->
-<!--                android:layout_width="199dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:text="Friend Name"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="25dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/open_convo"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.0" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/dm_username_hidden2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/open_convo"-->
-<!--                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                app:layout_constraintStart_toEndOf="@id/friend_name_convo2"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.0"-->
-<!--                android:visibility="gone"/>-->
-
-<!--            <Button-->
-<!--                android:id="@+id/open_convo2"-->
-<!--                android:layout_width="86dp"-->
-<!--                android:layout_height="29dp"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                android:background="@color/colorPrimaryDark"-->
-<!--                android:clickable="true"-->
-<!--                android:text="Open"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </ScrollView>
 
     <Button
@@ -366,6 +248,7 @@
         android:background="@color/colorPrimaryDark"
         android:padding="10dp"
         android:text="Add New Conversation"
+        android:onClick="dmListToAnonConvo"
         android:textColor="@color/white"
         app:icon="@android:drawable/ic_menu_add"
         app:layout_constraintBottom_toBottomOf="parent"

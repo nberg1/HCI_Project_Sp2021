@@ -24,9 +24,12 @@ import android.widget.Toast;
 import com.example.khourymeet.fragments.CoursePageFragment;
 import com.example.khourymeet.fragments.DirectMessageFragment;
 import com.example.khourymeet.fragments.EditProfileFragment;
+import com.example.khourymeet.fragments.GroupMessage1Fragment;
+import com.example.khourymeet.fragments.GroupMessage2Fragment;
 import com.example.khourymeet.fragments.GroupsFragment;
 import com.example.khourymeet.fragments.HomeFragment;
 import com.example.khourymeet.fragments.MessagesFragment;
+import com.example.khourymeet.fragments.NewMessageFragment;
 import com.example.khourymeet.fragments.OtherUserProfileFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.khourymeet.fragments.NavigationFragment;
@@ -220,6 +223,18 @@ public class HomeActivity extends AppCompatActivity {
         openFragment(DirectMessageFragment.newInstance("", ""));
     }
 
+    public void futureIterationMessage(View view) {
+        Toast.makeText(getApplicationContext(), "Due to backend complexity and time constraint, this functionality will be implemented in the future", Toast.LENGTH_LONG).show();
+    }
+
+    public void openGroupMessage1(View view) {
+        openFragment(GroupMessage1Fragment.newInstance("", ""));
+    }
+
+    public void openGroupMessage2(View view) {
+        openFragment(GroupMessage2Fragment.newInstance("", ""));
+    }
+
     // Go from course to selected student user profile
     public void courseToUserProfile(View view) {
         String otherUsername = "";
@@ -288,6 +303,11 @@ public class HomeActivity extends AppCompatActivity {
             editor.apply();
             openFragment(DirectMessageFragment.newInstance("", ""));
         }
+    }
+
+    // Go from list of direct messages to new direct message conversation
+    public void dmListToAnonConvo(View view) {
+        openFragment(NewMessageFragment.newInstance("", ""));
     }
 
 }

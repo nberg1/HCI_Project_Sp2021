@@ -37,6 +37,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +58,11 @@ public class EditProfileFragment extends Fragment {
 
 
     private static final String namePattern = "([\\p{L}\\-])+(\\s)([\\p{L}\\-\\s])+(?<![\\-\\s])";
+
+    /*
+    Will make sure passwords entered by the user are secure and have at least one uppercase letter, a number and a symbol
+ */
+    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
 
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
@@ -460,6 +467,8 @@ public class EditProfileFragment extends Fragment {
     private void saveStudentInfoToDb() {
         if (!editName.getText().toString().matches(namePattern) || editName.getText().toString().equals("")) {
             Toast.makeText(getContext(), getString(R.string.name_warning), Toast.LENGTH_LONG).show();
+        } else if (!isValidPassword(editPassword.getText().toString())) {
+            Toast.makeText(getContext(), getString(R.string.password_security_message), Toast.LENGTH_LONG).show();
         } else {
             databaseReference.child("users").child(currentUsername).child("name").setValue(editName.getText().toString());
             databaseReference.child("users").child(currentUsername).child("password").setValue(editPassword.getText().toString());
@@ -836,6 +845,13 @@ public class EditProfileFragment extends Fragment {
             checkBox4.setVisibility(View.GONE);
             deleteButton4.setVisibility(View.GONE);
         }
+    }
+
+    private boolean isValidPassword(String password) {
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        Log.i("Password is good:", String.valueOf(matcher.matches()));
+        return matcher.matches();
     }
 
 
