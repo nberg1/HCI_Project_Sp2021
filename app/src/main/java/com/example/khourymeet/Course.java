@@ -48,4 +48,11 @@ public class Course {
         }
         return arr;
     }
+
+    // After running toString on an array, remove the brackets from the String
+    public String removeBracketsArrStr(String arrayString) {
+        String tempStr = arrayString.replaceAll("\\[", "");
+        tempStr = tempStr.replaceAll("\\]", "");
+        return tempStr;
+    }
 }

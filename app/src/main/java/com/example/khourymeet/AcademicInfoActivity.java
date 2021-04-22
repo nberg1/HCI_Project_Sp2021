@@ -1,5 +1,6 @@
 package com.example.khourymeet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -20,8 +21,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -166,12 +170,39 @@ public class AcademicInfoActivity extends AppCompatActivity implements MultiSele
                 if (coursesInput) {
                     String combinedCourses = course1 + ", " + course2;
                     databaseReference.child("users").child(currentUsername).child("currentCourses").setValue(combinedCourses);
+                    updateCourseLists(course1);
+                    updateCourseLists(course2);
 
                     Intent intent = new Intent(AcademicInfoActivity.this, HomeActivity.class);
                     startActivity(intent);
                 }
             }
         }
+    }
+
+    // Update list of current students in database
+    private void updateCourseLists(String course) {
+        databaseReference.child("courses").child(course).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Use snapshot to go through courses
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Course dbCourse = snapshot.getValue(Course.class);
+                    String dbCourseName = dbCourse.getCourseName();
+                    // TODO: Null checks ?
+                    List<String> currStudentList = dbCourse.convertStrToArray(dbCourse.getCurrentStudents());
+                    if (currStudentList == null) {
+                        currStudentList = new ArrayList<>();
+                    }
+                    currStudentList.add(currentUsername);
+                    String newCurrStudentStr = dbCourse.removeBracketsArrStr(currStudentList.toString());
+                    databaseReference.child("courses").child(dbCourseName).child("currentStudents").setValue(newCurrStudentStr);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     // Checks that a user has clicked on one of the radio buttons to select an academic program
