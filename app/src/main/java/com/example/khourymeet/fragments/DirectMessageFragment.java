@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.khourymeet.R;
 import com.example.khourymeet.User;
@@ -126,6 +127,8 @@ public class DirectMessageFragment extends Fragment {
                     setMessage1();
                 } else if (messageNum == 1) {
                     setMessage2();
+                } else {
+                    Toast.makeText(getContext(), "For this iteration of the interface, only 2 messages can be sent.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -222,6 +225,7 @@ public class DirectMessageFragment extends Fragment {
         message3.setText(message);
         cardViewMessage3.setVisibility(View.VISIBLE);
         writeMessage.getText().clear();
+        messageNum += 1;
     }
 
 }

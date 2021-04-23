@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.khourymeet.R;
@@ -40,6 +41,7 @@ public class OtherUserProfileFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     // Username of person searched for
     private String otherUsername;
+    private String currentUsername;
     private final String defaultString = "default";
 
     // Views for profile text
@@ -48,6 +50,7 @@ public class OtherUserProfileFragment extends Fragment {
     private TextView programView;
     private TextView currentCoursesView;
     private TextView pastCoursesView;
+
 
     public OtherUserProfileFragment() {
         // Required empty public constructor
@@ -82,6 +85,7 @@ public class OtherUserProfileFragment extends Fragment {
         // Referenced Android documentation to retrieve data from Shared Preferences
         sharedPreferences = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         otherUsername = sharedPreferences.getString(getString(R.string.other_username_preferences_key), defaultString);
+        currentUsername = sharedPreferences.getString(getString(R.string.username_preferences_key), defaultString);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -118,6 +122,12 @@ public class OtherUserProfileFragment extends Fragment {
 
     // Populate profile with data from database
     private void setProfileText(User user) {
+        if (otherUsername.equals(currentUsername)) {
+            Button messageButton = getView().findViewById(R.id.send_message_other_user);
+            if (messageButton != null) {
+                messageButton.setVisibility(View.GONE);
+            }
+        }
         // Get TextViews for profile texts
         nameView = getView().findViewById(R.id.name);
         emailView = getView().findViewById(R.id.user_email);
