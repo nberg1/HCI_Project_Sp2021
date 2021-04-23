@@ -27,7 +27,7 @@
     <string name="academic_program">Current academic program:</string>
     <string name="align">Current ALIGN</string>
     <string name="mscs">MSCS</string>
-    <string name="first_semester">Select your first semester:</string>
+    <string name="first_semester">When did you start this program?</string>
     <string name="select_courses">Select courses in-progress:</string>
     <string name="action_sign_out">Sign Out</string>
     <string name="save_profile">Save Profile</string>
